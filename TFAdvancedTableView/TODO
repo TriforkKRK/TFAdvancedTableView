@@ -1,0 +1,26 @@
+1) TABLEVIEW DYNAMIC DATASOURCE / MVVM Provider
+TODO:
+- vm - remove action
+- integracja z realną aplikacją, sportsbook WH
+- delta calculation - simple sections
+- Subclass of TFIntention / TFModule
+    - rename DynamicTableViewController ?
+    - TFUITableViewControlling ?
+- unit tests
+- rename reuseStrategy - to cellFactory?
+
+2) TABLEVIEW AUTOMATIC CELLSIZING DELGATE
+- header / footer
+- fixed size?
+
+- Apple in AdvancedCollectionView simply uses cell by requesting it from datasource, then calculating and then removing from superview.
+- check if this approach is better than phantom cell per reuse id
+- on screen rotation, cell height seem to be changed properly but content is cut.
+- fix Grześka z estimated heights
+
+3) COMPOSITE DATASOURCE / DELEGATE (MODULE) ?
+it implements both datasource & delegate to favor modularisation and composition
+
+
+4) VIEWS
+- basic autolayout cells

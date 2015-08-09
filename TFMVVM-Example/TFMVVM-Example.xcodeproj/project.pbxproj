@@ -1,0 +1,641 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AF01B3691B7663F90021F8A1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3611B7663F90021F8A1 /* ViewController.m */; };
+		AF01B36A1B7663F90021F8A1 /* SimpleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3651B7663F90021F8A1 /* SimpleCell.m */; };
+		AF01B36B1B7663F90021F8A1 /* SimpleRowViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3681B7663F90021F8A1 /* SimpleRowViewModel.m */; };
+		AF01B3711B7665D10021F8A1 /* SimpleHeaderViewWithFolding.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3701B7665D10021F8A1 /* SimpleHeaderViewWithFolding.m */; };
+		AF01B3751B7668060021F8A1 /* SimpleHeaderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3741B7668060021F8A1 /* SimpleHeaderViewModel.m */; };
+		AF01B3911B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3801B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m */; };
+		AF01B3921B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3831B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m */; };
+		AF01B3931B76B8FB0021F8A1 /* TFBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3881B76B8FB0021F8A1 /* TFBaseViewModel.m */; };
+		AF01B3941B76B8FB0021F8A1 /* TFSectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B38B1B76B8FB0021F8A1 /* TFSectionViewModel.m */; };
+		AF01B3951B76B8FB0021F8A1 /* TFViewModelResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B38F1B76B8FB0021F8A1 /* TFViewModelResultsController.m */; };
+		AF01B3981B76B9140021F8A1 /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = AF01B3971B76B9140021F8A1 /* TODO */; };
+		AF01B3AC1B7770BC0021F8A1 /* TFDataSourceCompositeIntention+CellSizingCompilance.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B39C1B7770BC0021F8A1 /* TFDataSourceCompositeIntention+CellSizingCompilance.m */; };
+		AF01B3AD1B7770BC0021F8A1 /* TFDataSourceCompositeIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B39E1B7770BC0021F8A1 /* TFDataSourceCompositeIntention.m */; };
+		AF01B3AE1B7770BC0021F8A1 /* TFIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3A01B7770BC0021F8A1 /* TFIntention.m */; };
+		AF01B3AF1B7770BC0021F8A1 /* TFObserveIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3A21B7770BC0021F8A1 /* TFObserveIntention.m */; };
+		AF01B3B01B7770BC0021F8A1 /* TFOwnerableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3A41B7770BC0021F8A1 /* TFOwnerableObject.m */; };
+		AF01B3B11B7770BC0021F8A1 /* TFTargetMultiplexerIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3A61B7770BC0021F8A1 /* TFTargetMultiplexerIntention.m */; };
+		AF01B3B21B7770BC0021F8A1 /* TFUITableViewDelegateSizingIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3A81B7770BC0021F8A1 /* TFUITableViewDelegateSizingIntention.m */; };
+		AF01B3B31B7770BC0021F8A1 /* UITextFieldObserveIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3AB1B7770BC0021F8A1 /* UITextFieldObserveIntention.m */; };
+		AFB3C6361B6D1B44006DB0C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB3C6351B6D1B44006DB0C7 /* main.m */; };
+		AFB3C6391B6D1B44006DB0C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB3C6381B6D1B44006DB0C7 /* AppDelegate.m */; };
+		AFB3C63F1B6D1B44006DB0C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFB3C63D1B6D1B44006DB0C7 /* Main.storyboard */; };
+		AFB3C6411B6D1B44006DB0C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFB3C6401B6D1B44006DB0C7 /* Images.xcassets */; };
+		AFB3C6441B6D1B44006DB0C7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFB3C6421B6D1B44006DB0C7 /* LaunchScreen.xib */; };
+		AFB3C6501B6D1B44006DB0C7 /* TFMVVM_ExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB3C64F1B6D1B44006DB0C7 /* TFMVVM_ExampleTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AFB3C64A1B6D1B44006DB0C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFB3C6281B6D1B44006DB0C7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AFB3C62F1B6D1B44006DB0C7;
+			remoteInfo = "TFMVVM-Example";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AF01B3601B7663F90021F8A1 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		AF01B3611B7663F90021F8A1 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		AF01B3641B7663F90021F8A1 /* SimpleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleCell.h; sourceTree = "<group>"; };
+		AF01B3651B7663F90021F8A1 /* SimpleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleCell.m; sourceTree = "<group>"; };
+		AF01B3671B7663F90021F8A1 /* SimpleRowViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleRowViewModel.h; sourceTree = "<group>"; };
+		AF01B3681B7663F90021F8A1 /* SimpleRowViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleRowViewModel.m; sourceTree = "<group>"; };
+		AF01B36F1B7665D10021F8A1 /* SimpleHeaderViewWithFolding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleHeaderViewWithFolding.h; sourceTree = "<group>"; };
+		AF01B3701B7665D10021F8A1 /* SimpleHeaderViewWithFolding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleHeaderViewWithFolding.m; sourceTree = "<group>"; };
+		AF01B3731B7668060021F8A1 /* SimpleHeaderViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleHeaderViewModel.h; sourceTree = "<group>"; };
+		AF01B3741B7668060021F8A1 /* SimpleHeaderViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleHeaderViewModel.m; sourceTree = "<group>"; };
+		AF01B37C1B76B8FB0021F8A1 /* TFConfiguring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFConfiguring.h; sourceTree = "<group>"; };
+		AF01B37D1B76B8FB0021F8A1 /* TFDynamicDataProviding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDynamicDataProviding.h; sourceTree = "<group>"; };
+		AF01B37E1B76B8FB0021F8A1 /* TFDynamicDataProvidingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDynamicDataProvidingDelegate.h; sourceTree = "<group>"; };
+		AF01B37F1B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDynamicTableViewDataSource.h; sourceTree = "<group>"; };
+		AF01B3801B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFDynamicTableViewDataSource.m; sourceTree = "<group>"; };
+		AF01B3811B76B8FB0021F8A1 /* TFFoldable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFFoldable.h; sourceTree = "<group>"; };
+		AF01B3821B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFReuseStrategyObjectClassToViewClass.h; sourceTree = "<group>"; };
+		AF01B3831B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFReuseStrategyObjectClassToViewClass.m; sourceTree = "<group>"; };
+		AF01B3841B76B8FB0021F8A1 /* TFSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFSectionInfo.h; sourceTree = "<group>"; };
+		AF01B3851B76B8FB0021F8A1 /* TFTableViewReusing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFTableViewReusing.h; sourceTree = "<group>"; };
+		AF01B3871B76B8FB0021F8A1 /* TFBaseViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFBaseViewModel.h; sourceTree = "<group>"; };
+		AF01B3881B76B8FB0021F8A1 /* TFBaseViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFBaseViewModel.m; sourceTree = "<group>"; };
+		AF01B3891B76B8FB0021F8A1 /* TFSectionItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFSectionItemViewModel.h; sourceTree = "<group>"; };
+		AF01B38A1B76B8FB0021F8A1 /* TFSectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFSectionViewModel.h; sourceTree = "<group>"; };
+		AF01B38B1B76B8FB0021F8A1 /* TFSectionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFSectionViewModel.m; sourceTree = "<group>"; };
+		AF01B38C1B76B8FB0021F8A1 /* TFViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFViewModel.h; sourceTree = "<group>"; };
+		AF01B38D1B76B8FB0021F8A1 /* TFViewModelDeltaProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFViewModelDeltaProcessing.h; sourceTree = "<group>"; };
+		AF01B38E1B76B8FB0021F8A1 /* TFViewModelResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFViewModelResultsController.h; sourceTree = "<group>"; };
+		AF01B38F1B76B8FB0021F8A1 /* TFViewModelResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFViewModelResultsController.m; sourceTree = "<group>"; };
+		AF01B3971B76B9140021F8A1 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+		AF01B39B1B7770BC0021F8A1 /* TFDataSourceCompositeIntention+CellSizingCompilance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TFDataSourceCompositeIntention+CellSizingCompilance.h"; sourceTree = "<group>"; };
+		AF01B39C1B7770BC0021F8A1 /* TFDataSourceCompositeIntention+CellSizingCompilance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TFDataSourceCompositeIntention+CellSizingCompilance.m"; sourceTree = "<group>"; };
+		AF01B39D1B7770BC0021F8A1 /* TFDataSourceCompositeIntention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDataSourceCompositeIntention.h; sourceTree = "<group>"; };
+		AF01B39E1B7770BC0021F8A1 /* TFDataSourceCompositeIntention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFDataSourceCompositeIntention.m; sourceTree = "<group>"; };
+		AF01B39F1B7770BC0021F8A1 /* TFIntention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFIntention.h; sourceTree = "<group>"; };
+		AF01B3A01B7770BC0021F8A1 /* TFIntention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFIntention.m; sourceTree = "<group>"; };
+		AF01B3A11B7770BC0021F8A1 /* TFObserveIntention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFObserveIntention.h; sourceTree = "<group>"; };
+		AF01B3A21B7770BC0021F8A1 /* TFObserveIntention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFObserveIntention.m; sourceTree = "<group>"; };
+		AF01B3A31B7770BC0021F8A1 /* TFOwnerableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFOwnerableObject.h; sourceTree = "<group>"; };
+		AF01B3A41B7770BC0021F8A1 /* TFOwnerableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFOwnerableObject.m; sourceTree = "<group>"; };
+		AF01B3A51B7770BC0021F8A1 /* TFTargetMultiplexerIntention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFTargetMultiplexerIntention.h; sourceTree = "<group>"; };
+		AF01B3A61B7770BC0021F8A1 /* TFTargetMultiplexerIntention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFTargetMultiplexerIntention.m; sourceTree = "<group>"; };
+		AF01B3A71B7770BC0021F8A1 /* TFUITableViewDelegateSizingIntention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFUITableViewDelegateSizingIntention.h; sourceTree = "<group>"; };
+		AF01B3A81B7770BC0021F8A1 /* TFUITableViewDelegateSizingIntention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUITableViewDelegateSizingIntention.m; sourceTree = "<group>"; };
+		AF01B3AA1B7770BC0021F8A1 /* UITextFieldObserveIntention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextFieldObserveIntention.h; sourceTree = "<group>"; };
+		AF01B3AB1B7770BC0021F8A1 /* UITextFieldObserveIntention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextFieldObserveIntention.m; sourceTree = "<group>"; };
+		AFB3C6301B6D1B44006DB0C7 /* TFMVVM-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TFMVVM-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFB3C6341B6D1B44006DB0C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFB3C6351B6D1B44006DB0C7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AFB3C6371B6D1B44006DB0C7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		AFB3C6381B6D1B44006DB0C7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		AFB3C63E1B6D1B44006DB0C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AFB3C6401B6D1B44006DB0C7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		AFB3C6431B6D1B44006DB0C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		AFB3C6491B6D1B44006DB0C7 /* TFMVVM-ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TFMVVM-ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFB3C64E1B6D1B44006DB0C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFB3C64F1B6D1B44006DB0C7 /* TFMVVM_ExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TFMVVM_ExampleTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AFB3C62D1B6D1B44006DB0C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFB3C6461B6D1B44006DB0C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AF01B3401B752FE90021F8A1 /* TFAdvancedTableView */ = {
+			isa = PBXGroup;
+			children = (
+				AF01B3971B76B9140021F8A1 /* TODO */,
+				AF01B37B1B76B8FB0021F8A1 /* Core */,
+				AF01B3861B76B8FB0021F8A1 /* MVVM */,
+			);
+			name = TFAdvancedTableView;
+			path = ../TFAdvancedTableView;
+			sourceTree = "<group>";
+		};
+		AF01B35F1B7663F90021F8A1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AF01B3601B7663F90021F8A1 /* ViewController.h */,
+				AF01B3611B7663F90021F8A1 /* ViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		AF01B3621B7663F90021F8A1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AF01B3631B7663F90021F8A1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AF01B3641B7663F90021F8A1 /* SimpleCell.h */,
+				AF01B3651B7663F90021F8A1 /* SimpleCell.m */,
+				AF01B36F1B7665D10021F8A1 /* SimpleHeaderViewWithFolding.h */,
+				AF01B3701B7665D10021F8A1 /* SimpleHeaderViewWithFolding.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AF01B3661B7663F90021F8A1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AF01B3671B7663F90021F8A1 /* SimpleRowViewModel.h */,
+				AF01B3681B7663F90021F8A1 /* SimpleRowViewModel.m */,
+				AF01B3731B7668060021F8A1 /* SimpleHeaderViewModel.h */,
+				AF01B3741B7668060021F8A1 /* SimpleHeaderViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AF01B37B1B76B8FB0021F8A1 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				AF01B37C1B76B8FB0021F8A1 /* TFConfiguring.h */,
+				AF01B3841B76B8FB0021F8A1 /* TFSectionInfo.h */,
+				AF01B3811B76B8FB0021F8A1 /* TFFoldable.h */,
+				AF01B3851B76B8FB0021F8A1 /* TFTableViewReusing.h */,
+				AF01B37D1B76B8FB0021F8A1 /* TFDynamicDataProviding.h */,
+				AF01B37E1B76B8FB0021F8A1 /* TFDynamicDataProvidingDelegate.h */,
+				AF01B37F1B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.h */,
+				AF01B3801B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m */,
+				AF01B3821B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.h */,
+				AF01B3831B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		AF01B3861B76B8FB0021F8A1 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				AF01B38C1B76B8FB0021F8A1 /* TFViewModel.h */,
+				AF01B3871B76B8FB0021F8A1 /* TFBaseViewModel.h */,
+				AF01B3881B76B8FB0021F8A1 /* TFBaseViewModel.m */,
+				AF01B3891B76B8FB0021F8A1 /* TFSectionItemViewModel.h */,
+				AF01B38A1B76B8FB0021F8A1 /* TFSectionViewModel.h */,
+				AF01B38B1B76B8FB0021F8A1 /* TFSectionViewModel.m */,
+				AF01B38D1B76B8FB0021F8A1 /* TFViewModelDeltaProcessing.h */,
+				AF01B38E1B76B8FB0021F8A1 /* TFViewModelResultsController.h */,
+				AF01B38F1B76B8FB0021F8A1 /* TFViewModelResultsController.m */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		AF01B3991B7770BC0021F8A1 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				AF01B39A1B7770BC0021F8A1 /* TFIntentions */,
+			);
+			name = External;
+			path = ../External;
+			sourceTree = "<group>";
+		};
+		AF01B39A1B7770BC0021F8A1 /* TFIntentions */ = {
+			isa = PBXGroup;
+			children = (
+				AF01B39B1B7770BC0021F8A1 /* TFDataSourceCompositeIntention+CellSizingCompilance.h */,
+				AF01B39C1B7770BC0021F8A1 /* TFDataSourceCompositeIntention+CellSizingCompilance.m */,
+				AF01B39D1B7770BC0021F8A1 /* TFDataSourceCompositeIntention.h */,
+				AF01B39E1B7770BC0021F8A1 /* TFDataSourceCompositeIntention.m */,
+				AF01B39F1B7770BC0021F8A1 /* TFIntention.h */,
+				AF01B3A01B7770BC0021F8A1 /* TFIntention.m */,
+				AF01B3A11B7770BC0021F8A1 /* TFObserveIntention.h */,
+				AF01B3A21B7770BC0021F8A1 /* TFObserveIntention.m */,
+				AF01B3A31B7770BC0021F8A1 /* TFOwnerableObject.h */,
+				AF01B3A41B7770BC0021F8A1 /* TFOwnerableObject.m */,
+				AF01B3A51B7770BC0021F8A1 /* TFTargetMultiplexerIntention.h */,
+				AF01B3A61B7770BC0021F8A1 /* TFTargetMultiplexerIntention.m */,
+				AF01B3A71B7770BC0021F8A1 /* TFUITableViewDelegateSizingIntention.h */,
+				AF01B3A81B7770BC0021F8A1 /* TFUITableViewDelegateSizingIntention.m */,
+				AF01B3A91B7770BC0021F8A1 /* UITextField */,
+			);
+			path = TFIntentions;
+			sourceTree = "<group>";
+		};
+		AF01B3A91B7770BC0021F8A1 /* UITextField */ = {
+			isa = PBXGroup;
+			children = (
+				AF01B3AA1B7770BC0021F8A1 /* UITextFieldObserveIntention.h */,
+				AF01B3AB1B7770BC0021F8A1 /* UITextFieldObserveIntention.m */,
+			);
+			path = UITextField;
+			sourceTree = "<group>";
+		};
+		AFB3C6271B6D1B44006DB0C7 = {
+			isa = PBXGroup;
+			children = (
+				AF01B3991B7770BC0021F8A1 /* External */,
+				AFB3C6321B6D1B44006DB0C7 /* TFMVVM-Example */,
+				AF01B3401B752FE90021F8A1 /* TFAdvancedTableView */,
+				AFB3C64C1B6D1B44006DB0C7 /* TFMVVM-ExampleTests */,
+				AFB3C6311B6D1B44006DB0C7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AFB3C6311B6D1B44006DB0C7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AFB3C6301B6D1B44006DB0C7 /* TFMVVM-Example.app */,
+				AFB3C6491B6D1B44006DB0C7 /* TFMVVM-ExampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AFB3C6321B6D1B44006DB0C7 /* TFMVVM-Example */ = {
+			isa = PBXGroup;
+			children = (
+				AF01B3621B7663F90021F8A1 /* Model */,
+				AF01B3631B7663F90021F8A1 /* View */,
+				AF01B3661B7663F90021F8A1 /* ViewModel */,
+				AF01B35F1B7663F90021F8A1 /* Controller */,
+				AFB3C6331B6D1B44006DB0C7 /* Supporting Files */,
+			);
+			path = "TFMVVM-Example";
+			sourceTree = "<group>";
+		};
+		AFB3C6331B6D1B44006DB0C7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AFB3C63D1B6D1B44006DB0C7 /* Main.storyboard */,
+				AFB3C6401B6D1B44006DB0C7 /* Images.xcassets */,
+				AFB3C6421B6D1B44006DB0C7 /* LaunchScreen.xib */,
+				AFB3C6371B6D1B44006DB0C7 /* AppDelegate.h */,
+				AFB3C6381B6D1B44006DB0C7 /* AppDelegate.m */,
+				AFB3C6341B6D1B44006DB0C7 /* Info.plist */,
+				AFB3C6351B6D1B44006DB0C7 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AFB3C64C1B6D1B44006DB0C7 /* TFMVVM-ExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				AFB3C64F1B6D1B44006DB0C7 /* TFMVVM_ExampleTests.m */,
+				AFB3C64D1B6D1B44006DB0C7 /* Supporting Files */,
+			);
+			path = "TFMVVM-ExampleTests";
+			sourceTree = "<group>";
+		};
+		AFB3C64D1B6D1B44006DB0C7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AFB3C64E1B6D1B44006DB0C7 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AFB3C62F1B6D1B44006DB0C7 /* TFMVVM-Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFB3C6531B6D1B44006DB0C7 /* Build configuration list for PBXNativeTarget "TFMVVM-Example" */;
+			buildPhases = (
+				AFB3C62C1B6D1B44006DB0C7 /* Sources */,
+				AFB3C62D1B6D1B44006DB0C7 /* Frameworks */,
+				AFB3C62E1B6D1B44006DB0C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TFMVVM-Example";
+			productName = "TFMVVM-Example";
+			productReference = AFB3C6301B6D1B44006DB0C7 /* TFMVVM-Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AFB3C6481B6D1B44006DB0C7 /* TFMVVM-ExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFB3C6561B6D1B44006DB0C7 /* Build configuration list for PBXNativeTarget "TFMVVM-ExampleTests" */;
+			buildPhases = (
+				AFB3C6451B6D1B44006DB0C7 /* Sources */,
+				AFB3C6461B6D1B44006DB0C7 /* Frameworks */,
+				AFB3C6471B6D1B44006DB0C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AFB3C64B1B6D1B44006DB0C7 /* PBXTargetDependency */,
+			);
+			name = "TFMVVM-ExampleTests";
+			productName = "TFMVVM-ExampleTests";
+			productReference = AFB3C6491B6D1B44006DB0C7 /* TFMVVM-ExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AFB3C6281B6D1B44006DB0C7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = Trifork;
+				TargetAttributes = {
+					AFB3C62F1B6D1B44006DB0C7 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					AFB3C6481B6D1B44006DB0C7 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = AFB3C62F1B6D1B44006DB0C7;
+					};
+				};
+			};
+			buildConfigurationList = AFB3C62B1B6D1B44006DB0C7 /* Build configuration list for PBXProject "TFMVVM-Example" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AFB3C6271B6D1B44006DB0C7;
+			productRefGroup = AFB3C6311B6D1B44006DB0C7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AFB3C62F1B6D1B44006DB0C7 /* TFMVVM-Example */,
+				AFB3C6481B6D1B44006DB0C7 /* TFMVVM-ExampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AFB3C62E1B6D1B44006DB0C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF01B3981B76B9140021F8A1 /* TODO in Resources */,
+				AFB3C63F1B6D1B44006DB0C7 /* Main.storyboard in Resources */,
+				AFB3C6441B6D1B44006DB0C7 /* LaunchScreen.xib in Resources */,
+				AFB3C6411B6D1B44006DB0C7 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFB3C6471B6D1B44006DB0C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AFB3C62C1B6D1B44006DB0C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF01B3AD1B7770BC0021F8A1 /* TFDataSourceCompositeIntention.m in Sources */,
+				AF01B3691B7663F90021F8A1 /* ViewController.m in Sources */,
+				AF01B3951B76B8FB0021F8A1 /* TFViewModelResultsController.m in Sources */,
+				AF01B36B1B7663F90021F8A1 /* SimpleRowViewModel.m in Sources */,
+				AF01B3941B76B8FB0021F8A1 /* TFSectionViewModel.m in Sources */,
+				AF01B3921B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m in Sources */,
+				AF01B3AE1B7770BC0021F8A1 /* TFIntention.m in Sources */,
+				AF01B3B11B7770BC0021F8A1 /* TFTargetMultiplexerIntention.m in Sources */,
+				AF01B3AF1B7770BC0021F8A1 /* TFObserveIntention.m in Sources */,
+				AF01B3931B76B8FB0021F8A1 /* TFBaseViewModel.m in Sources */,
+				AFB3C6391B6D1B44006DB0C7 /* AppDelegate.m in Sources */,
+				AF01B36A1B7663F90021F8A1 /* SimpleCell.m in Sources */,
+				AF01B3B01B7770BC0021F8A1 /* TFOwnerableObject.m in Sources */,
+				AF01B3751B7668060021F8A1 /* SimpleHeaderViewModel.m in Sources */,
+				AFB3C6361B6D1B44006DB0C7 /* main.m in Sources */,
+				AF01B3911B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m in Sources */,
+				AF01B3B21B7770BC0021F8A1 /* TFUITableViewDelegateSizingIntention.m in Sources */,
+				AF01B3B31B7770BC0021F8A1 /* UITextFieldObserveIntention.m in Sources */,
+				AF01B3AC1B7770BC0021F8A1 /* TFDataSourceCompositeIntention+CellSizingCompilance.m in Sources */,
+				AF01B3711B7665D10021F8A1 /* SimpleHeaderViewWithFolding.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFB3C6451B6D1B44006DB0C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFB3C6501B6D1B44006DB0C7 /* TFMVVM_ExampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AFB3C64B1B6D1B44006DB0C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AFB3C62F1B6D1B44006DB0C7 /* TFMVVM-Example */;
+			targetProxy = AFB3C64A1B6D1B44006DB0C7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AFB3C63D1B6D1B44006DB0C7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFB3C63E1B6D1B44006DB0C7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AFB3C6421B6D1B44006DB0C7 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFB3C6431B6D1B44006DB0C7 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AFB3C6511B6D1B44006DB0C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AFB3C6521B6D1B44006DB0C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AFB3C6541B6D1B44006DB0C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "TFMVVM-Example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AFB3C6551B6D1B44006DB0C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "TFMVVM-Example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		AFB3C6571B6D1B44006DB0C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "TFMVVM-ExampleTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TFMVVM-Example.app/TFMVVM-Example";
+			};
+			name = Debug;
+		};
+		AFB3C6581B6D1B44006DB0C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "TFMVVM-ExampleTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TFMVVM-Example.app/TFMVVM-Example";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AFB3C62B1B6D1B44006DB0C7 /* Build configuration list for PBXProject "TFMVVM-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFB3C6511B6D1B44006DB0C7 /* Debug */,
+				AFB3C6521B6D1B44006DB0C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AFB3C6531B6D1B44006DB0C7 /* Build configuration list for PBXNativeTarget "TFMVVM-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFB3C6541B6D1B44006DB0C7 /* Debug */,
+				AFB3C6551B6D1B44006DB0C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AFB3C6561B6D1B44006DB0C7 /* Build configuration list for PBXNativeTarget "TFMVVM-ExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFB3C6571B6D1B44006DB0C7 /* Debug */,
+				AFB3C6581B6D1B44006DB0C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AFB3C6281B6D1B44006DB0C7 /* Project object */;
+}
