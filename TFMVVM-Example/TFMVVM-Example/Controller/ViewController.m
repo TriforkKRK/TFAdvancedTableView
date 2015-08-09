@@ -47,17 +47,10 @@
     return _viewModelController;
 }
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     self.dynamicDataSource.provider = self.viewModelController;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

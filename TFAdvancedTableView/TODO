@@ -1,6 +1,12 @@
 1) TABLEVIEW DYNAMIC DATASOURCE / MVVM Provider
 TODO:
-- vm - remove action
+- vm - akcje
+    - remove
+    - select
+    - highlight
+    - disable
+    - custom - do VC
+
 - integracja z realną aplikacją, sportsbook WH
 - delta calculation - simple sections
 - Subclass of TFIntention / TFModule

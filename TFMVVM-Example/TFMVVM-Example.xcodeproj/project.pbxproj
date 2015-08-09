@@ -192,9 +192,9 @@
 			isa = PBXGroup;
 			children = (
 				AF01B38C1B76B8FB0021F8A1 /* TFViewModel.h */,
+				AF01B3891B76B8FB0021F8A1 /* TFSectionItemViewModel.h */,
 				AF01B3871B76B8FB0021F8A1 /* TFBaseViewModel.h */,
 				AF01B3881B76B8FB0021F8A1 /* TFBaseViewModel.m */,
-				AF01B3891B76B8FB0021F8A1 /* TFSectionItemViewModel.h */,
 				AF01B38A1B76B8FB0021F8A1 /* TFSectionViewModel.h */,
 				AF01B38B1B76B8FB0021F8A1 /* TFSectionViewModel.m */,
 				AF01B38D1B76B8FB0021F8A1 /* TFViewModelDeltaProcessing.h */,

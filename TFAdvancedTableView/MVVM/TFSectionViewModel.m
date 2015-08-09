@@ -34,6 +34,8 @@
 
 #pragma mark - Interface Properties
 
+// Check for any TFSectionItemViewModel and set their sectionViewModel to this object
+
 - (void)setRows:(NSArray *)rows
 {
     _rows = rows;
@@ -54,9 +56,13 @@
     }
 }
 
-- (NSUInteger)numberOfObjectsWhenFolded
+- (void)setFooter:(id<TFSectionItemViewModel>)footer
 {
-    return 0;
+    _footer = footer;
+    
+    if ([footer conformsToProtocol:@protocol(TFSectionItemViewModel)]) {
+        footer.sectionViewModel = self;
+    }
 }
 
 #pragma mark - TFSectionInfo

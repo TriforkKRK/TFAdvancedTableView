@@ -44,5 +44,5 @@
 @property (nonatomic, strong) id<TFViewModel, TFSectionItemInfo> header;
 @property (nonatomic, strong) id<TFViewModel, TFSectionItemInfo> footer;
 @property (nonatomic, assign) NSUInteger numberOfObjectsWhenFolded;
-@property (nonatomic, strong) NSArray * rows;  // holds TFViewModels + TFSectionItemInfo
+@property (nonatomic, strong) NSArray * rows;  // holds id<TFViewModel, TFSectionItemInfo>
 @end
