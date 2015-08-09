@@ -36,22 +36,25 @@
  * - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
  * - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section;
  *
- * It extends TFFoldingDelegate to support section folding messages
+ * It extends TFInteractionDelegate to support common actions like:
+ * - removal
+ * - folding
  */
 
 @import Foundation;
 @import UIKit.UITableView;
 #import "TFDynamicDataProvidingDelegate.h"
-#import "TFFoldable.h"
+#import "TFInteractable.h"
 #import "TFTableViewReusing.h"
 #import "TFSectionInfo.h"
 
-@protocol TFDynamicDataProviding <TFFoldingDelegate>
+@protocol TFDynamicDataProviding <TFInteractionDelegate>
 @property (nonatomic, readonly) NSArray * sections;
 @property (nonatomic, readwrite) IBOutlet id<TFDynamicDataProvidingDelegate> delegate;  /**< all the delegate methods are supposed to be called on MainThread */
 @property (nonatomic, readonly) id<TFTableViewReusing> reuseStrategy;
 
 - (id<TFSectionItemInfo>)objectAtIndexPath:(NSIndexPath *)indexPath;
+- (NSIndexPath *)indexPathForObject:(id)object;
 
 @optional
 - (IBAction)refresh:(id)sender;

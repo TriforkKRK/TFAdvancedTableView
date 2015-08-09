@@ -29,7 +29,7 @@
 @end
 
 @implementation TFSectionViewModel
-@synthesize foldingDelegate;
+@synthesize interactionDelegate;
 @synthesize rows=_rows;
 
 #pragma mark - Interface Properties
@@ -79,7 +79,7 @@
     return self.rows[index];
 }
 
-#pragma mark - TFSectionFolding
+#pragma mark - TFInteractable
 
 - (IBAction)fold:(id)sender
 {
@@ -88,19 +88,26 @@
     [self toggleFolding:sender];
 }
 
-- (void)unfold:(id)sender
+- (IBAction)unfold:(id)sender
 {
     if (!self.isFolded) return;
     
     [self toggleFolding:sender];
 }
 
-- (void)toggleFolding:(id)sender
+- (IBAction)toggleFolding:(id)sender
 {
     self.folded = !self.folded;
     
-    if ([self.foldingDelegate respondsToSelector:@selector(sectionFoldingDidChange:)]){
-        [self.foldingDelegate sectionFoldingDidChange:self];
+    if ([self.interactionDelegate respondsToSelector:@selector(interactable:requestsFoldingWithSender:)]){
+        [self.interactionDelegate interactable:self requestsFoldingWithSender:sender];
+    }
+}
+
+- (IBAction)remove:(id)sender
+{
+    if ([self.interactionDelegate respondsToSelector:@selector(interactable:requestsRemovalWithSender:)]) {
+        [self.interactionDelegate interactable:sender requestsRemovalWithSender:sender];
     }
 }
 

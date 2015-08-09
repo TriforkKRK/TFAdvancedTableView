@@ -60,7 +60,7 @@
 		AF01B37E1B76B8FB0021F8A1 /* TFDynamicDataProvidingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDynamicDataProvidingDelegate.h; sourceTree = "<group>"; };
 		AF01B37F1B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDynamicTableViewDataSource.h; sourceTree = "<group>"; };
 		AF01B3801B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFDynamicTableViewDataSource.m; sourceTree = "<group>"; };
-		AF01B3811B76B8FB0021F8A1 /* TFFoldable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFFoldable.h; sourceTree = "<group>"; };
+		AF01B3811B76B8FB0021F8A1 /* TFInteractable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFInteractable.h; sourceTree = "<group>"; };
 		AF01B3821B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFReuseStrategyObjectClassToViewClass.h; sourceTree = "<group>"; };
 		AF01B3831B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFReuseStrategyObjectClassToViewClass.m; sourceTree = "<group>"; };
 		AF01B3841B76B8FB0021F8A1 /* TFSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFSectionInfo.h; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 			children = (
 				AF01B37C1B76B8FB0021F8A1 /* TFConfiguring.h */,
 				AF01B3841B76B8FB0021F8A1 /* TFSectionInfo.h */,
-				AF01B3811B76B8FB0021F8A1 /* TFFoldable.h */,
+				AF01B3811B76B8FB0021F8A1 /* TFInteractable.h */,
 				AF01B3851B76B8FB0021F8A1 /* TFTableViewReusing.h */,
 				AF01B37D1B76B8FB0021F8A1 /* TFDynamicDataProviding.h */,
 				AF01B37E1B76B8FB0021F8A1 /* TFDynamicDataProvidingDelegate.h */,

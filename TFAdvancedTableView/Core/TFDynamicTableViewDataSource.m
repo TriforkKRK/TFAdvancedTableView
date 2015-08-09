@@ -24,13 +24,14 @@
 #import "TFDynamicTableViewDataSource.h"
 #import "TFConfiguring.h"
 #import "TFSectionInfo.h"
+#import "TFInteractable.h"
 #import "TFUITableViewDelegateSizingIntention.h"
 @import UIKit.UITableViewHeaderFooterView;
 
 
 #define TF_ASSERT_MAIN_THREAD NSAssert([NSThread isMainThread], @"This method must be called on the main thread")
 
-@interface TFDynamicTableViewDataSource()<TFUITableViewDelegateCellSizingIntentionDelegate>
+@interface TFDynamicTableViewDataSource()<TFUITableViewDelegateCellSizingIntentionDelegate, TFInteractionDelegate>
 @property (nonatomic, strong) TFUITableViewDelegateSizingIntention * sizingIntention;
 @property (nonatomic, assign) BOOL reusableViewsRegistered;
 @end
@@ -106,6 +107,22 @@
     return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    id object = [self.provider objectAtIndexPath:indexPath];
+    return [object conformsToProtocol:@protocol(TFInteractable)];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        id<TFInteractable> object = (id<TFInteractable>)[self.provider objectAtIndexPath:indexPath];
+        if ([object respondsToSelector:@selector(remove:)]) {
+            [object remove:self];
+        }
+    }
+}
+
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -168,6 +185,16 @@
     return footerView;
 }
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    id<TFInteractable> object = (id<TFInteractable>)[self.provider objectAtIndexPath:indexPath];
+    BOOL supportsSelection = [object conformsToProtocol:@protocol(TFInteractable)] && [object respondsToSelector:@selector(select:)];
+    if (!supportsSelection) return nil; // disable selection
+    
+    [object select:self];
+    return indexPath;
+}
+
 #pragma mark - TFDynamicDataProvidingDelegate
 
 - (void)provider:(id<TFDynamicDataProviding>)provider didInsertItemsAtIndexPaths:(NSArray *)indexPaths
@@ -224,6 +251,21 @@
     [self.tableView endUpdates];
 
     if (complete) complete();
+}
+
+#pragma mark - TFInteractionDelegate
+
+- (void)interactable:(id<TFInteractable>)interactable requestsSelectionWithSender:(id)sender
+{
+    NSIndexPath * indexPath = [self.provider indexPathForObject:interactable];
+    if ([interactable isSelected]) {
+        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+
+        [self.delegate dynamicDataSource:self didSelectObject:(id)interactable];
+    }
+    else {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
 }
 
 #pragma mark - Private

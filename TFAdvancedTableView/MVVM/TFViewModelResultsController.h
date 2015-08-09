@@ -23,9 +23,11 @@
  * ABSTRACT:
  * Inspired by NSFetchedResultsController
  *
- * It implements TFSectionFoldingDelegate and sets self as foldingDelegate
- * for all sections that conform to TFFoldable protocol. This way all fold
- * actions from TFSectionViewModels cause section reloads sent to delegate.
+ * It implements TFInteractionDelegate and sets self as interactionDelegate
+ * for all row and sections that conform to TFInteractable protocol.
+ * This way all acctions (like section fold or cell removal) from ViewModels
+ * cause corresponding actions sent to delegate (for instance reloading
+ * section with rows temporarly removed when section gets folded)
  */
 
 @import Foundation;

@@ -23,8 +23,9 @@
 
 @import Foundation;
 #import "TFSectionItemViewModel.h"
+#import "TFInteractable.h"
 
-@interface TFBaseViewModel : NSObject<TFSectionItemViewModel>
+@interface TFBaseViewModel : NSObject<TFSectionItemViewModel, TFInteractable>
 @property (nonatomic, strong) id model;
 
 - (instancetype)initWithModel:(id)model NS_DESIGNATED_INITIALIZER;

@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UILabel * primaryLabel;
 @property (nonatomic, strong) UITapGestureRecognizer * tgr;
 @property (nonatomic, strong) TFSectionViewModel * observedSection;
+@property (nonatomic, strong) UIButton * removeButton;
 @end
 
 @implementation SimpleHeaderViewWithFolding
@@ -38,6 +39,9 @@
 
 - (void)setup
 {
+    _tgr = [[UITapGestureRecognizer alloc] initWithTarget:nil action:nil];
+    [self addGestureRecognizer:_tgr];
+    
     self.contentView.backgroundColor = [UIColor blackColor];
     
     // Label
@@ -46,6 +50,12 @@
     _primaryLabel.textColor = [UIColor whiteColor];
     _primaryLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:_primaryLabel];
+    
+    _removeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_removeButton setTitle:@"[Remove]" forState:UIControlStateNormal];
+    [_removeButton sizeToFit];
+    [self.contentView addSubview:_removeButton];
+    _removeButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     
     self.contentView.frame = CGRectMake(0, 0, 100, 44); // in order to don't get layout warnings
     
@@ -57,14 +67,7 @@
 - (void)configureWith:(SimpleHeaderViewModel *)headerViewModel
 {
     NSParameterAssert([headerViewModel conformsToProtocol:@protocol(TFSectionItemViewModel)]);
-    
-    if (self.tgr) {
-        [self removeGestureRecognizer:self.tgr];
-    }
-    
-    _tgr = [[UITapGestureRecognizer alloc] initWithTarget:headerViewModel.sectionViewModel action:@selector(toggleFolding:)];
-    [self addGestureRecognizer:_tgr];
- 
+
     if (self.observedSection) {
         [self.observedSection removeObserver:self forKeyPath:@"folded" context:NULL];
     }
@@ -72,6 +75,14 @@
     [self.observedSection addObserver:self forKeyPath:@"folded" options:NSKeyValueObservingOptionNew context:NULL];
     
     [self setupText:headerViewModel.sectionViewModel];
+    
+    // folding
+    [self.tgr removeTarget:nil action:nil];
+    [self.tgr addTarget:headerViewModel.sectionViewModel action:@selector(toggleFolding:)];
+    
+    // removing
+    [self.removeButton removeTarget:nil action:nil forControlEvents:UIControlEventTouchUpInside];
+    [self.removeButton addTarget:headerViewModel.sectionViewModel action:@selector(remove:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setupText:(TFSectionViewModel *)vm
@@ -91,4 +102,14 @@
     [self setupText:object];
 }
 
+
+- (void)dealloc
+{
+    [self.tgr removeTarget:nil action:nil];
+    [self.removeButton removeTarget:nil action:nil forControlEvents:UIControlEventTouchUpInside];
+    
+    if (self.observedSection) {
+        [self.observedSection removeObserver:self forKeyPath:@"folded" context:NULL];
+    }
+}
 @end

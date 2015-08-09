@@ -88,10 +88,16 @@
 - (void)setSections:(NSArray *)sections
 {
     NSArray * oldSections = _sections;
-    [sections enumerateObjectsUsingBlock:^(id<TFFoldable> section, NSUInteger idx, BOOL *stop) {
-        if ([section conformsToProtocol:@protocol(TFFoldable)]) {
-            section.foldingDelegate = self;
+    [sections enumerateObjectsUsingBlock:^(TFSectionViewModel<TFInteractable> * section, NSUInteger idx, BOOL *stop) {
+        if ([section conformsToProtocol:@protocol(TFInteractable)]) {
+            section.interactionDelegate = self;
         }
+        
+        [section.rows enumerateObjectsUsingBlock:^(id<TFInteractable> row, NSUInteger idx, BOOL *stop) {
+            if ([row conformsToProtocol:@protocol(TFInteractable)]) {
+                row.interactionDelegate = self;
+            }
+        }];
     }];
     _sections = sections;
     
@@ -149,7 +155,7 @@
     } complete:nil];
 }
 
-- (id<TFViewModelDeltaResult>)foldingDeltaForSection:(TFSectionViewModel<TFFoldable>*)section
+- (id<TFViewModelDeltaResult>)foldingDeltaForSection:(TFSectionViewModel<TFInteractable>*)section
 {
     NSUInteger sectionIndex = [self.sections indexOfObject:section];
     NSAssert(sectionIndex != NSNotFound, @"Section: %@ not found on provider", section);
@@ -180,11 +186,62 @@
     return [self.sections[indexPath.section] objectAtIndex:indexPath.row];
 }
 
-#pragma mark - TFSectionFoldingDelegate
-
-- (void)sectionFoldingDidChange:(TFSectionViewModel<TFFoldable> *)section
+- (NSIndexPath *)indexPathForObject:(id)object
 {
-    [self applyDelta:[self foldingDeltaForSection:section]];
+    for (id<TFSectionInfo> section in self.sections) {
+        for (NSUInteger i = 0; i < [section numberOfObjects]; i++) {
+            if (object == [section objectAtIndex:i]) {
+                return [NSIndexPath indexPathForRow:i inSection:[self.sections indexOfObject:section]];
+            }
+        }
+    }
+    
+    return nil;
+}
+
+#pragma mark - TFInteractionDelegate
+
+- (void)interactable:(TFSectionViewModel<TFInteractable> *)interactable requestsFoldingWithSender:(id)sender
+{
+    NSParameterAssert([interactable isKindOfClass:[TFSectionViewModel class]]);
+    
+    [self applyDelta:[self foldingDeltaForSection:interactable]];
+}
+
+- (void)interactable:(id<TFInteractable>)interactable requestsSelectionWithSender:(id)sender
+{
+#warning hmm, śliski temat.. może responder chain ?
+    if ([self.delegate respondsToSelector:@selector(interactable:requestsSelectionWithSender:)]) {
+        [(id)self.delegate interactable:interactable requestsSelectionWithSender:sender];
+    }
+}
+
+- (void)interactable:(id<TFInteractable>)interactable requestsRemovalWithSender:(id)sender
+{
+    if ([interactable conformsToProtocol:@protocol(TFSectionInfo)])
+    {
+        NSUInteger sectionIndex = [self.sections indexOfObject:interactable];
+        NSAssert(sectionIndex != NSNotFound, @"Section: %@ not found on provider", interactable);
+        if (![self.delegate respondsToSelector:@selector(provider:didRemoveSections:)]) return;
+        
+        NSMutableArray * sections = [self.sections mutableCopy];
+        [sections removeObject:interactable];
+        _sections = [sections copy];    // we could call setter if we had deltaProcessor
+        [self.delegate provider:self didRemoveSections:[NSIndexSet indexSetWithIndex:sectionIndex]];
+    }
+    else if ([interactable conformsToProtocol:@protocol(TFSectionItemInfo)])
+    {
+        NSIndexPath * indexPath = [self indexPathForObject:interactable];
+        NSAssert(indexPath, @"Object: %@ not found on provider", interactable);
+        if (![self.delegate respondsToSelector:@selector(provider:didRemoveItemsAtIndexPaths:)]) return;
+        
+        NSMutableArray * sections = [self.sections mutableCopy];
+        TFSectionViewModel * sectionViewModel = sections[indexPath.section];
+        NSMutableArray * rows = [sectionViewModel.rows mutableCopy];
+        [rows removeObject:interactable];
+        sectionViewModel.rows = [rows copy];
+        [self.delegate provider:self didRemoveItemsAtIndexPaths:@[indexPath]];
+    }
 }
 
 @end

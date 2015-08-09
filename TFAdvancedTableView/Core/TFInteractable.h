@@ -23,18 +23,31 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol TFFoldable;
+@protocol TFInteractable;
 
-@protocol TFFoldingDelegate <NSObject>
+@protocol TFInteractionDelegate <NSObject>
 @optional
-- (void)sectionFoldingDidChange:(id<TFFoldable>)section;
+- (void)interactable:(id<TFInteractable>)interactable requestsFoldingWithSender:(id)sender;     // may be fold or unfold, check interactable for details
+- (void)interactable:(id<TFInteractable>)interactable requestsRemovalWithSender:(id)sender;
+- (void)interactable:(id<TFInteractable>)interactable requestsSelectionWithSender:(id)sender;   // may be select or deselect, check interactable for details
 @end
 
-@protocol TFFoldable <NSObject>
-@property (nonatomic, readonly, getter=isFolded) BOOL folded;
-@property (nonatomic, readwrite) id<TFFoldingDelegate> foldingDelegate;
+@protocol TFInteractable <NSObject>
+@property (nonatomic, readwrite) id<TFInteractionDelegate> interactionDelegate;
+
+@optional
+@property (nonatomic, readonly, getter=isFolded)    BOOL folded;
+@property (nonatomic, readonly, getter=isSelected)  BOOL selected;
 
 - (IBAction)fold:(id)sender;
 - (IBAction)unfold:(id)sender;
 - (IBAction)toggleFolding:(id)sender;
+
+- (IBAction)select:(id)sender;
+- (IBAction)deselect:(id)sender;
+- (IBAction)toggleSelection:(id)sender;
+
+- (IBAction)remove:(id)sender;
+
 @end
+

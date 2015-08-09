@@ -29,6 +29,8 @@
  * - CELL SIZING trying to fetch row/header/footer height from corresponding objects
  *   via "height" selector. If not available it uses autolayout for calculations.
  *
+ * TODO - delegation, no indexPaths
+ *
  * The actual data information is being requested from @property provider.
  * That has been extracted as a separate object to favor composition over subclassing.
  * @property provider when assigned it's delegate is set to this object to track
@@ -39,6 +41,15 @@
 
 @import UIKit.UITableView;
 #import "TFDynamicDataProviding.h"
+#import "TFSectionInfo.h"
+
+@class TFDynamicTableViewDataSource;
+
+@protocol TFDynamicTableViewDataSourceDelegate <NSObject>
+@optional
+- (void)dynamicDataSource:(TFDynamicTableViewDataSource *)dataSource didSelectObject:(id<TFSectionItemInfo, TFInteractable>)object;
+#warning more delegation - each interaction ?
+@end
 
 @protocol TFUITableViewControlling <UITableViewDataSource, UITableViewDelegate>
 @end
@@ -46,6 +57,7 @@
 
 @interface TFDynamicTableViewDataSource : NSObject<TFUITableViewControlling, TFDynamicDataProvidingDelegate>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
+@property (nonatomic, weak) IBOutlet id<TFDynamicTableViewDataSourceDelegate> delegate;
 @property (nonatomic, strong) IBOutlet id<TFDynamicDataProviding> provider;
 
 - (instancetype)initWithProvider:(id<TFDynamicDataProviding>)provider NS_DESIGNATED_INITIALIZER;

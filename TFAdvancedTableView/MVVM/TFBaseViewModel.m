@@ -1,4 +1,4 @@
-/*
+    /*
  * Created by Krzysztof Profic
  * Copyright (c) 2015 Trifork A/S.
  *
@@ -23,8 +23,13 @@
 
 #import "TFBaseViewModel.h"
 
+@interface TFBaseViewModel()
+@property (nonatomic, readwrite, getter=isSelected) BOOL selected;
+@end
+
 @implementation TFBaseViewModel
 @synthesize sectionViewModel;
+@synthesize interactionDelegate;
 
 - (instancetype)initWithModel:(id)model
 {
@@ -33,6 +38,38 @@
         _model = model;
     }
     return self;
+}
+
+#pragma mark - TFInteractable
+
+- (void)select:(id)sender
+{
+    if (self.isSelected) return;
+    
+    [self toggleSelection:sender];
+}
+
+- (void)deselect:(id)sender
+{
+    if (!self.isSelected) return;
+    
+    [self toggleSelection:sender];
+}
+
+- (void)toggleSelection:(id)sender
+{
+    self.selected = !self.selected;
+    
+    if ([self.interactionDelegate respondsToSelector:@selector(interactable:requestsSelectionWithSender:)]) {
+        [self.interactionDelegate interactable:self requestsSelectionWithSender:sender];
+    }
+}
+
+- (void)remove:(id)sender
+{
+    if ([self.interactionDelegate respondsToSelector:@selector(interactable:requestsRemovalWithSender:)]) {
+        [self.interactionDelegate interactable:self requestsRemovalWithSender:sender];
+    }
 }
 
 @end

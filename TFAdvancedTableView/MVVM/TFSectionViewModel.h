@@ -38,11 +38,13 @@
 @import Foundation;
 #import "TFViewModel.h"
 #import "TFSectionInfo.h"
-#import "TFFoldable.h"
+#import "TFInteractable.h"
 
-@interface TFSectionViewModel : NSObject <TFSectionInfo, TFFoldable>
+@interface TFSectionViewModel : NSObject <TFSectionInfo, TFInteractable>
 @property (nonatomic, strong) id<TFViewModel, TFSectionItemInfo> header;
 @property (nonatomic, strong) id<TFViewModel, TFSectionItemInfo> footer;
 @property (nonatomic, assign) NSUInteger numberOfObjectsWhenFolded;
-@property (nonatomic, strong) NSArray * rows;  // holds id<TFViewModel, TFSectionItemInfo>
+@property (nonatomic, strong) NSArray * rows;       // holds id<TFViewModel, TFSectionItemInfo>
+
+- (IBAction)remove:(id)sender NS_REQUIRES_SUPER;    // you have to call super at the end of your implementation
 @end

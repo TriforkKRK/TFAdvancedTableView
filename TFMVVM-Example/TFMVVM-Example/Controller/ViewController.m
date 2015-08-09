@@ -15,12 +15,18 @@
 #import "SimpleHeaderViewWithFolding.h"
 #import "SimpleHeaderViewModel.h"
 
-@interface ViewController ()
+@interface ViewController ()<TFDynamicTableViewDataSourceDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutlet TFDynamicTableViewDataSource *dynamicDataSource;
 @property (strong, nonatomic) TFViewModelResultsController * viewModelController;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) id<TFSectionItemInfo, TFInteractable> selectedObject;
 @end
 
 @implementation ViewController
+
+- (IBAction)editClicked:(id)sender {
+    [self.tableView setEditing:!self.tableView.editing animated:YES];
+}
 
 - (TFViewModelResultsController *)viewModelController
 {
@@ -51,6 +57,25 @@
     [super viewDidLoad];
 
     self.dynamicDataSource.provider = self.viewModelController;
+    self.dynamicDataSource.delegate = self;
+}
+
+- (void)dynamicDataSource:(TFDynamicTableViewDataSource *)dataSource didSelectObject:(id<TFSectionItemInfo, TFInteractable>)object
+{
+    self.selectedObject = object;
+    [[[UIAlertView alloc] initWithTitle:@"Selected" message:[NSString stringWithFormat:@"Do you want to remove: %@ ?", object] delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil] show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == alertView.cancelButtonIndex) {
+        [self.selectedObject deselect:self];            // deselection is reflected in TableViewCell (calls deselectRowAtIndexPath internally)
+        self.selectedObject = nil;
+        return;
+    }
+    
+    
+    [self.selectedObject remove:self];
 }
 
 @end

@@ -1,11 +1,17 @@
 1) TABLEVIEW DYNAMIC DATASOURCE / MVVM Provider
 TODO:
 - vm - akcje
-    - remove
-    - select
+    - selection call forwarding - push vc, selected vm
     - highlight
     - disable
     - custom - do VC
+
+RESPONDER CHAIN -
+nie trzeba by setować interactionDelegate ?
+Interactable - UIResponderStandardEditActions ?
+
+
+
 
 - integracja z realną aplikacją, sportsbook WH
 - delta calculation - simple sections
@@ -14,6 +20,7 @@ TODO:
     - TFUITableViewControlling ?
 - unit tests
 - rename reuseStrategy - to cellFactory?
+- fast enumeration na section
 
 2) TABLEVIEW AUTOMATIC CELLSIZING DELGATE
 - header / footer
