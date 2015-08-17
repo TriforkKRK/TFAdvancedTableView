@@ -47,7 +47,7 @@
 
 @protocol TFDynamicTableViewDataSourceDelegate <NSObject>
 @optional
-- (void)dynamicDataSource:(TFDynamicTableViewDataSource *)dataSource didSelectObject:(id<TFSectionItemInfo, TFInteractable>)object;
+- (void)dynamicDataSource:(TFDynamicTableViewDataSource *)dataSource didSelectObject:(id<TFSectionItemInfo>)object;
 #warning more delegation - each interaction ?
 @end
 
@@ -55,7 +55,7 @@
 @end
 
 
-@interface TFDynamicTableViewDataSource : NSObject<TFUITableViewControlling, TFDynamicDataProvidingDelegate>
+@interface TFDynamicTableViewDataSource : NSObject<TFUITableViewControlling, TFDynamicDataProvidingDelegate, TFResponding>
 @property (nonatomic, weak) IBOutlet UITableView * tableView;
 @property (nonatomic, weak) IBOutlet id<TFDynamicTableViewDataSourceDelegate> delegate;
 @property (nonatomic, strong) IBOutlet id<TFDynamicDataProviding> provider;

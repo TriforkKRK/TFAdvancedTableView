@@ -44,13 +44,13 @@
 @import Foundation;
 @import UIKit.UITableView;
 #import "TFDynamicDataProvidingDelegate.h"
-#import "TFInteractable.h"
 #import "TFTableViewReusing.h"
 #import "TFSectionInfo.h"
+#import "TFInteractionChain.h"
 
-@protocol TFDynamicDataProviding <TFInteractionDelegate>
+@protocol TFDynamicDataProviding <TFResponding>
 @property (nonatomic, readonly) NSArray * sections;
-@property (nonatomic, readwrite) IBOutlet id<TFDynamicDataProvidingDelegate> delegate;  /**< all the delegate methods are supposed to be called on MainThread */
+@property (nonatomic, readwrite) id<TFDynamicDataProvidingDelegate, TFResponding> delegate;  /**< all the delegate methods are supposed to be called on MainThread */
 @property (nonatomic, readonly) id<TFTableViewReusing> reuseStrategy;
 
 - (id<TFSectionItemInfo>)objectAtIndexPath:(NSIndexPath *)indexPath;

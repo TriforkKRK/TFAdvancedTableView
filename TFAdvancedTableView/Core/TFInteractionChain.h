@@ -22,32 +22,24 @@
  */
 
 #import <Foundation/Foundation.h>
+@import UIKit.UIViewController;
 
-@protocol TFInteractable;
+@interface NSObject (TFResponding)
+- (id)tf_responderForAction:(SEL)action ofProtocol:(Protocol *)protocol;
 
-@protocol TFInteractionDelegate <NSObject>
-@optional
-- (void)interactable:(id<TFInteractable>)interactable requestsFoldingWithSender:(id)sender;     // may be fold or unfold, check interactable for details
-- (void)interactable:(id<TFInteractable>)interactable requestsRemovalWithSender:(id)sender;
-- (void)interactable:(id<TFInteractable>)interactable requestsSelectionWithSender:(id)sender;   // may be select or deselect, check interactable for details
+- (void)tf_sendAction:(SEL)action to:(Protocol *)protocol from:(id)sender;
+- (void)tf_sendAction:(SEL)action to:(Protocol *)protocol;
+- (void)tf_sendAction:(SEL)action;
 @end
 
-@protocol TFInteractable <NSObject>
-@property (nonatomic, readwrite) id<TFInteractionDelegate> interactionDelegate;
 
+@protocol TFResponding <NSObject>
+@property (nonatomic, weak) NSObject<TFResponding> * tf_nextResponder;
 @optional
-@property (nonatomic, readonly, getter=isFolded)    BOOL folded;
-@property (nonatomic, readonly, getter=isSelected)  BOOL selected;
-
-- (IBAction)fold:(id)sender;
-- (IBAction)unfold:(id)sender;
-- (IBAction)toggleFolding:(id)sender;
-
-- (IBAction)select:(id)sender;
-- (IBAction)deselect:(id)sender;
-- (IBAction)toggleSelection:(id)sender;
-
-- (IBAction)remove:(id)sender;
-
++ (Protocol *)responderProtocol;
 @end
 
+
+@interface UIViewController (TFRespondingCompilance)<TFResponding>
+// next interactor is a parent view controller always
+@end

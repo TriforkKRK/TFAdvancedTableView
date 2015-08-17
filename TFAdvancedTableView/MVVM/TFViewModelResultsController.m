@@ -65,7 +65,14 @@
 
 
 @implementation TFViewModelResultsController
+@synthesize tf_nextResponder = _nextInteractor;
+
 @synthesize delegate;
+
+- (NSObject<TFResponding> *)tf_nextResponder
+{
+    return self.delegate;
+}
 
 - (instancetype)initWithReuseStrategy:(id<TFTableViewReusing>)strategy
 {
@@ -88,16 +95,8 @@
 - (void)setSections:(NSArray *)sections
 {
     NSArray * oldSections = _sections;
-    [sections enumerateObjectsUsingBlock:^(TFSectionViewModel<TFInteractable> * section, NSUInteger idx, BOOL *stop) {
-        if ([section conformsToProtocol:@protocol(TFInteractable)]) {
-            section.interactionDelegate = self;
-        }
-        
-        [section.rows enumerateObjectsUsingBlock:^(id<TFInteractable> row, NSUInteger idx, BOOL *stop) {
-            if ([row conformsToProtocol:@protocol(TFInteractable)]) {
-                row.interactionDelegate = self;
-            }
-        }];
+    [sections enumerateObjectsUsingBlock:^(TFSectionViewModel * section, NSUInteger idx, BOOL *stop) {
+        section.tf_nextResponder = self;
     }];
     _sections = sections;
     
@@ -155,7 +154,7 @@
     } complete:nil];
 }
 
-- (id<TFViewModelDeltaResult>)foldingDeltaForSection:(TFSectionViewModel<TFInteractable>*)section
+- (id<TFViewModelDeltaResult>)foldingDeltaForSection:(TFSectionViewModel *)section
 {
     NSUInteger sectionIndex = [self.sections indexOfObject:section];
     NSAssert(sectionIndex != NSNotFound, @"Section: %@ not found on provider", section);
@@ -199,49 +198,55 @@
     return nil;
 }
 
-#pragma mark - TFInteractionDelegate
+#pragma mark - TFSectionViewModelResponding
 
-- (void)interactable:(TFSectionViewModel<TFInteractable> *)interactable requestsFoldingWithSender:(id)sender
+- (void)foldingDidChangeOnSectionViewModel:(TFSectionViewModel *)sectionViewModel
 {
-    NSParameterAssert([interactable isKindOfClass:[TFSectionViewModel class]]);
+    NSParameterAssert([sectionViewModel isKindOfClass:[TFSectionViewModel class]]);
     
-    [self applyDelta:[self foldingDeltaForSection:interactable]];
+    [self applyDelta:[self foldingDeltaForSection:sectionViewModel]];
 }
 
-- (void)interactable:(id<TFInteractable>)interactable requestsSelectionWithSender:(id)sender
-{
-#warning hmm, śliski temat.. może responder chain ?
-    if ([self.delegate respondsToSelector:@selector(interactable:requestsSelectionWithSender:)]) {
-        [(id)self.delegate interactable:interactable requestsSelectionWithSender:sender];
-    }
-}
+//- (void)interactable:(id<TFFoldable>)interactable requestsSelectionWithSender:(id)sender
+//{
+//#warning hmm, śliski temat.. może responder chain ?
+//    if ([self.delegate respondsToSelector:@selector(interactable:requestsSelectionWithSender:)]) {
+//        [(id)self.delegate interactable:interactable requestsSelectionWithSender:sender];
+//    }
+//}
+//
 
-- (void)interactable:(id<TFInteractable>)interactable requestsRemovalWithSender:(id)sender
+- (void)removeViewModel:(id<TFViewModel>)viewModel
 {
-    if ([interactable conformsToProtocol:@protocol(TFSectionInfo)])
-    {
-        NSUInteger sectionIndex = [self.sections indexOfObject:interactable];
-        NSAssert(sectionIndex != NSNotFound, @"Section: %@ not found on provider", interactable);
+    if ([viewModel conformsToProtocol:@protocol(TFSectionInfo)]){
+        NSUInteger sectionIndex = [self.sections indexOfObject:viewModel];
+        NSAssert(sectionIndex != NSNotFound, @"Section: %@ not found on provider", viewModel);
         if (![self.delegate respondsToSelector:@selector(provider:didRemoveSections:)]) return;
         
         NSMutableArray * sections = [self.sections mutableCopy];
-        [sections removeObject:interactable];
+        [sections removeObject:viewModel];
         _sections = [sections copy];    // we could call setter if we had deltaProcessor
         [self.delegate provider:self didRemoveSections:[NSIndexSet indexSetWithIndex:sectionIndex]];
+        return;
     }
-    else if ([interactable conformsToProtocol:@protocol(TFSectionItemInfo)])
+    else if ([viewModel conformsToProtocol:@protocol(TFSectionItemInfo)])
     {
-        NSIndexPath * indexPath = [self indexPathForObject:interactable];
-        NSAssert(indexPath, @"Object: %@ not found on provider", interactable);
-        if (![self.delegate respondsToSelector:@selector(provider:didRemoveItemsAtIndexPaths:)]) return;
+        NSIndexPath * indexPath = [self indexPathForObject:viewModel];
         
-        NSMutableArray * sections = [self.sections mutableCopy];
-        TFSectionViewModel * sectionViewModel = sections[indexPath.section];
-        NSMutableArray * rows = [sectionViewModel.rows mutableCopy];
-        [rows removeObject:interactable];
-        sectionViewModel.rows = [rows copy];
-        [self.delegate provider:self didRemoveItemsAtIndexPaths:@[indexPath]];
+        // indexPath may be nil for headers/footers for example
+        if (indexPath != nil && [self.delegate respondsToSelector:@selector(provider:didRemoveItemsAtIndexPaths:)]) {
+            NSMutableArray * sections = [self.sections mutableCopy];
+            TFSectionViewModel * sectionViewModel = sections[indexPath.section];
+            NSMutableArray * rows = [sectionViewModel.rows mutableCopy];
+            [rows removeObject:viewModel];
+            sectionViewModel.rows = [rows copy];
+            [self.delegate provider:self didRemoveItemsAtIndexPaths:@[indexPath]];
+            return;
+        }
     }
+    
+    // looks like this case is it's not supported here, pass up
+    [[self tf_targetForProtocol:@protocol(TFSectionViewModelResponding) action:@selector(removeViewModel:)] removeViewModel:viewModel];
 }
 
 @end

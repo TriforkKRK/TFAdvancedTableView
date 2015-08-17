@@ -12,6 +12,11 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-
 @end
 
+
+
+
+@interface UIView (fr)
+- (id)findFirstResponder;
+@end

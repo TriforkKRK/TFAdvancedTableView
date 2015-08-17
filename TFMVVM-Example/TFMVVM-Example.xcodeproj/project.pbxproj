@@ -26,6 +26,7 @@
 		AF01B3B11B7770BC0021F8A1 /* TFTargetMultiplexerIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3A61B7770BC0021F8A1 /* TFTargetMultiplexerIntention.m */; };
 		AF01B3B21B7770BC0021F8A1 /* TFUITableViewDelegateSizingIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3A81B7770BC0021F8A1 /* TFUITableViewDelegateSizingIntention.m */; };
 		AF01B3B31B7770BC0021F8A1 /* UITextFieldObserveIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3AB1B7770BC0021F8A1 /* UITextFieldObserveIntention.m */; };
+		AF0DCEBE1B7BC0A3002A7D39 /* TFInteractionChain.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0DCEBD1B7BC0A3002A7D39 /* TFInteractionChain.m */; };
 		AFB3C6361B6D1B44006DB0C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB3C6351B6D1B44006DB0C7 /* main.m */; };
 		AFB3C6391B6D1B44006DB0C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB3C6381B6D1B44006DB0C7 /* AppDelegate.m */; };
 		AFB3C63F1B6D1B44006DB0C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFB3C63D1B6D1B44006DB0C7 /* Main.storyboard */; };
@@ -60,7 +61,7 @@
 		AF01B37E1B76B8FB0021F8A1 /* TFDynamicDataProvidingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDynamicDataProvidingDelegate.h; sourceTree = "<group>"; };
 		AF01B37F1B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDynamicTableViewDataSource.h; sourceTree = "<group>"; };
 		AF01B3801B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFDynamicTableViewDataSource.m; sourceTree = "<group>"; };
-		AF01B3811B76B8FB0021F8A1 /* TFInteractable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFInteractable.h; sourceTree = "<group>"; };
+		AF01B3811B76B8FB0021F8A1 /* TFInteractionChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFInteractionChain.h; sourceTree = "<group>"; };
 		AF01B3821B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFReuseStrategyObjectClassToViewClass.h; sourceTree = "<group>"; };
 		AF01B3831B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFReuseStrategyObjectClassToViewClass.m; sourceTree = "<group>"; };
 		AF01B3841B76B8FB0021F8A1 /* TFSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFSectionInfo.h; sourceTree = "<group>"; };
@@ -91,6 +92,7 @@
 		AF01B3A81B7770BC0021F8A1 /* TFUITableViewDelegateSizingIntention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFUITableViewDelegateSizingIntention.m; sourceTree = "<group>"; };
 		AF01B3AA1B7770BC0021F8A1 /* UITextFieldObserveIntention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextFieldObserveIntention.h; sourceTree = "<group>"; };
 		AF01B3AB1B7770BC0021F8A1 /* UITextFieldObserveIntention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextFieldObserveIntention.m; sourceTree = "<group>"; };
+		AF0DCEBD1B7BC0A3002A7D39 /* TFInteractionChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFInteractionChain.m; sourceTree = "<group>"; };
 		AFB3C6301B6D1B44006DB0C7 /* TFMVVM-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TFMVVM-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFB3C6341B6D1B44006DB0C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFB3C6351B6D1B44006DB0C7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -176,7 +178,8 @@
 			children = (
 				AF01B37C1B76B8FB0021F8A1 /* TFConfiguring.h */,
 				AF01B3841B76B8FB0021F8A1 /* TFSectionInfo.h */,
-				AF01B3811B76B8FB0021F8A1 /* TFInteractable.h */,
+				AF01B3811B76B8FB0021F8A1 /* TFInteractionChain.h */,
+				AF0DCEBD1B7BC0A3002A7D39 /* TFInteractionChain.m */,
 				AF01B3851B76B8FB0021F8A1 /* TFTableViewReusing.h */,
 				AF01B37D1B76B8FB0021F8A1 /* TFDynamicDataProviding.h */,
 				AF01B37E1B76B8FB0021F8A1 /* TFDynamicDataProvidingDelegate.h */,
@@ -409,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF01B3AD1B7770BC0021F8A1 /* TFDataSourceCompositeIntention.m in Sources */,
+				AF0DCEBE1B7BC0A3002A7D39 /* TFInteractionChain.m in Sources */,
 				AF01B3691B7663F90021F8A1 /* ViewController.m in Sources */,
 				AF01B3951B76B8FB0021F8A1 /* TFViewModelResultsController.m in Sources */,
 				AF01B36B1B7663F90021F8A1 /* SimpleRowViewModel.m in Sources */,

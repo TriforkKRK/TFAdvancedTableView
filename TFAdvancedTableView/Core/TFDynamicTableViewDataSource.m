@@ -24,20 +24,21 @@
 #import "TFDynamicTableViewDataSource.h"
 #import "TFConfiguring.h"
 #import "TFSectionInfo.h"
-#import "TFInteractable.h"
+#import "TFInteractionChain.h"
 #import "TFUITableViewDelegateSizingIntention.h"
 @import UIKit.UITableViewHeaderFooterView;
 
 
 #define TF_ASSERT_MAIN_THREAD NSAssert([NSThread isMainThread], @"This method must be called on the main thread")
 
-@interface TFDynamicTableViewDataSource()<TFUITableViewDelegateCellSizingIntentionDelegate, TFInteractionDelegate>
+@interface TFDynamicTableViewDataSource()<TFUITableViewDelegateCellSizingIntentionDelegate>
 @property (nonatomic, strong) TFUITableViewDelegateSizingIntention * sizingIntention;
 @property (nonatomic, assign) BOOL reusableViewsRegistered;
 @end
 
 
 @implementation TFDynamicTableViewDataSource
+@synthesize tf_nextResponder; // nil, we need to pass to VC
 
 #pragma mark - Interface Methods
 
@@ -51,7 +52,7 @@
     return self;
 }
 
-- (void)setProvider:(id<TFDynamicDataProviding, TFTableViewReusing>)provider
+- (void)setProvider:(id<TFDynamicDataProviding>)provider
 {
     _provider = provider;
     _provider.delegate = self;
@@ -109,16 +110,16 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id object = [self.provider objectAtIndexPath:indexPath];
-    return [object conformsToProtocol:@protocol(TFInteractable)];
+    NSObject<TFSectionItemInfo> * object = (NSObject<TFSectionItemInfo> *)[self.provider objectAtIndexPath:indexPath];
+    return ([object respondsToSelector:@selector(delete:)]);
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        id<TFInteractable> object = (id<TFInteractable>)[self.provider objectAtIndexPath:indexPath];
-        if ([object respondsToSelector:@selector(remove:)]) {
-            [object remove:self];
+        NSObject<TFSectionItemInfo> * object = (NSObject<TFSectionItemInfo> *)[self.provider objectAtIndexPath:indexPath];
+        if ([object respondsToSelector:@selector(delete:)]) {
+            [object delete:self];   // a common action from UIResponderStandardEditActions
         }
     }
 }
@@ -187,11 +188,11 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id<TFInteractable> object = (id<TFInteractable>)[self.provider objectAtIndexPath:indexPath];
-    BOOL supportsSelection = [object conformsToProtocol:@protocol(TFInteractable)] && [object respondsToSelector:@selector(select:)];
-    if (!supportsSelection) return nil; // disable selection
-    
-    [object select:self];
+//    id<TFFoldable> object = (id<TFFoldable>)[self.provider objectAtIndexPath:indexPath];
+//    BOOL supportsSelection = [object conformsToProtocol:@protocol(TFFoldable)] && [object respondsToSelector:@selector(select:)];
+//    if (!supportsSelection) return nil; // disable selection
+//    
+//    [object select:self];
     return indexPath;
 }
 
@@ -253,20 +254,21 @@
     if (complete) complete();
 }
 
+//// name
 #pragma mark - TFInteractionDelegate
 
-- (void)interactable:(id<TFInteractable>)interactable requestsSelectionWithSender:(id)sender
-{
-    NSIndexPath * indexPath = [self.provider indexPathForObject:interactable];
-    if ([interactable isSelected]) {
-        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-
-        [self.delegate dynamicDataSource:self didSelectObject:(id)interactable];
-    }
-    else {
-        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    }
-}
+//- (void)interactable:(id<TFFoldable>)interactable requestsSelectionWithSender:(id)sender
+//{
+//    NSIndexPath * indexPath = [self.provider indexPathForObject:];
+//    if ([ isSelected]) {
+//        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+//
+//        [self.delegate dynamicDataSource:self didSelectObject:(id)];
+//    }
+//    else {
+//        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    }
+//}
 
 #pragma mark - Private
 

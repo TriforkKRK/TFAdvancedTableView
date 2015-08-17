@@ -29,12 +29,18 @@
 @end
 
 @implementation TFSectionViewModel
-@synthesize interactionDelegate;
 @synthesize rows=_rows;
+@synthesize tf_nextResponder=_nextInteractor;
 
 #pragma mark - Interface Properties
 
 // Check for any TFSectionItemViewModel and set their sectionViewModel to this object
+
+- (id)model
+{
+#warning should it be something maybe?
+    return nil;
+}
 
 - (void)setRows:(NSArray *)rows
 {
@@ -65,22 +71,6 @@
     }
 }
 
-#pragma mark - TFSectionInfo
-
-- (NSUInteger)numberOfObjects
-{
-    if (self.isFolded) return [self numberOfObjectsWhenFolded];
-    
-    return self.rows.count;
-}
-
-- (id)objectAtIndex:(NSUInteger)index
-{
-    return self.rows[index];
-}
-
-#pragma mark - TFInteractable
-
 - (IBAction)fold:(id)sender
 {
     if (self.isFolded) return;
@@ -99,16 +89,31 @@
 {
     self.folded = !self.folded;
     
-    if ([self.interactionDelegate respondsToSelector:@selector(interactable:requestsFoldingWithSender:)]){
-        [self.interactionDelegate interactable:self requestsFoldingWithSender:sender];
-    }
+    [self tf_sendAction:@selector(foldingDidChangeOnSectionViewModel:)];
 }
 
-- (IBAction)remove:(id)sender
+- (IBAction)delete:(id)sender
 {
-    if ([self.interactionDelegate respondsToSelector:@selector(interactable:requestsRemovalWithSender:)]) {
-        [self.interactionDelegate interactable:sender requestsRemovalWithSender:sender];
-    }
+    [self tf_sendAction:@selector(removeViewModel:)];
+}
+
++ (Protocol *)responderProtocol
+{
+    return @protocol(TFSectionViewModelResponding);
+}
+
+#pragma mark - TFSectionInfo
+
+- (NSUInteger)numberOfObjects
+{
+    if (self.isFolded) return [self numberOfObjectsWhenFolded];
+    
+    return self.rows.count;
+}
+
+- (id)objectAtIndex:(NSUInteger)index
+{
+    return self.rows[index];
 }
 
 @end

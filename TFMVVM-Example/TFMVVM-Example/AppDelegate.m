@@ -12,11 +12,33 @@
 
 @end
 
+
+@implementation UIView (fr)
+
+- (id)findFirstResponder
+{
+    if (self.isFirstResponder) {
+        return self;
+    }
+    for (UIView *subView in self.subviews) {
+        if ([subView isFirstResponder]) {
+            return subView;
+        }
+    }
+    return nil;
+}
+
+@end
+
+
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5
+ * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSLog(@"fr: %@", [[[application delegate] window] findFirstResponder]);
+    });
     return YES;
 }
 

@@ -34,8 +34,10 @@
 #import "TFDynamicDataProviding.h"
 #import "TFTableViewReusing.h"
 #import "TFViewModelDeltaProcessing.h"
+#import "TFInteractionChain.h"
+#import "TFSectionViewModel.h"
 
-@interface TFViewModelResultsController : NSObject<TFDynamicDataProviding>
+@interface TFViewModelResultsController : NSObject<TFDynamicDataProviding, TFSectionViewModelResponding>
 @property (nonatomic, strong) NSArray * sections;
 @property (nonatomic, strong) id<TFTableViewReusing> reuseStrategy;
 @property (nonatomic, strong) id<TFViewModelDeltaProcessing> deltaProcessor;

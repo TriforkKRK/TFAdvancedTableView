@@ -19,7 +19,7 @@
 @property (strong, nonatomic) IBOutlet TFDynamicTableViewDataSource *dynamicDataSource;
 @property (strong, nonatomic) TFViewModelResultsController * viewModelController;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) id<TFSectionItemInfo, TFInteractable> selectedObject;
+@property (strong, nonatomic) id<TFSectionItemInfo> selectedObject;
 @end
 
 @implementation ViewController
@@ -60,7 +60,7 @@
     self.dynamicDataSource.delegate = self;
 }
 
-- (void)dynamicDataSource:(TFDynamicTableViewDataSource *)dataSource didSelectObject:(id<TFSectionItemInfo, TFInteractable>)object
+- (void)dynamicDataSource:(TFDynamicTableViewDataSource *)dataSource didSelectObject:(id<TFSectionItemInfo>)object
 {
     self.selectedObject = object;
     [[[UIAlertView alloc] initWithTitle:@"Selected" message:[NSString stringWithFormat:@"Do you want to remove: %@ ?", object] delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil] show];
@@ -69,13 +69,13 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == alertView.cancelButtonIndex) {
-        [self.selectedObject deselect:self];            // deselection is reflected in TableViewCell (calls deselectRowAtIndexPath internally)
+//        [self.selectedObject deselect:self];            // deselection is reflected in TableViewCell (calls deselectRowAtIndexPath internally)
         self.selectedObject = nil;
         return;
     }
     
     
-    [self.selectedObject remove:self];
+//    [self.selectedObject remove:self];
 }
 
 @end

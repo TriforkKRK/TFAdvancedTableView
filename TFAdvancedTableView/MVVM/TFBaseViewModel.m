@@ -22,6 +22,7 @@
  */
 
 #import "TFBaseViewModel.h"
+#import "TFSectionViewModel.h"
 
 @interface TFBaseViewModel()
 @property (nonatomic, readwrite, getter=isSelected) BOOL selected;
@@ -29,7 +30,7 @@
 
 @implementation TFBaseViewModel
 @synthesize sectionViewModel;
-@synthesize interactionDelegate;
+@synthesize tf_nextResponder = _nextInteractor;
 
 - (instancetype)initWithModel:(id)model
 {
@@ -40,36 +41,39 @@
     return self;
 }
 
+- (id<TFResponding>)tf_nextResponder
+{
+    return self.sectionViewModel;
+}
+
 #pragma mark - TFInteractable
+//
+//- (void)select:(id)sender
+//{
+//    if (self.isSelected) return;
+//    
+//    [self toggleSelection:sender];
+//}
+//
+//- (void)deselect:(id)sender
+//{
+//    if (!self.isSelected) return;
+//    
+//    [self toggleSelection:sender];
+//}
+//
+//- (void)toggleSelection:(id)sender
+//{
+//    self.selected = !self.selected;
+//    
+//    if ([self.interactionDelegate respondsToSelector:@selector(interactable:requestsSelectionWithSender:)]) {
+//        [self.interactionDelegate interactable:self requestsSelectionWithSender:sender];
+//    }
+//}
 
-- (void)select:(id)sender
+- (IBAction)remove:(id)sender
 {
-    if (self.isSelected) return;
     
-    [self toggleSelection:sender];
-}
-
-- (void)deselect:(id)sender
-{
-    if (!self.isSelected) return;
-    
-    [self toggleSelection:sender];
-}
-
-- (void)toggleSelection:(id)sender
-{
-    self.selected = !self.selected;
-    
-    if ([self.interactionDelegate respondsToSelector:@selector(interactable:requestsSelectionWithSender:)]) {
-        [self.interactionDelegate interactable:self requestsSelectionWithSender:sender];
-    }
-}
-
-- (void)remove:(id)sender
-{
-    if ([self.interactionDelegate respondsToSelector:@selector(interactable:requestsRemovalWithSender:)]) {
-        [self.interactionDelegate interactable:self requestsRemovalWithSender:sender];
-    }
 }
 
 @end

@@ -38,13 +38,26 @@
 @import Foundation;
 #import "TFViewModel.h"
 #import "TFSectionInfo.h"
-#import "TFInteractable.h"
+#import "TFInteractionChain.h"
 
-@interface TFSectionViewModel : NSObject <TFSectionInfo, TFInteractable>
+@interface TFSectionViewModel : NSObject <TFViewModel, TFSectionInfo>
 @property (nonatomic, strong) id<TFViewModel, TFSectionItemInfo> header;
 @property (nonatomic, strong) id<TFViewModel, TFSectionItemInfo> footer;
-@property (nonatomic, assign) NSUInteger numberOfObjectsWhenFolded;
 @property (nonatomic, strong) NSArray * rows;       // holds id<TFViewModel, TFSectionItemInfo>
 
-- (IBAction)remove:(id)sender NS_REQUIRES_SUPER;    // you have to call super at the end of your implementation
+// folding
+@property (nonatomic, readonly, getter=isFolded) BOOL folded;
+@property (nonatomic, assign) NSUInteger numberOfObjectsWhenFolded;
+- (IBAction)fold:(id)sender;
+- (IBAction)unfold:(id)sender;
+- (IBAction)toggleFolding:(id)sender;
+
+- (IBAction)delete:(id)sender NS_REQUIRES_SUPER;    // you have to call super at the end of your implementation
+@end
+
+
+// whoever in the interaction chain is implementing that protocol will be used
+@protocol TFSectionViewModelResponding <TFViewModelResponding>
+@optional
+- (void)foldingDidChangeOnSectionViewModel:(TFSectionViewModel *)sectionViewModel;
 @end

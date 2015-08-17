@@ -21,6 +21,18 @@
  * THE SOFTWARE.
  */
 
-@protocol TFViewModel <NSObject>
+#import "TFInteractionChain.h"
+
+@protocol TFViewModel <TFResponding>
 - (id)model;
+
+@optional
+- (void)delete:(id)sender;        // UIResponderStandardEditActions
+// if implemented it should call the 
+@end
+
+
+@protocol TFViewModelResponding <TFResponding>
+@optional
+- (void)removeViewModel:(id<TFViewModel>)viewModel;
 @end
