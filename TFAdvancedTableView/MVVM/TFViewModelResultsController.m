@@ -246,7 +246,7 @@
     }
     
     // looks like this case is it's not supported here, pass up
-    [[self tf_targetForProtocol:@protocol(TFSectionViewModelResponding) action:@selector(removeViewModel:)] removeViewModel:viewModel];
+    [self tf_sendAction:@selector(removeViewModel:) to:@protocol(TFSectionViewModelResponding)];
 }
 
 @end

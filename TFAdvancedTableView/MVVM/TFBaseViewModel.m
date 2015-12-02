@@ -41,6 +41,11 @@
     return self;
 }
 
+- (instancetype)init
+{
+    return [self initWithModel:nil];
+}
+
 - (id<TFResponding>)tf_nextResponder
 {
     return self.sectionViewModel;

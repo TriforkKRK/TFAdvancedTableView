@@ -42,6 +42,11 @@
     return nil;
 }
 
+- (NSObject<TFResponding> *)tf_nextResponder
+{
+    return _nextInteractor;
+}
+
 - (void)setRows:(NSArray *)rows
 {
     _rows = rows;

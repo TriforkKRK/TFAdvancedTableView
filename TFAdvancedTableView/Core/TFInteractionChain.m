@@ -15,7 +15,7 @@
 {
     NSAssert([self conformsToProtocol:@protocol(TFResponding)], nil);
     
-    if ([[(id)self tf_nextResponder] conformsToProtocol:protocol] && [(id)self respondsToSelector:action]) return self;
+    if ([(id)self conformsToProtocol:protocol] && [(id)self respondsToSelector:action]) return self;
     
     return [[(id)self tf_nextResponder] tf_responderForAction:action ofProtocol:protocol];
 }
@@ -40,12 +40,12 @@
     [self tf_sendAction:action to:protocol from:self];
 }
 
-- (void)tf_sendResponderAction:(SEL)action
+- (void)tf_sendAction:(SEL)action
 {
     NSAssert([[self class] respondsToSelector:@selector(responderProtocol)], @"responderProtocol method required for this call");
     
     Protocol * protocol = [(id)[self class] responderProtocol];
-    [self tf_findTargetForProtocol:protocol andPerformAction:action];
+    [self tf_sendAction:action to:protocol];
 }
 
 @end
