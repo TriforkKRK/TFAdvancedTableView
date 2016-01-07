@@ -27,6 +27,7 @@
 		AF01B3B21B7770BC0021F8A1 /* TFUITableViewDelegateSizingIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3A81B7770BC0021F8A1 /* TFUITableViewDelegateSizingIntention.m */; };
 		AF01B3B31B7770BC0021F8A1 /* UITextFieldObserveIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3AB1B7770BC0021F8A1 /* UITextFieldObserveIntention.m */; };
 		AF0DCEBE1B7BC0A3002A7D39 /* TFInteractionChain.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0DCEBD1B7BC0A3002A7D39 /* TFInteractionChain.m */; };
+		AF2FAB971C3E7EC600425DE8 /* ViewContollerS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2FAB961C3E7EC600425DE8 /* ViewContollerS.swift */; };
 		AFB3C6361B6D1B44006DB0C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB3C6351B6D1B44006DB0C7 /* main.m */; };
 		AFB3C6391B6D1B44006DB0C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB3C6381B6D1B44006DB0C7 /* AppDelegate.m */; };
 		AFB3C63F1B6D1B44006DB0C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFB3C63D1B6D1B44006DB0C7 /* Main.storyboard */; };
@@ -93,6 +94,8 @@
 		AF01B3AA1B7770BC0021F8A1 /* UITextFieldObserveIntention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextFieldObserveIntention.h; sourceTree = "<group>"; };
 		AF01B3AB1B7770BC0021F8A1 /* UITextFieldObserveIntention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextFieldObserveIntention.m; sourceTree = "<group>"; };
 		AF0DCEBD1B7BC0A3002A7D39 /* TFInteractionChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFInteractionChain.m; sourceTree = "<group>"; };
+		AF2FAB931C3E7D8B00425DE8 /* TFMVVM-Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TFMVVM-Example-Bridging-Header.h"; path = "Controller/TFMVVM-Example-Bridging-Header.h"; sourceTree = "<group>"; };
+		AF2FAB961C3E7EC600425DE8 /* ViewContollerS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewContollerS.swift; sourceTree = "<group>"; };
 		AFB3C6301B6D1B44006DB0C7 /* TFMVVM-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TFMVVM-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFB3C6341B6D1B44006DB0C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFB3C6351B6D1B44006DB0C7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -140,6 +143,7 @@
 			children = (
 				AF01B3601B7663F90021F8A1 /* ViewController.h */,
 				AF01B3611B7663F90021F8A1 /* ViewController.m */,
+				AF2FAB961C3E7EC600425DE8 /* ViewContollerS.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -287,6 +291,7 @@
 				AFB3C6421B6D1B44006DB0C7 /* LaunchScreen.xib */,
 				AFB3C6371B6D1B44006DB0C7 /* AppDelegate.h */,
 				AFB3C6381B6D1B44006DB0C7 /* AppDelegate.m */,
+				AF2FAB931C3E7D8B00425DE8 /* TFMVVM-Example-Bridging-Header.h */,
 				AFB3C6341B6D1B44006DB0C7 /* Info.plist */,
 				AFB3C6351B6D1B44006DB0C7 /* main.m */,
 			);
@@ -354,6 +359,7 @@
 		AFB3C6281B6D1B44006DB0C7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = Trifork;
 				TargetAttributes = {
@@ -420,6 +426,7 @@
 				AF01B3921B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m in Sources */,
 				AF01B3AE1B7770BC0021F8A1 /* TFIntention.m in Sources */,
 				AF01B3B11B7770BC0021F8A1 /* TFTargetMultiplexerIntention.m in Sources */,
+				AF2FAB971C3E7EC600425DE8 /* ViewContollerS.swift in Sources */,
 				AF01B3AF1B7770BC0021F8A1 /* TFObserveIntention.m in Sources */,
 				AF01B3931B76B8FB0021F8A1 /* TFBaseViewModel.m in Sources */,
 				AFB3C6391B6D1B44006DB0C7 /* AppDelegate.m in Sources */,
@@ -559,9 +566,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "TFMVVM-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TFMVVM-Example/Controller/TFMVVM-Example-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -569,9 +579,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "TFMVVM-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TFMVVM-Example/Controller/TFMVVM-Example-Bridging-Header.h";
 			};
 			name = Release;
 		};

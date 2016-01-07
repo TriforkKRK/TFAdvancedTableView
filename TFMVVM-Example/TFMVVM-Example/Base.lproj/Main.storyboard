@@ -1,69 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6di-JE-3NP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6di-JE-3NP">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1Oh-YW-1ei">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cNx-XZ-YN6">
-                                    <rect key="frame" x="-23" y="-15" width="600" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Button">
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="testing:" destination="dkx-z0-nzr" eventType="touchUpInside" id="dtw-ye-ddb"/>
-                                    </connections>
-                                </button>
-                                <connections>
-                                    <outlet property="dataSource" destination="U0k-PI-6QM" id="o7u-qv-T0L"/>
-                                    <outlet property="delegate" destination="U0k-PI-6QM" id="4uX-oZ-Nct"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="1Oh-YW-1ei" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="6XG-Vj-mKV"/>
-                            <constraint firstItem="1Oh-YW-1ei" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="IAV-8f-Q5r"/>
-                            <constraint firstAttribute="trailing" secondItem="1Oh-YW-1ei" secondAttribute="trailing" id="qE2-iq-TOq"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1Oh-YW-1ei" secondAttribute="bottom" id="uYS-XR-hpR"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="Fu9-OR-7Cq">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="aDj-Uq-iGR">
-                            <connections>
-                                <action selector="editClicked:" destination="BYZ-38-t0r" id="aMv-nV-awD"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="dynamicDataSource" destination="U0k-PI-6QM" id="ex2-9w-kU8"/>
-                        <outlet property="tableView" destination="1Oh-YW-1ei" id="6l2-VM-Kmd"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <customObject id="U0k-PI-6QM" customClass="TFDynamicTableViewDataSource">
-                    <connections>
-                        <outlet property="tableView" destination="1Oh-YW-1ei" id="be8-vW-3OR"/>
-                    </connections>
-                </customObject>
-            </objects>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Q6W-U1-pV9">
             <objects>
@@ -73,11 +15,76 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="0b3-bi-wm1"/>
+                        <segue destination="Zam-lY-iWx" kind="relationship" relationship="rootViewController" id="vb1-x0-zNE"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNm-qL-hUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--View ContollerS-->
+        <scene sceneID="Bcu-Wj-lv9">
+            <objects>
+                <viewController id="Zam-lY-iWx" customClass="ViewContollerS" customModule="TFMVVM_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8S1-q3-Fzs"/>
+                        <viewControllerLayoutGuide type="bottom" id="YcN-Iq-RrU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="a5o-52-7q0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1Oh-YW-1ei">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="PZp-X9-ZdB">
+                                    <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2B-aC-BDB">
+                                            <rect key="frame" x="277" y="7" width="46" height="30"/>
+                                            <state key="normal" title="Button"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="G2B-aC-BDB" firstAttribute="centerX" secondItem="PZp-X9-ZdB" secondAttribute="centerX" id="F09-is-MCI"/>
+                                        <constraint firstItem="G2B-aC-BDB" firstAttribute="centerY" secondItem="PZp-X9-ZdB" secondAttribute="centerY" id="n0e-w9-7yh"/>
+                                    </constraints>
+                                </view>
+                                <connections>
+                                    <outlet property="dataSource" destination="PIc-yL-QfL" id="0eT-H7-iFj"/>
+                                    <outlet property="delegate" destination="PIc-yL-QfL" id="fVc-mn-SWQ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1Oh-YW-1ei" firstAttribute="top" secondItem="a5o-52-7q0" secondAttribute="topMargin" id="DRq-8f-Cza"/>
+                            <constraint firstItem="1Oh-YW-1ei" firstAttribute="leading" secondItem="a5o-52-7q0" secondAttribute="leading" id="TnT-yj-N3q"/>
+                            <constraint firstAttribute="trailing" secondItem="1Oh-YW-1ei" secondAttribute="trailing" id="UAe-yV-zWB"/>
+                            <constraint firstItem="YcN-Iq-RrU" firstAttribute="top" secondItem="1Oh-YW-1ei" secondAttribute="bottom" id="eYl-ZM-ByJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="CON-32-RO4">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="YaC-Pk-R2L">
+                            <connections>
+                                <action selector="editClicked:" destination="Zam-lY-iWx" id="nOw-tj-xOl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="dynamicDataSource" destination="PIc-yL-QfL" id="0Ip-T0-fUO"/>
+                        <outlet property="tableView" destination="1Oh-YW-1ei" id="1GH-p6-fs9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4OM-up-fzM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="PIc-yL-QfL" customClass="TFDynamicTableViewDataSource">
+                    <connections>
+                        <outlet property="tableView" destination="1Oh-YW-1ei" id="xX9-ci-rvh"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="1273" y="274"/>
         </scene>
     </scenes>
 </document>

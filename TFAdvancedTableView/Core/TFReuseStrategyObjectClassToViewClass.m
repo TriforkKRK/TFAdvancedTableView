@@ -28,7 +28,7 @@
 
 @implementation TFReuseStrategyObjectClassToViewClass
 
-- (instancetype)initWithObjectToViewsMapping:(NSDictionary *)mappings
+- (instancetype)initWithObjectToViewsMapping:(NSDictionary<NSString *, Class>  *)mappings
 {
     self = [super init];
     if (self) {
@@ -43,22 +43,22 @@
 - (NSString *)reuseIdentifierForObject:(id)obj
 {
     Class class = [obj class];
-    id cellClassOrNibName = [self objectToViewMappings][class];
-    if (cellClassOrNibName == nil) {
+    id cellClassName = [self objectToViewMappings][NSStringFromClass(class)];
+    if (cellClassName == nil) {
         [NSException raise:NSInternalInconsistencyException format:@"Couldn't find mapping for class: %@", NSStringFromClass(class)];
         return nil;
     }
     
-    if ([cellClassOrNibName isKindOfClass:[NSString class]]) {
-        return cellClassOrNibName;
+    if ([cellClassName isKindOfClass:[NSString class]]) {
+        return cellClassName;
     }
     
-    return NSStringFromClass(cellClassOrNibName);
+    return NSStringFromClass(cellClassName);
 }
 
 - (void)registerReusableViewsOnTableView:(UITableView *)tableView
 {
-    [self.objectToViewMappings enumerateKeysAndObjectsUsingBlock:^(Class viewModelClass, id cellClassOrNibName, BOOL *stop) {
+    [self.objectToViewMappings enumerateKeysAndObjectsUsingBlock:^(NSString * viewModelClassName, id cellClassOrNibName, BOOL *stop) {
         if ([cellClassOrNibName isKindOfClass:[NSString class]]) {      // cell nib
             [tableView registerNib:[UINib nibWithNibName:cellClassOrNibName bundle:nil] forCellReuseIdentifier:cellClassOrNibName];
             return;

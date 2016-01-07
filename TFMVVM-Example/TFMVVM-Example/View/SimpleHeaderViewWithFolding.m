@@ -55,13 +55,14 @@
     [_removeButton setTitle:@"[Remove]" forState:UIControlStateNormal];
     [_removeButton sizeToFit];
     [self.contentView addSubview:_removeButton];
-    _removeButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+    _removeButton.translatesAutoresizingMaskIntoConstraints = NO;
     
     self.contentView.frame = CGRectMake(0, 0, 100, 44); // in order to don't get layout warnings
     
-    NSDictionary * dic = NSDictionaryOfVariableBindings(_primaryLabel);
+    NSDictionary * dic = NSDictionaryOfVariableBindings(_primaryLabel, _removeButton);
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_primaryLabel]|" options:0 metrics:nil views:dic]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_primaryLabel]|" options:0 metrics:nil views:dic]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_removeButton]|" options:0 metrics:nil views:dic]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_primaryLabel]-[_removeButton]|" options:0 metrics:nil views:dic]];
 }
 
 - (void)configureWith:(SimpleHeaderViewModel *)headerViewModel
@@ -82,7 +83,7 @@
     
     // removing
     [self.removeButton removeTarget:nil action:nil forControlEvents:UIControlEventTouchUpInside];
-    [self.removeButton addTarget:headerViewModel.sectionViewModel action:@selector(remove:) forControlEvents:UIControlEventTouchUpInside];
+    [self.removeButton addTarget:headerViewModel.sectionViewModel action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setupText:(TFSectionViewModel *)vm

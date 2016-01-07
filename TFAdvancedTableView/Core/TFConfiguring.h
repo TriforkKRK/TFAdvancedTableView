@@ -21,6 +21,13 @@
  * THE SOFTWARE.
  */
 
-@protocol TFConfiguring <NSObject>
+@protocol TFConfiguring
+
+/**
+ *  Method required by TFConfiguring protocol, should implement configuring an object
+ *  with @param object.
+ *  Example: TFConfiguring is adopted by some UITableViewCell class, configureWith:
+ *  does all the required configurations of the cell based on the values passed in @param object.
+ */
 - (void)configureWith:(id)object;
 @end
