@@ -10,7 +10,7 @@
 		AF01B36A1B7663F90021F8A1 /* SimpleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3651B7663F90021F8A1 /* SimpleCell.m */; };
 		AF01B36B1B7663F90021F8A1 /* SimpleRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3681B7663F90021F8A1 /* SimpleRowViewModel.swift */; };
 		AF01B3711B7665D10021F8A1 /* SimpleHeaderViewWithFolding.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3701B7665D10021F8A1 /* SimpleHeaderViewWithFolding.m */; };
-		AF01B3751B7668060021F8A1 /* SimpleHeaderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3741B7668060021F8A1 /* SimpleHeaderViewModel.m */; };
+		AF01B3751B7668060021F8A1 /* SimpleHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3741B7668060021F8A1 /* SimpleHeaderViewModel.swift */; };
 		AF01B3911B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3801B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m */; };
 		AF01B3921B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3831B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m */; };
 		AF01B3931B76B8FB0021F8A1 /* TFBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3881B76B8FB0021F8A1 /* TFBaseViewModel.m */; };
@@ -51,8 +51,7 @@
 		AF01B3681B7663F90021F8A1 /* SimpleRowViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRowViewModel.swift; sourceTree = "<group>"; };
 		AF01B36F1B7665D10021F8A1 /* SimpleHeaderViewWithFolding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleHeaderViewWithFolding.h; sourceTree = "<group>"; };
 		AF01B3701B7665D10021F8A1 /* SimpleHeaderViewWithFolding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleHeaderViewWithFolding.m; sourceTree = "<group>"; };
-		AF01B3731B7668060021F8A1 /* SimpleHeaderViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleHeaderViewModel.h; sourceTree = "<group>"; };
-		AF01B3741B7668060021F8A1 /* SimpleHeaderViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleHeaderViewModel.m; sourceTree = "<group>"; };
+		AF01B3741B7668060021F8A1 /* SimpleHeaderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleHeaderViewModel.swift; sourceTree = "<group>"; };
 		AF01B37C1B76B8FB0021F8A1 /* TFConfiguring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFConfiguring.h; sourceTree = "<group>"; };
 		AF01B37D1B76B8FB0021F8A1 /* TFDynamicDataProviding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDynamicDataProviding.h; sourceTree = "<group>"; };
 		AF01B37E1B76B8FB0021F8A1 /* TFDynamicDataProvidingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDynamicDataProvidingDelegate.h; sourceTree = "<group>"; };
@@ -164,8 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				AF01B3681B7663F90021F8A1 /* SimpleRowViewModel.swift */,
-				AF01B3731B7668060021F8A1 /* SimpleHeaderViewModel.h */,
-				AF01B3741B7668060021F8A1 /* SimpleHeaderViewModel.m */,
+				AF01B3741B7668060021F8A1 /* SimpleHeaderViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -424,7 +422,7 @@
 				AFB3C6391B6D1B44006DB0C7 /* AppDelegate.m in Sources */,
 				AF01B36A1B7663F90021F8A1 /* SimpleCell.m in Sources */,
 				AF01B3B01B7770BC0021F8A1 /* TFOwnerableObject.m in Sources */,
-				AF01B3751B7668060021F8A1 /* SimpleHeaderViewModel.m in Sources */,
+				AF01B3751B7668060021F8A1 /* SimpleHeaderViewModel.swift in Sources */,
 				AFB3C6361B6D1B44006DB0C7 /* main.m in Sources */,
 				AF01B3911B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m in Sources */,
 				AF01B3B21B7770BC0021F8A1 /* TFUITableViewDelegateSizingIntention.m in Sources */,

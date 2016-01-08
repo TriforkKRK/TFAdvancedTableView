@@ -20,5 +20,4 @@
 
 
 #import "SimpleCell.h"
-#import "SimpleHeaderViewModel.h"
 #import "SimpleHeaderViewWithFolding.h"

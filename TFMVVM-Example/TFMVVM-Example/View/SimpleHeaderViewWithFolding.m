@@ -7,8 +7,8 @@
 //
 
 #import "SimpleHeaderViewWithFolding.h"
-#import "SimpleHeaderViewModel.h"
 #import "TFSectionViewModel.h"
+#import "TFMVVM_Example-Swift.h"
 
 @interface SimpleHeaderViewWithFolding()
 @property (nonatomic, strong) UILabel * primaryLabel;

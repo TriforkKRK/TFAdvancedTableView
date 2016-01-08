@@ -1,5 +1,5 @@
 //
-//  SimpleRowViewModel.m
+//  SimpleRowViewModel.swift
 //  TFMVVM-Example
 //
 //  Created by Krzysztof on 08/08/2015.
