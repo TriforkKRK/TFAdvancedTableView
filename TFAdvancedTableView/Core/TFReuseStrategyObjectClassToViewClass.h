@@ -22,8 +22,8 @@
  *
  * ABSTRACT:
  * An implementation of TFCellReusing protocol with a simple mapping from object
- * classes (Class) to view classes (Class). All the mappings are stored in
- * @property objectToViewMappings dictionary (both key and value are of Class type)
+ * class names (represented as NSStrings) to view classes (Class). All the mappings are stored in
+ * @property objectToViewMappings dictionary
  * It works with an assumption that there is one reuseId per object class.
  *
  * @property objectToViewMappings
@@ -41,4 +41,5 @@
 @property (nonatomic, strong) NSDictionary<NSString *, Class> * objectToViewMappings;
 
 - (instancetype)initWithObjectToViewsMapping:(NSDictionary<NSString *, Class> *)mappings NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
 @end

@@ -51,6 +51,11 @@
     return self.sectionViewModel;
 }
 
++ (Protocol *)responderProtocol
+{
+    return @protocol(TFViewModelResponding);
+}
+
 #pragma mark - TFInteractable
 //
 //- (void)select:(id)sender
@@ -76,9 +81,9 @@
 //    }
 //}
 
-- (IBAction)remove:(id)sender
+- (IBAction)delete:(id)sender
 {
-    
+    [self tf_sendAction:@selector(removeViewModel:)];
 }
 
 @end

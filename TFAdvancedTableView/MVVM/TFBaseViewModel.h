@@ -30,5 +30,5 @@
 
 - (instancetype)initWithModel:(id)model NS_DESIGNATED_INITIALIZER;
 
-- (IBAction)remove:(id)sender;
+- (IBAction)delete:(id)sender;
 @end

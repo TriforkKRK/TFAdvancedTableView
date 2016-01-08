@@ -19,7 +19,6 @@
 #import "TFViewModelResultsController.h"
 
 
-#import "SimpleRowViewModel.h"
 #import "SimpleCell.h"
 #import "SimpleHeaderViewModel.h"
 #import "SimpleHeaderViewWithFolding.h"

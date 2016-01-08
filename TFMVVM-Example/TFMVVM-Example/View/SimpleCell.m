@@ -7,8 +7,7 @@
 //
 
 #import "SimpleCell.h"
-#import "SimpleRowViewModel.h"
-
+#import "TFMVVM_Example-Swift.h"
 
 
 @interface SimpleCell ()

@@ -34,11 +34,8 @@
 
 #pragma mark - Interface Properties
 
-// Check for any TFSectionItemViewModel and set their sectionViewModel to this object
-
 - (id)model
 {
-#warning should it be something maybe?
     return nil;
 }
 

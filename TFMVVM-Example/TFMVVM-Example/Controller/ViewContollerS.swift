@@ -18,16 +18,16 @@ class ViewContollerS: UIViewController, TFDynamicTableViewDataSourceDelegate, UI
             NSStringFromClass(SimpleHeaderViewModel.self): SimpleHeaderViewWithFolding.self])
         
         let s1 = TFSectionViewModel()
-        s1.rows = [SimpleRowViewModel.withColor(UIColor.redColor(), name: "c1"),
-                   SimpleRowViewModel.withColor(UIColor.blueColor(), name: "c2 dhasdhsajkd ad ahd asjh")]
+        s1.rows = [SimpleRowViewModel(color: UIColor.redColor(), name: "c1"),
+                   SimpleRowViewModel(color: UIColor.blueColor(), name: "c2 dhasdhsajkd ad ahd asjh")]
         
         let h2 = SimpleHeaderViewModel(model: nil)
         h2.title = "header 2, click to fold"
         
         let s2 = TFSectionViewModel()
         s2.header = h2
-        s2.rows = [SimpleRowViewModel.withColor(UIColor.redColor(), name: "d1"),
-                    SimpleRowViewModel.withColor(UIColor.blueColor(), name: "d2 dhasdhsajkd ad ahd asjh")]
+        s2.rows = [SimpleRowViewModel(color: UIColor.redColor(), name: "d1"),
+                    SimpleRowViewModel(color: UIColor.blueColor(), name: "d2 dhasdhsajkd ad ahd asjh")]
         
         rc.sections = [s1, s2]
         return rc
@@ -41,7 +41,7 @@ class ViewContollerS: UIViewController, TFDynamicTableViewDataSourceDelegate, UI
     }
     
     @IBAction func editClicked(sender: AnyObject) {
-        self.tableView.editing = true
+        self.tableView.editing = !self.tableView.editing
     }
     
     //MARK: - TFDynamicTableViewDataSourceDelegate

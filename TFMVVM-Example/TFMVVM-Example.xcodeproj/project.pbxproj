@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AF01B3691B7663F90021F8A1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3611B7663F90021F8A1 /* ViewController.m */; };
 		AF01B36A1B7663F90021F8A1 /* SimpleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3651B7663F90021F8A1 /* SimpleCell.m */; };
-		AF01B36B1B7663F90021F8A1 /* SimpleRowViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3681B7663F90021F8A1 /* SimpleRowViewModel.m */; };
+		AF01B36B1B7663F90021F8A1 /* SimpleRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3681B7663F90021F8A1 /* SimpleRowViewModel.swift */; };
 		AF01B3711B7665D10021F8A1 /* SimpleHeaderViewWithFolding.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3701B7665D10021F8A1 /* SimpleHeaderViewWithFolding.m */; };
 		AF01B3751B7668060021F8A1 /* SimpleHeaderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3741B7668060021F8A1 /* SimpleHeaderViewModel.m */; };
 		AF01B3911B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3801B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m */; };
@@ -47,12 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AF01B3601B7663F90021F8A1 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		AF01B3611B7663F90021F8A1 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		AF01B3641B7663F90021F8A1 /* SimpleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleCell.h; sourceTree = "<group>"; };
 		AF01B3651B7663F90021F8A1 /* SimpleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleCell.m; sourceTree = "<group>"; };
-		AF01B3671B7663F90021F8A1 /* SimpleRowViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleRowViewModel.h; sourceTree = "<group>"; };
-		AF01B3681B7663F90021F8A1 /* SimpleRowViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleRowViewModel.m; sourceTree = "<group>"; };
+		AF01B3681B7663F90021F8A1 /* SimpleRowViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRowViewModel.swift; sourceTree = "<group>"; };
 		AF01B36F1B7665D10021F8A1 /* SimpleHeaderViewWithFolding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleHeaderViewWithFolding.h; sourceTree = "<group>"; };
 		AF01B3701B7665D10021F8A1 /* SimpleHeaderViewWithFolding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleHeaderViewWithFolding.m; sourceTree = "<group>"; };
 		AF01B3731B7668060021F8A1 /* SimpleHeaderViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleHeaderViewModel.h; sourceTree = "<group>"; };
@@ -141,8 +137,6 @@
 		AF01B35F1B7663F90021F8A1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				AF01B3601B7663F90021F8A1 /* ViewController.h */,
-				AF01B3611B7663F90021F8A1 /* ViewController.m */,
 				AF2FAB961C3E7EC600425DE8 /* ViewContollerS.swift */,
 			);
 			path = Controller;
@@ -169,8 +163,7 @@
 		AF01B3661B7663F90021F8A1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				AF01B3671B7663F90021F8A1 /* SimpleRowViewModel.h */,
-				AF01B3681B7663F90021F8A1 /* SimpleRowViewModel.m */,
+				AF01B3681B7663F90021F8A1 /* SimpleRowViewModel.swift */,
 				AF01B3731B7668060021F8A1 /* SimpleHeaderViewModel.h */,
 				AF01B3741B7668060021F8A1 /* SimpleHeaderViewModel.m */,
 			);
@@ -419,9 +412,8 @@
 			files = (
 				AF01B3AD1B7770BC0021F8A1 /* TFDataSourceCompositeIntention.m in Sources */,
 				AF0DCEBE1B7BC0A3002A7D39 /* TFInteractionChain.m in Sources */,
-				AF01B3691B7663F90021F8A1 /* ViewController.m in Sources */,
 				AF01B3951B76B8FB0021F8A1 /* TFViewModelResultsController.m in Sources */,
-				AF01B36B1B7663F90021F8A1 /* SimpleRowViewModel.m in Sources */,
+				AF01B36B1B7663F90021F8A1 /* SimpleRowViewModel.swift in Sources */,
 				AF01B3941B76B8FB0021F8A1 /* TFSectionViewModel.m in Sources */,
 				AF01B3921B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m in Sources */,
 				AF01B3AE1B7770BC0021F8A1 /* TFIntention.m in Sources */,
