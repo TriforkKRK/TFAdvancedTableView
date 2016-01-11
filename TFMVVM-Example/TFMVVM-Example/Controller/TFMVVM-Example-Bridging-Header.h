@@ -17,7 +17,3 @@
 #import "TFSectionViewModel.h"
 #import "TFViewModelDeltaProcessing.h"
 #import "TFViewModelResultsController.h"
-
-
-#import "SimpleCell.h"
-#import "SimpleHeaderViewWithFolding.h"

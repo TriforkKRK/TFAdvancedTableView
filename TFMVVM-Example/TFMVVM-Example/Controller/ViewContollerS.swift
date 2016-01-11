@@ -17,6 +17,7 @@ class ViewContollerS: UIViewController, TFDynamicTableViewDataSourceDelegate, UI
         let rc = TFViewModelResultsController.withMapping([NSStringFromClass(SimpleRowViewModel.self): SimpleCell.self,
             NSStringFromClass(SimpleHeaderViewModel.self): SimpleHeaderViewWithFolding.self])
         
+        // RowConfiguration<CellType>(ViewModel)
         let s1 = TFSectionViewModel()
         s1.rows = [SimpleRowViewModel(color: UIColor.redColor(), name: "c1"),
                    SimpleRowViewModel(color: UIColor.blueColor(), name: "c2 dhasdhsajkd ad ahd asjh")]
@@ -36,7 +37,7 @@ class ViewContollerS: UIViewController, TFDynamicTableViewDataSourceDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.dynamicDataSource.provider = self.viewModelController;
+        self.dynamicDataSource.provider = self.viewModelController
         self.dynamicDataSource.delegate = self
     }
     
