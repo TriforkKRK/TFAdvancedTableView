@@ -45,4 +45,5 @@
 /** creates TFViewModelResultsController with TFReuseStrategyObjectClassToViewClass instance */
 + (instancetype)withMapping:(NSDictionary *)mapping;
 - (instancetype)initWithReuseStrategy:(id<TFTableViewReusing>)strategy NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
 @end

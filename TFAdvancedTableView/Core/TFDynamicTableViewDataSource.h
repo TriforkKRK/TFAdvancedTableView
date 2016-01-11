@@ -48,7 +48,7 @@
 @protocol TFDynamicTableViewDataSourceDelegate <NSObject>
 @optional
 - (void)dynamicDataSource:(TFDynamicTableViewDataSource *)dataSource didSelectObject:(id<TFSectionItemInfo>)object;
-#warning more delegation - each interaction ?
+// warning more delegation - each interaction
 @end
 
 @protocol TFUITableViewControlling <UITableViewDataSource, UITableViewDelegate>
@@ -61,4 +61,5 @@
 @property (nonatomic, strong) IBOutlet id<TFDynamicDataProviding> provider;
 
 - (instancetype)initWithProvider:(id<TFDynamicDataProviding>)provider NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
 @end
