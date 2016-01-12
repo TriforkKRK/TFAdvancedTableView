@@ -71,9 +71,14 @@
 
 - (void)cellSizingIntetion:(TFUITableViewDelegateSizingIntention *)intention configureCell:(id)cell atIndexPath:(NSIndexPath *)indexPath
 {
+    id obj = [self.provider objectAtIndexPath:indexPath];
     if ([cell conformsToProtocol:@protocol(TFConfiguring)]) {
-        [cell configureWith:[self.provider objectAtIndexPath:indexPath]];
+        [cell configure:cell withObject:obj];
+        return;
     }
+    
+    id<TFConfiguring> cellConfigurator = [self.provider viewConfiguratorForObjectType:[obj class]];
+    [cellConfigurator configure:cell withObject:obj];
 }
 
 - (NSString *)cellSizingIntention:(TFUITableViewDelegateSizingIntention *)intention reuseIdentifierAtIndexPath:(NSIndexPath *)indexPath
@@ -102,8 +107,12 @@
     id obj = [self.provider objectAtIndexPath:indexPath];
     UITableViewCell<TFConfiguring> * cell = [tableView dequeueReusableCellWithIdentifier:[self.provider.reuseStrategy reuseIdentifierForObject:obj]];
     if ([cell conformsToProtocol:@protocol(TFConfiguring)]) {
-        [cell configureWith:obj];
+        [cell configure:cell withObject:obj];
+        return cell;
     }
+    
+    id<TFConfiguring> cellConfigurator = [self.provider viewConfiguratorForObjectType:[obj class]];
+    [cellConfigurator configure:cell withObject:obj];
     
     return cell;
 }
@@ -167,9 +176,12 @@
     
     UITableViewHeaderFooterView<TFConfiguring> * headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[self.provider.reuseStrategy reuseIdentifierForObject:sectionInfo.header]];
     if ([headerView conformsToProtocol:@protocol(TFConfiguring)]) {
-        [headerView configureWith:sectionInfo.header];
+        [headerView configure:headerView withObject:sectionInfo.header];
+        return headerView;
     }
-        
+    
+    id<TFConfiguring> headerConfigurator = [self.provider viewConfiguratorForObjectType:[sectionInfo.header class]];
+    [headerConfigurator configure:headerView withObject:sectionInfo.header];
     return headerView;
 }
 
@@ -179,10 +191,14 @@
     if (sectionInfo.footer == nil) return nil;
     
     UITableViewHeaderFooterView<TFConfiguring> * footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[self.provider.reuseStrategy reuseIdentifierForObject:sectionInfo.footer]];
+    
     if ([footerView conformsToProtocol:@protocol(TFConfiguring)]) {
-        [footerView configureWith:sectionInfo.footer];
+        [footerView configure:footerView withObject:sectionInfo.footer];
+        return footerView;
     }
     
+    id<TFConfiguring> cellConfigurator = [self.provider viewConfiguratorForObjectType:[sectionInfo.footer class]];
+    [cellConfigurator configure:footerView withObject:sectionInfo.footer];
     return footerView;
 }
 

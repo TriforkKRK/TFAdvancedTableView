@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AF01B36B1B7663F90021F8A1 /* SimpleRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3681B7663F90021F8A1 /* SimpleRowViewModel.swift */; };
-		AF01B3751B7668060021F8A1 /* SimpleHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3741B7668060021F8A1 /* SimpleHeaderViewModel.swift */; };
+		AF01B36B1B7663F90021F8A1 /* RowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3681B7663F90021F8A1 /* RowViewModel.swift */; };
+		AF01B3751B7668060021F8A1 /* HeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3741B7668060021F8A1 /* HeaderViewModel.swift */; };
 		AF01B3911B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3801B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m */; };
 		AF01B3921B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3831B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m */; };
 		AF01B3931B76B8FB0021F8A1 /* TFBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3881B76B8FB0021F8A1 /* TFBaseViewModel.m */; };
@@ -25,8 +25,9 @@
 		AF01B3B31B7770BC0021F8A1 /* UITextFieldObserveIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3AB1B7770BC0021F8A1 /* UITextFieldObserveIntention.m */; };
 		AF0DCEBE1B7BC0A3002A7D39 /* TFInteractionChain.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0DCEBD1B7BC0A3002A7D39 /* TFInteractionChain.m */; };
 		AF2FAB971C3E7EC600425DE8 /* ViewContollerS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2FAB961C3E7EC600425DE8 /* ViewContollerS.swift */; };
-		AF96EF5B1C43B9E0001608CB /* SimpleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96EF5A1C43B9E0001608CB /* SimpleCell.swift */; };
-		AF96EF5D1C43DCA0001608CB /* SimpleHeaderViewWithFolding.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96EF5C1C43DCA0001608CB /* SimpleHeaderViewWithFolding.swift */; };
+		AF96EF5B1C43B9E0001608CB /* CellWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96EF5A1C43B9E0001608CB /* CellWithText.swift */; };
+		AF96EF5D1C43DCA0001608CB /* HeaderViewWithTextAndSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96EF5C1C43DCA0001608CB /* HeaderViewWithTextAndSelection.swift */; };
+		AF96EF5F1C453E9E001608CB /* SelfConfigurableSimpleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96EF5E1C453E9E001608CB /* SelfConfigurableSimpleCell.swift */; };
 		AFB3C6361B6D1B44006DB0C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB3C6351B6D1B44006DB0C7 /* main.m */; };
 		AFB3C6391B6D1B44006DB0C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB3C6381B6D1B44006DB0C7 /* AppDelegate.m */; };
 		AFB3C63F1B6D1B44006DB0C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFB3C63D1B6D1B44006DB0C7 /* Main.storyboard */; };
@@ -46,8 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AF01B3681B7663F90021F8A1 /* SimpleRowViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRowViewModel.swift; sourceTree = "<group>"; };
-		AF01B3741B7668060021F8A1 /* SimpleHeaderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleHeaderViewModel.swift; sourceTree = "<group>"; };
+		AF01B3681B7663F90021F8A1 /* RowViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowViewModel.swift; sourceTree = "<group>"; };
+		AF01B3741B7668060021F8A1 /* HeaderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewModel.swift; sourceTree = "<group>"; };
 		AF01B37C1B76B8FB0021F8A1 /* TFConfiguring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFConfiguring.h; sourceTree = "<group>"; };
 		AF01B37D1B76B8FB0021F8A1 /* TFDynamicDataProviding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDynamicDataProviding.h; sourceTree = "<group>"; };
 		AF01B37E1B76B8FB0021F8A1 /* TFDynamicDataProvidingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDynamicDataProvidingDelegate.h; sourceTree = "<group>"; };
@@ -87,8 +88,9 @@
 		AF0DCEBD1B7BC0A3002A7D39 /* TFInteractionChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFInteractionChain.m; sourceTree = "<group>"; };
 		AF2FAB931C3E7D8B00425DE8 /* TFMVVM-Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TFMVVM-Example-Bridging-Header.h"; path = "Controller/TFMVVM-Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		AF2FAB961C3E7EC600425DE8 /* ViewContollerS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewContollerS.swift; sourceTree = "<group>"; };
-		AF96EF5A1C43B9E0001608CB /* SimpleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCell.swift; sourceTree = "<group>"; };
-		AF96EF5C1C43DCA0001608CB /* SimpleHeaderViewWithFolding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleHeaderViewWithFolding.swift; sourceTree = "<group>"; };
+		AF96EF5A1C43B9E0001608CB /* CellWithText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellWithText.swift; sourceTree = "<group>"; };
+		AF96EF5C1C43DCA0001608CB /* HeaderViewWithTextAndSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewWithTextAndSelection.swift; sourceTree = "<group>"; };
+		AF96EF5E1C453E9E001608CB /* SelfConfigurableSimpleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfConfigurableSimpleCell.swift; sourceTree = "<group>"; };
 		AFB3C6301B6D1B44006DB0C7 /* TFMVVM-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TFMVVM-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFB3C6341B6D1B44006DB0C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFB3C6351B6D1B44006DB0C7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -149,8 +151,9 @@
 		AF01B3631B7663F90021F8A1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AF96EF5A1C43B9E0001608CB /* SimpleCell.swift */,
-				AF96EF5C1C43DCA0001608CB /* SimpleHeaderViewWithFolding.swift */,
+				AF96EF5A1C43B9E0001608CB /* CellWithText.swift */,
+				AF96EF5E1C453E9E001608CB /* SelfConfigurableSimpleCell.swift */,
+				AF96EF5C1C43DCA0001608CB /* HeaderViewWithTextAndSelection.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -158,8 +161,8 @@
 		AF01B3661B7663F90021F8A1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				AF01B3681B7663F90021F8A1 /* SimpleRowViewModel.swift */,
-				AF01B3741B7668060021F8A1 /* SimpleHeaderViewModel.swift */,
+				AF01B3681B7663F90021F8A1 /* RowViewModel.swift */,
+				AF01B3741B7668060021F8A1 /* HeaderViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -405,11 +408,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF01B3AD1B7770BC0021F8A1 /* TFDataSourceCompositeIntention.m in Sources */,
-				AF96EF5D1C43DCA0001608CB /* SimpleHeaderViewWithFolding.swift in Sources */,
+				AF96EF5D1C43DCA0001608CB /* HeaderViewWithTextAndSelection.swift in Sources */,
 				AF0DCEBE1B7BC0A3002A7D39 /* TFInteractionChain.m in Sources */,
 				AF01B3951B76B8FB0021F8A1 /* TFViewModelResultsController.m in Sources */,
-				AF96EF5B1C43B9E0001608CB /* SimpleCell.swift in Sources */,
-				AF01B36B1B7663F90021F8A1 /* SimpleRowViewModel.swift in Sources */,
+				AF96EF5B1C43B9E0001608CB /* CellWithText.swift in Sources */,
+				AF01B36B1B7663F90021F8A1 /* RowViewModel.swift in Sources */,
 				AF01B3941B76B8FB0021F8A1 /* TFSectionViewModel.m in Sources */,
 				AF01B3921B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m in Sources */,
 				AF01B3AE1B7770BC0021F8A1 /* TFIntention.m in Sources */,
@@ -419,9 +422,10 @@
 				AF01B3931B76B8FB0021F8A1 /* TFBaseViewModel.m in Sources */,
 				AFB3C6391B6D1B44006DB0C7 /* AppDelegate.m in Sources */,
 				AF01B3B01B7770BC0021F8A1 /* TFOwnerableObject.m in Sources */,
-				AF01B3751B7668060021F8A1 /* SimpleHeaderViewModel.swift in Sources */,
+				AF01B3751B7668060021F8A1 /* HeaderViewModel.swift in Sources */,
 				AFB3C6361B6D1B44006DB0C7 /* main.m in Sources */,
 				AF01B3911B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m in Sources */,
+				AF96EF5F1C453E9E001608CB /* SelfConfigurableSimpleCell.swift in Sources */,
 				AF01B3B21B7770BC0021F8A1 /* TFUITableViewDelegateSizingIntention.m in Sources */,
 				AF01B3B31B7770BC0021F8A1 /* UITextFieldObserveIntention.m in Sources */,
 				AF01B3AC1B7770BC0021F8A1 /* TFDataSourceCompositeIntention+CellSizingCompilance.m in Sources */,

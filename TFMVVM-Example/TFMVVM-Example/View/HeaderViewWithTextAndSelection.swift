@@ -8,11 +8,9 @@
 
 import UIKit
 
-// TODO rename "withSelection
-class SimpleHeaderViewWithFolding: UITableViewHeaderFooterView, TFConfiguring {
+class HeaderViewWithTextAndSelection: UITableViewHeaderFooterView {
     var primaryLabel: UILabel?
     var tgr: UITapGestureRecognizer?
-    var observedSection: TFSectionViewModel?
     var removeButton: UIButton?
     
     override init(reuseIdentifier: String?) {
@@ -53,40 +51,16 @@ class SimpleHeaderViewWithFolding: UITableViewHeaderFooterView, TFConfiguring {
     deinit {
         self.tgr?.removeTarget(nil, action: nil)
         self.removeButton?.removeTarget(nil, action: nil, forControlEvents: .TouchUpInside)
-        self.observedSection?.removeObserver(self, forKeyPath: "folded", context: nil)
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        guard object as? TFSectionViewModel == self.observedSection else { return }
-        guard keyPath == "folded" else { return }
-        
-        self.setupText(self.observedSection!)
-    }
-    
-    // MARK: TFConfiguring
-    func configureWith(object: AnyObject!) {
-        guard let vm = object as? SimpleHeaderViewModel else { return }
-        
-        if (self.observedSection != nil) {
-            self.observedSection?.removeObserver(self, forKeyPath: "folded", context: nil)
-        }
-        
-        self.observedSection = vm.sectionViewModel
-        self.observedSection?.addObserver(self, forKeyPath: "folded", options: .New, context: nil)
-        self.setupText(vm.sectionViewModel!)
-        
-        // folded
+    override func prepareForReuse() {
         self.tgr?.removeTarget(nil, action: nil)
-        self.tgr?.addTarget(vm.sectionViewModel!, action: "toggleFolding:")
-        
-        // removing
         self.removeButton?.removeTarget(nil, action: nil, forControlEvents: .TouchUpInside)
-        self.removeButton?.addTarget(vm.sectionViewModel, action: "delete:", forControlEvents: .TouchUpInside)
     }
     
-    private func setupText(vm: TFSectionViewModel) {
+    func setupText(text: String) {
         UIView.transitionWithView(self.primaryLabel!, duration:0.4, options:.TransitionCrossDissolve, animations:{
-            self.primaryLabel!.text = vm.folded ? "Closed with \(vm.rows.count) elements, click to unfold" : (vm.header as! SimpleHeaderViewModel).title;
+            self.primaryLabel!.text = text
         }, completion:nil)
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SimpleRowViewModel: TFBaseViewModel {
+class RowViewModel: TFBaseViewModel {
     var bgdColor: UIColor?
     var name: String?
     

@@ -92,7 +92,7 @@
     return viewModelController;
 }
 
-- (void)setSections:(NSArray *)sections
+- (void)setSections:(NSArray<TFSectionViewModel *> *)sections
 {
     NSArray * oldSections = _sections;
     [sections enumerateObjectsUsingBlock:^(TFSectionViewModel * section, NSUInteger idx, BOOL *stop) {
@@ -180,6 +180,11 @@
 
 #pragma mark - TFDynamicDataProviding
 
+- (id<TFConfiguring>)viewConfiguratorForObjectType:(Class)type
+{
+    return self.viewConfigurators[NSStringFromClass(type)];
+}
+
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath
 {
     return [self.sections[indexPath.section] objectAtIndex:indexPath.row];
@@ -187,7 +192,7 @@
 
 - (NSIndexPath *)indexPathForObject:(id)object
 {
-    for (id<TFSectionInfo> section in self.sections) {
+    for (TFSectionViewModel * section in self.sections) {
         for (NSUInteger i = 0; i < [section numberOfObjects]; i++) {
             if (object == [section objectAtIndex:i]) {
                 return [NSIndexPath indexPathForRow:i inSection:[self.sections indexOfObject:section]];
@@ -216,10 +221,11 @@
 //}
 //
 
+// TODO: In Swift this would be 2 generic methods
 - (void)removeViewModel:(id<TFViewModel>)viewModel
 {
-    if ([viewModel conformsToProtocol:@protocol(TFSectionInfo)]){
-        NSUInteger sectionIndex = [self.sections indexOfObject:viewModel];
+    if ([viewModel isKindOfClass:[TFSectionViewModel class]]){
+        NSUInteger sectionIndex = [self.sections indexOfObject:(TFSectionViewModel *)viewModel];
         NSAssert(sectionIndex != NSNotFound, @"Section: %@ not found on provider", viewModel);
         if (![self.delegate respondsToSelector:@selector(provider:didRemoveSections:)]) return;
         
@@ -231,7 +237,7 @@
     }
     else if ([viewModel conformsToProtocol:@protocol(TFSectionItemInfo)])
     {
-        NSIndexPath * indexPath = [self indexPathForObject:viewModel];
+        NSIndexPath * indexPath = [self indexPathForObject:(id<TFSectionItemInfo>)viewModel];
         
         // indexPath may be nil for headers/footers for example
         if (indexPath != nil && [self.delegate respondsToSelector:@selector(provider:didRemoveItemsAtIndexPaths:)]) {

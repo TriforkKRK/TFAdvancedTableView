@@ -20,14 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
+@import UIKit;
 @protocol TFConfiguring
 
 /**
  *  Method required by TFConfiguring protocol, should implement configuring an object
  *  with @param object.
- *  Example: TFConfiguring is adopted by some UITableViewCell class, configureWith:
+ *  Example: TFConfiguring is adopted by some UITableViewCell class, configure:withObject:
  *  does all the required configurations of the cell based on the values passed in @param object.
+ *  @param view - in case the protocol is implemented straight by the cell this will simply be self
+ *  however it is sometimes usefull to have other objects performing such configuration (eg. ViewController)
+ *  so this param is also provided for higher flexibility.
  */
-- (void)configureWith:(id)object;
+- (void)configure:(UIView *)view withObject:(id)object;
 @end

@@ -52,6 +52,7 @@
 - (IBAction)unfold:(id)sender;
 - (IBAction)toggleFolding:(id)sender;
 
+// deletion
 - (IBAction)delete:(id)sender NS_REQUIRES_SUPER;    // you have to call super at the end of your implementation
 @end
 

@@ -38,12 +38,17 @@
 #import "TFSectionViewModel.h"
 
 @interface TFViewModelResultsController : NSObject<TFDynamicDataProviding, TFSectionViewModelResponding>
-@property (nonatomic, strong) NSArray * sections;
+@property (nonatomic, strong) NSArray<TFSectionViewModel *> * sections;
 @property (nonatomic, strong) id<TFTableViewReusing> reuseStrategy;
+@property (nonatomic, strong) NSDictionary<NSString *, id<TFConfiguring>> * viewConfigurators;
 @property (nonatomic, strong) id<TFViewModelDeltaProcessing> deltaProcessor;
 
-/** creates TFViewModelResultsController with TFReuseStrategyObjectClassToViewClass instance */
+/** Creates TFViewModelResultsController with TFReuseStrategyObjectClassToViewClass instance
+ *  Views are gonna be configured with view model by passing them to those views via TFConfiguring protocol
+ *  unless a specific
+ */
 + (instancetype)withMapping:(NSDictionary *)mapping;
+
 - (instancetype)initWithReuseStrategy:(id<TFTableViewReusing>)strategy NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 @end

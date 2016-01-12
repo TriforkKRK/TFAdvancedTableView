@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SimpleCell: UITableViewCell {
+class CellWithText: UITableViewCell {
     var primaryLabel: UILabel?
     var secondaryLabel: UILabel?
     var myConstraints: [NSLayoutConstraint] = []
@@ -24,7 +24,7 @@ class SimpleCell: UITableViewCell {
     }
     
     func commonInit(){
-        let font = UIFont.systemFontOfSize(22);
+        let font = UIFont.systemFontOfSize(16);
         
         primaryLabel = UILabel(frame: CGRectZero)
         primaryLabel?.translatesAutoresizingMaskIntoConstraints = false
@@ -64,15 +64,5 @@ class SimpleCell: UITableViewCell {
         myConstraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-Top-[primaryLabel]-Bottom-|", options: NSLayoutFormatOptions.AlignAllBaseline, metrics: metrics, views: views)
         self.contentView.addConstraints(myConstraints)
         super.updateConstraints()
-    }
-}
-
-// TODO maybe Configurator<CellViewType T> (viewModel) or protocol extension with "where" specified, only for a configurator where type is SimpleCell (which is TFConfiguring) and ViewModel T2
-extension SimpleCell: TFConfiguring {
-    func configureWith(object: AnyObject!) {
-        guard let vm = object as? SimpleRowViewModel else { return }
-
-        self.backgroundColor = vm.bgdColor
-        self.primaryLabel?.text = vm.name
     }
 }

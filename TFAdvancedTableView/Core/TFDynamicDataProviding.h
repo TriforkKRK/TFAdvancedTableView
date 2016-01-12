@@ -48,13 +48,16 @@
 #import "TFSectionInfo.h"
 #import "TFInteractionChain.h"
 
+#import "TFConfiguring.h"
+
 @protocol TFDynamicDataProviding <TFResponding>
-@property (nonatomic, readonly) NSArray * sections;
+@property (nonatomic, readonly) NSArray<NSObject<TFSectionInfo> *> * sections;
 @property (nonatomic, readwrite) id<TFDynamicDataProvidingDelegate, TFResponding> delegate;  /**< all the delegate methods are supposed to be called on MainThread */
 @property (nonatomic, readonly) id<TFTableViewReusing> reuseStrategy;
 
+- (id<TFConfiguring>)viewConfiguratorForObjectType:(Class)type;
 - (id<TFSectionItemInfo>)objectAtIndexPath:(NSIndexPath *)indexPath;
-- (NSIndexPath *)indexPathForObject:(id)object;
+- (NSIndexPath *)indexPathForObject:(id<TFSectionItemInfo>)object;
 
 @optional
 - (IBAction)refresh:(id)sender;
