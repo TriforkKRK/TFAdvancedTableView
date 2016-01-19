@@ -24,7 +24,7 @@
 @import Foundation;
 @import UIKit.UITableView;
 
-@protocol TFTableViewReusing <NSObject>
-- (NSString *)reuseIdentifierForObject:(id)obj;
-- (void)registerReusableViewsOnTableView:(UITableView *)tableView;
+@protocol TFTableViewReusing
+- (nonnull NSString *)reuseIdentifierForObject:(nonnull id<NSObject>)obj;
+- (void)registerReusableViewsOnTableView:(nonnull UITableView *)tableView;
 @end

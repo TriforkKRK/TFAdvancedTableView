@@ -74,7 +74,7 @@
     return self.delegate;
 }
 
-- (instancetype)initWithReuseStrategy:(id<TFTableViewReusing>)strategy
+- (instancetype)initWithReuseStrategy:(id<TFTableViewReusing, NSObject>)strategy
 {
     NSParameterAssert([strategy conformsToProtocol:@protocol(TFTableViewReusing)]);
     self = [super init];

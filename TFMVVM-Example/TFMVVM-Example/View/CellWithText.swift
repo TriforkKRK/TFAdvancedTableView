@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CellWithText: UITableViewCell {
+@objc class CellWithText: UITableViewCell {
     var primaryLabel: UILabel?
     var secondaryLabel: UILabel?
     var myConstraints: [NSLayoutConstraint] = []
