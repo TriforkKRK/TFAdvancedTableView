@@ -25,6 +25,7 @@
 		AF01B3B31B7770BC0021F8A1 /* UITextFieldObserveIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3AB1B7770BC0021F8A1 /* UITextFieldObserveIntention.m */; };
 		AF0DCEBE1B7BC0A3002A7D39 /* TFInteractionChain.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0DCEBD1B7BC0A3002A7D39 /* TFInteractionChain.m */; };
 		AF2FAB971C3E7EC600425DE8 /* ViewContollerS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2FAB961C3E7EC600425DE8 /* ViewContollerS.swift */; };
+		AF438A9A1C4E701300BB43E7 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF438A991C4E701300BB43E7 /* Core.swift */; };
 		AF96EF5B1C43B9E0001608CB /* CellWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96EF5A1C43B9E0001608CB /* CellWithText.swift */; };
 		AF96EF5D1C43DCA0001608CB /* HeaderViewWithTextAndSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96EF5C1C43DCA0001608CB /* HeaderViewWithTextAndSelection.swift */; };
 		AF96EF5F1C453E9E001608CB /* SelfConfigurableSimpleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96EF5E1C453E9E001608CB /* SelfConfigurableSimpleCell.swift */; };
@@ -88,6 +89,7 @@
 		AF0DCEBD1B7BC0A3002A7D39 /* TFInteractionChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFInteractionChain.m; sourceTree = "<group>"; };
 		AF2FAB931C3E7D8B00425DE8 /* TFMVVM-Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TFMVVM-Example-Bridging-Header.h"; path = "Controller/TFMVVM-Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		AF2FAB961C3E7EC600425DE8 /* ViewContollerS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewContollerS.swift; sourceTree = "<group>"; };
+		AF438A991C4E701300BB43E7 /* Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		AF96EF5A1C43B9E0001608CB /* CellWithText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellWithText.swift; sourceTree = "<group>"; };
 		AF96EF5C1C43DCA0001608CB /* HeaderViewWithTextAndSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewWithTextAndSelection.swift; sourceTree = "<group>"; };
 		AF96EF5E1C453E9E001608CB /* SelfConfigurableSimpleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfConfigurableSimpleCell.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				AF01B3971B76B9140021F8A1 /* TODO */,
+				AF438A981C4E6FFA00BB43E7 /* Swift */,
 				AF01B37B1B76B8FB0021F8A1 /* Core */,
 				AF01B3861B76B8FB0021F8A1 /* MVVM */,
 			);
@@ -239,6 +242,14 @@
 				AF01B3AB1B7770BC0021F8A1 /* UITextFieldObserveIntention.m */,
 			);
 			path = UITextField;
+			sourceTree = "<group>";
+		};
+		AF438A981C4E6FFA00BB43E7 /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				AF438A991C4E701300BB43E7 /* Core.swift */,
+			);
+			path = Swift;
 			sourceTree = "<group>";
 		};
 		AFB3C6271B6D1B44006DB0C7 = {
@@ -407,6 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF438A9A1C4E701300BB43E7 /* Core.swift in Sources */,
 				AF01B3AD1B7770BC0021F8A1 /* TFDataSourceCompositeIntention.m in Sources */,
 				AF96EF5D1C43DCA0001608CB /* HeaderViewWithTextAndSelection.swift in Sources */,
 				AF0DCEBE1B7BC0A3002A7D39 /* TFInteractionChain.m in Sources */,

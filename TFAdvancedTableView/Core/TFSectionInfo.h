@@ -38,9 +38,9 @@
 
 @protocol TFSectionInfo <NSObject>
 @property (nonatomic, readonly) NSUInteger numberOfObjects;
-- (id<TFSectionItemInfo>)objectAtIndex:(NSUInteger)index;
+- (nullable id<TFSectionItemInfo>)objectAtIndex:(NSUInteger)index;
 
 @optional
-@property (nonatomic, readonly) id<TFSectionItemInfo> header;
-@property (nonatomic, readonly) id<TFSectionItemInfo> footer;
+@property (nonatomic, readonly, nullable) id<TFSectionItemInfo> header;
+@property (nonatomic, readonly, nullable) id<TFSectionItemInfo> footer;
 @end

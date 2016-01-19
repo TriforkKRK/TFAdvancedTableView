@@ -22,13 +22,13 @@
  */
 
 @import Foundation;
-@import UIKit.UIResponder;
 #import "TFSectionItemViewModel.h"
 
 @interface TFBaseViewModel : NSObject<TFSectionItemViewModel>
-@property (nonatomic, strong) id model;
+@property (nonatomic, strong, nullable) id model;
 
-- (instancetype)initWithModel:(id)model NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithModel:(nullable id)model NS_DESIGNATED_INITIALIZER;
 
-- (IBAction)delete:(id)sender;
+- (IBAction)delete:(nullable id)sender;
+
 @end

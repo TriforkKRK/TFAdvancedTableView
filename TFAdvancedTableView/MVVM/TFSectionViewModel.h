@@ -39,26 +39,27 @@
 #import "TFViewModel.h"
 #import "TFSectionInfo.h"
 #import "TFInteractionChain.h"
+#import "TFSectionItemViewModel.h"
 
 @interface TFSectionViewModel : NSObject <TFViewModel, TFSectionInfo>
-@property (nonatomic, strong) id<TFViewModel, TFSectionItemInfo> header;
-@property (nonatomic, strong) id<TFViewModel, TFSectionItemInfo> footer;
-@property (nonatomic, strong) NSArray<TFViewModel, TFSectionItemInfo> * rows;
+@property (nonatomic, strong, nullable) id<TFViewModel, TFSectionItemInfo> header;
+@property (nonatomic, strong, nullable) id<TFViewModel, TFSectionItemInfo> footer;
+@property (nonatomic, strong, nullable) NSArray<TFSectionItemViewModel> * rows;
 
 // folding
 @property (nonatomic, readonly, getter=isFolded) BOOL folded;
 @property (nonatomic, assign) NSUInteger numberOfObjectsWhenFolded;
-- (IBAction)fold:(id)sender;
-- (IBAction)unfold:(id)sender;
-- (IBAction)toggleFolding:(id)sender;
+- (IBAction)fold:(nullable id)sender;
+- (IBAction)unfold:(nullable id)sender;
+- (IBAction)toggleFolding:(nullable id)sender;
 
 // deletion
-- (IBAction)delete:(id)sender NS_REQUIRES_SUPER;    // you have to call super at the end of your implementation
+- (IBAction)delete:(nullable id)sender NS_REQUIRES_SUPER;    // you have to call super at the end of your implementation
 @end
 
 
 // whoever in the interaction chain is implementing that protocol will be used
 @protocol TFSectionViewModelResponding <TFViewModelResponding>
 @optional
-- (void)foldingDidChangeOnSectionViewModel:(TFSectionViewModel *)sectionViewModel;
+- (void)foldingDidChangeOnSectionViewModel:(nonnull TFSectionViewModel *)sectionViewModel;
 @end

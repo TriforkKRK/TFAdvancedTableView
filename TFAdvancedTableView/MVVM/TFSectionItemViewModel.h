@@ -27,5 +27,5 @@
 @class TFSectionViewModel;
 
 @protocol TFSectionItemViewModel <TFViewModel, TFSectionItemInfo>
-@property (nonatomic, weak) TFSectionViewModel * sectionViewModel;
+@property (nonatomic, weak, nullable) TFSectionViewModel * sectionViewModel;
 @end

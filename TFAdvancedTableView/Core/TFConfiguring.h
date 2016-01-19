@@ -32,5 +32,5 @@
  *  however it is sometimes usefull to have other objects performing such configuration (eg. ViewController)
  *  so this param is also provided for higher flexibility.
  */
-- (void)configure:(UIView *)view withObject:(id)object;
+- (void)configure:(nonnull UIView *)view withObject:(nonnull id)object;
 @end

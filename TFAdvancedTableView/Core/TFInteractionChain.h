@@ -25,18 +25,18 @@
 @import UIKit.UIViewController;
 
 @interface NSObject (TFResponding)
-- (id)tf_responderForAction:(SEL)action ofProtocol:(Protocol *)protocol;
+- (nullable id)tf_responderForAction:(nonnull SEL)action ofProtocol:(nonnull Protocol *)protocol;
 
-- (void)tf_sendAction:(SEL)action to:(Protocol *)protocol from:(id)sender;
-- (void)tf_sendAction:(SEL)action to:(Protocol *)protocol;
-- (void)tf_sendAction:(SEL)action;
+- (void)tf_sendAction:(nonnull SEL)action to:(nonnull Protocol *)protocol from:(nullable id)sender;
+- (void)tf_sendAction:(nonnull SEL)action to:(nonnull Protocol *)protocol;
+- (void)tf_sendAction:(nonnull SEL)action;
 @end
 
 
 @protocol TFResponding <NSObject>
-@property (nonatomic, weak) NSObject<TFResponding> * tf_nextResponder;
+@property (nonatomic, weak, readonly, nullable) NSObject<TFResponding> * tf_nextResponder;
 @optional
-+ (Protocol *)responderProtocol;
++ (nonnull Protocol *)responderProtocol;
 @end
 
 

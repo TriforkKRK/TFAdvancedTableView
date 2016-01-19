@@ -11,7 +11,7 @@
 
 @implementation NSObject (TFResponding)
 
-- (id)tf_responderForAction:(SEL)action ofProtocol:(Protocol *)protocol
+- (nullable id)tf_responderForAction:(nonnull SEL)action ofProtocol:(nonnull Protocol *)protocol
 {
     NSAssert([self conformsToProtocol:@protocol(TFResponding)], nil);
     
@@ -23,24 +23,21 @@
 // it should only be used  on ???
 // it surpresses the selector leak warning which may be dangerous
 // http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
-- (void)tf_sendAction:(SEL)action to:(Protocol *)protocol from:(id)sender
+- (void)tf_sendAction:(nonnull SEL)action to:(nonnull Protocol *)protocol from:(nullable id)sender
 {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     id target = [self tf_responderForAction:action ofProtocol:protocol];
     [target performSelector:action withObject:sender];
 #pragma clang diagnostic pop
-  
-    // ?
-//    [[UIApplication sharedApplication] sendAction:action to:target from:sender forEvent:nil];
 }
 
-- (void)tf_sendAction:(SEL)action to:(Protocol *)protocol
+- (void)tf_sendAction:(nonnull SEL)action to:(nonnull Protocol *)protocol
 {
     [self tf_sendAction:action to:protocol from:self];
 }
 
-- (void)tf_sendAction:(SEL)action
+- (void)tf_sendAction:(nonnull SEL)action
 {
     NSAssert([[self class] respondsToSelector:@selector(responderProtocol)], @"responderProtocol method required for this call");
     

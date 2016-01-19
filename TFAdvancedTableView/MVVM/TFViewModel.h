@@ -24,15 +24,16 @@
 #import "TFInteractionChain.h"
 
 @protocol TFViewModel <TFResponding>
-- (id)model;
+@property (nonatomic, weak, readwrite, nullable) NSObject<TFResponding> * tf_nextResponder;
+- (nullable id)model;
 
 @optional
-- (void)delete:(id)sender;        // UIResponderStandardEditActions
+- (void)delete:(nullable id)sender;        // UIResponderStandardEditActions
 // if implemented it should call the 
 @end
 
 
 @protocol TFViewModelResponding <TFResponding>
 @optional
-- (void)removeViewModel:(id<TFViewModel>)viewModel;
+- (void)removeViewModel:(nonnull id<TFViewModel>)viewModel;
 @end

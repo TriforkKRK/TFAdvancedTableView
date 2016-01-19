@@ -22,20 +22,22 @@
  */
 
 @import Foundation;
+#import "TFSectionViewModel.h"
 
 @protocol TFViewModelDeltaResult <NSObject>
-- (NSIndexSet *)deletedSectionsIndexSet;
-- (NSIndexSet *)insertedSectionsIndexSet;
-- (NSIndexSet *)refreshedSectionsIndexSet;
+- (nonnull NSIndexSet *)deletedSectionsIndexSet;
+- (nonnull NSIndexSet *)insertedSectionsIndexSet;
+- (nonnull NSIndexSet *)refreshedSectionsIndexSet;
 - (BOOL)hasRowUpdates;  // then YES all optional methods need to be implemented
 @optional
-- (NSArray *)deletedRowsIndexPaths;
-- (NSArray *)insertedRowsIndexPaths;
-- (NSArray *)refreshedRowsIndexPaths;
+- (nonnull NSArray *)deletedRowsIndexPaths;
+- (nonnull NSArray *)insertedRowsIndexPaths;
+- (nonnull NSArray *)refreshedRowsIndexPaths;
 // TODO: moving sections and rows
 @end
 
-// an array of TFSectionViewModels
 @protocol TFViewModelDeltaProcessing <NSObject>
-- (id<TFViewModelDeltaResult>)findDeltaFrom:(NSArray *)oldSectionViewModels to:(NSArray *)sectionViewModels error:(NSError *)error;
+- (nullable id<TFViewModelDeltaResult>)findDeltaFrom:(nonnull NSArray<TFSectionViewModel *> *)oldSectionViewModels
+                                                  to:(nonnull NSArray<TFSectionViewModel *> *)sectionViewModels
+                                               error:(nullable NSError *)error;
 @end

@@ -11,7 +11,7 @@ class HeaderViewModel: TFBaseViewModel {
     
     var title : String {
         get {
-            return self.sectionViewModel!.folded ? "Closed with \(self.sectionViewModel!.rows.count) elements, click to unfold" : titleStorage;
+            return self.sectionViewModel!.folded ? "Closed with \(self.sectionViewModel!.rows?.count) elements, click to unfold" : titleStorage;
         }
         set {
             titleStorage = newValue

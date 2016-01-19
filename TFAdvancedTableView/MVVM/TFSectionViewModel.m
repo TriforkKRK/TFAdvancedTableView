@@ -44,7 +44,7 @@
     return _nextInteractor;
 }
 
-- (void)setRows:(NSArray *)rows
+- (void)setRows:(NSArray<TFSectionItemViewModel> *)rows
 {
     _rows = rows;
     

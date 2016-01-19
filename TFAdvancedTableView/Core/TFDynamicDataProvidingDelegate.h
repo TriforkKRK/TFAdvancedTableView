@@ -32,18 +32,18 @@
 @protocol TFDynamicDataProvidingDelegate <NSObject>
 @required
 // reload
-- (void)providerDidReload:(id<TFDynamicDataProviding>)provider;
+- (void)providerDidReload:(nonnull id<TFDynamicDataProviding>)provider;
 @optional
 // items
-- (void)provider:(id<TFDynamicDataProviding>)provider didRemoveItemsAtIndexPaths:(NSArray *)indexPaths;
-- (void)provider:(id<TFDynamicDataProviding>)provider didRefreshItemsAtIndexPaths:(NSArray *)indexPaths;
-- (void)provider:(id<TFDynamicDataProviding>)provider didInsertItemsAtIndexPaths:(NSArray *)indexPaths;
-- (void)provider:(id<TFDynamicDataProviding>)provider didMoveItemAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)newIndexPath;
+- (void)provider:(nonnull id<TFDynamicDataProviding>)provider didRemoveItemsAtIndexPaths:(nonnull NSArray<NSIndexPath *> *)indexPaths;
+- (void)provider:(nonnull id<TFDynamicDataProviding>)provider didRefreshItemsAtIndexPaths:(nonnull NSArray<NSIndexPath *> *)indexPaths;
+- (void)provider:(nonnull id<TFDynamicDataProviding>)provider didInsertItemsAtIndexPaths:(nonnull NSArray<NSIndexPath *> *)indexPaths;
+- (void)provider:(nonnull id<TFDynamicDataProviding>)provider didMoveItemAtIndexPath:(nonnull NSIndexPath *)fromIndexPath toIndexPath:(nonnull NSIndexPath *)newIndexPath;
 // sections
-- (void)provider:(id<TFDynamicDataProviding>)provider didRemoveSections:(NSIndexSet *)sections;
-- (void)provider:(id<TFDynamicDataProviding>)provider didRefreshSections:(NSIndexSet *)sections;
-- (void)provider:(id<TFDynamicDataProviding>)provider didInsertSections:(NSIndexSet *)sections;
-- (void)provider:(id<TFDynamicDataProviding>)provider didMoveSection:(NSInteger)section toSection:(NSInteger)newSection;
+- (void)provider:(nonnull id<TFDynamicDataProviding>)provider didRemoveSections:(nonnull NSIndexSet *)sections;
+- (void)provider:(nonnull id<TFDynamicDataProviding>)provider didRefreshSections:(nonnull NSIndexSet *)sections;
+- (void)provider:(nonnull id<TFDynamicDataProviding>)provider didInsertSections:(nonnull NSIndexSet *)sections;
+- (void)provider:(nonnull id<TFDynamicDataProviding>)provider didMoveSection:(NSInteger)section toSection:(NSInteger)newSection;
 // batch
-- (void)provider:(id<TFDynamicDataProviding>)provider performBatchUpdate:(dispatch_block_t)update complete:(dispatch_block_t)complete;
+- (void)provider:(nonnull id<TFDynamicDataProviding>)provider performBatchUpdate:(nonnull dispatch_block_t)update complete:(nullable dispatch_block_t)complete;
 @end

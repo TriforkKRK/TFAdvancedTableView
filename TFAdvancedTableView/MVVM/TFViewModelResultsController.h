@@ -38,17 +38,17 @@
 #import "TFSectionViewModel.h"
 
 @interface TFViewModelResultsController : NSObject<TFDynamicDataProviding, TFSectionViewModelResponding>
-@property (nonatomic, strong) NSArray<TFSectionViewModel *> * sections;
-@property (nonatomic, strong) id<TFTableViewReusing> reuseStrategy;
-@property (nonatomic, strong) NSDictionary<NSString *, id<TFConfiguring>> * viewConfigurators;
-@property (nonatomic, strong) id<TFViewModelDeltaProcessing> deltaProcessor;
+@property (nonatomic, strong, nullable) NSArray<TFSectionViewModel *> * sections;
+@property (nonatomic, strong, nonnull) id<TFTableViewReusing> reuseStrategy;
+@property (nonatomic, strong, nullable) NSDictionary<NSString *, id<TFConfiguring>> * viewConfigurators;
+@property (nonatomic, strong, nullable) id<TFViewModelDeltaProcessing> deltaProcessor;
 
 /** Creates TFViewModelResultsController with TFReuseStrategyObjectClassToViewClass instance
  *  Views are gonna be configured with view model by passing them to those views via TFConfiguring protocol
  *  unless a specific
  */
-+ (instancetype)withMapping:(NSDictionary *)mapping;
++ (nonnull instancetype)withMapping:(nonnull NSDictionary<NSString *, Class> *)mapping;
 
-- (instancetype)initWithReuseStrategy:(id<TFTableViewReusing>)strategy NS_DESIGNATED_INITIALIZER;
-- (instancetype)init NS_UNAVAILABLE;
+- (nonnull instancetype)initWithReuseStrategy:(nonnull id<TFTableViewReusing>)strategy NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)init NS_UNAVAILABLE;
 @end

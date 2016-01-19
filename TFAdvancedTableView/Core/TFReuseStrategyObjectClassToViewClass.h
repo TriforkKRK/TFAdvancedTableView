@@ -38,8 +38,8 @@
 #import "TFTableViewReusing.h"
 
 @interface TFReuseStrategyObjectClassToViewClass : NSObject<TFTableViewReusing>
-@property (nonatomic, strong) NSDictionary<NSString *, Class> * objectToViewMappings;
+@property (nonatomic, strong, nonnull) NSDictionary<NSString *, Class> * objectToViewMappings;
 
-- (instancetype)initWithObjectToViewsMapping:(NSDictionary<NSString *, Class> *)mappings NS_DESIGNATED_INITIALIZER;
-- (instancetype)init NS_UNAVAILABLE;
+- (nonnull instancetype)initWithObjectToViewsMapping:(nonnull NSDictionary<NSString *, Class> *)mappings NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init NS_UNAVAILABLE;
 @end
