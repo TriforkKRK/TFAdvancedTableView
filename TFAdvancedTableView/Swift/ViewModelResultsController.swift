@@ -21,11 +21,10 @@
 * THE SOFTWARE.
 */
 
-
 class ViewModelResultsController: TFViewModelResultsController {
 
-    convenience init(configurators: [ViewModelConfigurable]) {
-        self.init(reuseStrategy: ConfiguratorsDerivedReuseStrategy(configurators: configurators))
+    init(configurators: [ViewModelConfigurable]) {
+        super.init(reuseStrategy: ConfiguratorsDerivedReuseStrategy(configurators: configurators))
         
         // map configurators to a dictionary required by superclass
         self.viewConfigurators = configurators.reduce([String: ViewModelConfigurable]()){ var result = $0

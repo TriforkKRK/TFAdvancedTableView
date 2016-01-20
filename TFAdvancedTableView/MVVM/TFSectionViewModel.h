@@ -42,8 +42,8 @@
 #import "TFSectionItemViewModel.h"
 
 @interface TFSectionViewModel : NSObject <TFViewModel, TFSectionInfo>
-@property (nonatomic, strong, nullable) id<TFViewModel, TFSectionItemInfo> header;
-@property (nonatomic, strong, nullable) id<TFViewModel, TFSectionItemInfo> footer;
+@property (nonatomic, strong, nullable) id<TFSectionItemViewModel> header;
+@property (nonatomic, strong, nullable) id<TFSectionItemViewModel> footer;
 @property (nonatomic, strong, nullable) NSArray<TFSectionItemViewModel> * rows;
 
 // folding

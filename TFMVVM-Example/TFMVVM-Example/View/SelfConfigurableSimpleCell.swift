@@ -11,7 +11,7 @@ class SelfConfigurableCellWithText: CellWithText {
 }
 
 extension SelfConfigurableCellWithText: TFConfiguring{
-    func configure(view: UIView!, withObject object: AnyObject!) {
+    func configure(view: UIView, withObject object: AnyObject) {
         guard let vm = object as? RowViewModel else { return }
         
         self.primaryLabel?.text = vm.name

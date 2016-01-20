@@ -1,3 +1,6 @@
+NAMING:
+ViewModelResultsController -> DynamicMVVMResultsController
+
 // TODO 2. DeductedReuseStratedyWithMappings : CellConfigurationBuilder, TFTableViewReusing
 
 // TODO 4 - selection
@@ -16,7 +19,7 @@
 // https://github.com/mamaral/Organic/tree/master/Organic/Source
 // https://github.com/fastred/ConfigurableTableViewController/blob/master/Framework/CellConfigurator.swift
 
-
+Delta processor
 
 
 1) TABLEVIEW DYNAMIC DATASOURCE / MVVM Provider
