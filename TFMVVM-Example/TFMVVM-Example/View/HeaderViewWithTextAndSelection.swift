@@ -12,6 +12,7 @@ import UIKit
     var primaryLabel: UILabel?
     var tgr: UITapGestureRecognizer?
     var removeButton: UIButton?
+        var myConstraints: [NSLayoutConstraint] = []
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -22,7 +23,7 @@ import UIKit
         super.init(coder: aDecoder)
         self.commonInit()
     }
-    
+
     func commonInit(){
         tgr = UITapGestureRecognizer(target: nil, action: nil)
         self.addGestureRecognizer(tgr!)
@@ -36,17 +37,40 @@ import UIKit
         
         removeButton = UIButton(type: .Custom)
         removeButton?.setTitle("[Remove]", forState: .Normal)
-        removeButton?.translatesAutoresizingMaskIntoConstraints = false
         removeButton?.sizeToFit()
+        removeButton?.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(removeButton!)
-        
-        self.contentView.frame = CGRectMake(0, 0, 100, 44)
-        
-        let dic = ["primaryLabel": primaryLabel!, "removeButton": removeButton!]
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[primaryLabel]|", options:.AlignAllBaseline, metrics:nil, views:dic))
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[removeButton]|", options:.AlignAllBaseline, metrics:nil, views:dic))
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[primaryLabel]-[removeButton]|", options:.AlignAllBaseline, metrics:nil, views:dic))
+
+
     }
+    
+    override func setNeedsUpdateConstraints() {
+        if self.myConstraints.count > 0 {
+            self.contentView.removeConstraints(self.myConstraints)
+        }
+        
+        myConstraints = []
+        super.setNeedsUpdateConstraints()
+    }
+    
+    override func updateConstraints() {
+        if self.myConstraints.count > 0 {
+            super.updateConstraints()
+            return
+        }
+        
+        myConstraints = []
+        let views = ["primaryLabel": primaryLabel!, "removeButton": removeButton!]
+        
+        myConstraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[primaryLabel]|", options:.AlignAllBaseline, metrics:nil, views:views)
+        myConstraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[removeButton]|", options:.AlignAllBaseline, metrics:nil, views:views)
+        myConstraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[primaryLabel]", options:.AlignAllBaseline, metrics:nil, views:views)
+        myConstraints += NSLayoutConstraint.constraintsWithVisualFormat("H:[removeButton]|", options:.AlignAllBaseline, metrics:nil, views:views)
+        
+        self.contentView.addConstraints(myConstraints)
+        super.updateConstraints()
+    }
+
 
     deinit {
         self.tgr?.removeTarget(nil, action: nil)
