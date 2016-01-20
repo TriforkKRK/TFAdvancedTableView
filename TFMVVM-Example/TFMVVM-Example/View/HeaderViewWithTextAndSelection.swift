@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HeaderViewWithTextAndSelection: UITableViewHeaderFooterView {
+@objc class HeaderViewWithTextAndSelection: UITableViewHeaderFooterView {
     var primaryLabel: UILabel?
     var tgr: UITapGestureRecognizer?
     var removeButton: UIButton?

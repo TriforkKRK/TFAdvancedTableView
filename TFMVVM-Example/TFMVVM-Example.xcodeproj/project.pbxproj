@@ -24,8 +24,9 @@
 		AF01B3B21B7770BC0021F8A1 /* TFUITableViewDelegateSizingIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3A81B7770BC0021F8A1 /* TFUITableViewDelegateSizingIntention.m */; };
 		AF01B3B31B7770BC0021F8A1 /* UITextFieldObserveIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3AB1B7770BC0021F8A1 /* UITextFieldObserveIntention.m */; };
 		AF0DCEBE1B7BC0A3002A7D39 /* TFInteractionChain.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0DCEBD1B7BC0A3002A7D39 /* TFInteractionChain.m */; };
-		AF2FAB971C3E7EC600425DE8 /* ViewContollerS.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2FAB961C3E7EC600425DE8 /* ViewContollerS.swift */; };
-		AF438A9A1C4E701300BB43E7 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF438A991C4E701300BB43E7 /* Core.swift */; };
+		AF2FAB971C3E7EC600425DE8 /* ViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2FAB961C3E7EC600425DE8 /* ViewContoller.swift */; };
+		AF438A9A1C4E701300BB43E7 /* ViewConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF438A991C4E701300BB43E7 /* ViewConfigurator.swift */; };
+		AF438AA01C4E847700BB43E7 /* ViewModelResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF438A9F1C4E847700BB43E7 /* ViewModelResultsController.swift */; };
 		AF96EF5B1C43B9E0001608CB /* CellWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96EF5A1C43B9E0001608CB /* CellWithText.swift */; };
 		AF96EF5D1C43DCA0001608CB /* HeaderViewWithTextAndSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96EF5C1C43DCA0001608CB /* HeaderViewWithTextAndSelection.swift */; };
 		AF96EF5F1C453E9E001608CB /* SelfConfigurableSimpleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96EF5E1C453E9E001608CB /* SelfConfigurableSimpleCell.swift */; };
@@ -88,8 +89,9 @@
 		AF01B3AB1B7770BC0021F8A1 /* UITextFieldObserveIntention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextFieldObserveIntention.m; sourceTree = "<group>"; };
 		AF0DCEBD1B7BC0A3002A7D39 /* TFInteractionChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFInteractionChain.m; sourceTree = "<group>"; };
 		AF2FAB931C3E7D8B00425DE8 /* TFMVVM-Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TFMVVM-Example-Bridging-Header.h"; path = "Controller/TFMVVM-Example-Bridging-Header.h"; sourceTree = "<group>"; };
-		AF2FAB961C3E7EC600425DE8 /* ViewContollerS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewContollerS.swift; sourceTree = "<group>"; };
-		AF438A991C4E701300BB43E7 /* Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
+		AF2FAB961C3E7EC600425DE8 /* ViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewContoller.swift; sourceTree = "<group>"; };
+		AF438A991C4E701300BB43E7 /* ViewConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewConfigurator.swift; sourceTree = "<group>"; };
+		AF438A9F1C4E847700BB43E7 /* ViewModelResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelResultsController.swift; sourceTree = "<group>"; };
 		AF96EF5A1C43B9E0001608CB /* CellWithText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellWithText.swift; sourceTree = "<group>"; };
 		AF96EF5C1C43DCA0001608CB /* HeaderViewWithTextAndSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewWithTextAndSelection.swift; sourceTree = "<group>"; };
 		AF96EF5E1C453E9E001608CB /* SelfConfigurableSimpleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfConfigurableSimpleCell.swift; sourceTree = "<group>"; };
@@ -139,7 +141,7 @@
 		AF01B35F1B7663F90021F8A1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				AF2FAB961C3E7EC600425DE8 /* ViewContollerS.swift */,
+				AF2FAB961C3E7EC600425DE8 /* ViewContoller.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -247,7 +249,8 @@
 		AF438A981C4E6FFA00BB43E7 /* Swift */ = {
 			isa = PBXGroup;
 			children = (
-				AF438A991C4E701300BB43E7 /* Core.swift */,
+				AF438A991C4E701300BB43E7 /* ViewConfigurator.swift */,
+				AF438A9F1C4E847700BB43E7 /* ViewModelResultsController.swift */,
 			);
 			path = Swift;
 			sourceTree = "<group>";
@@ -418,7 +421,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF438A9A1C4E701300BB43E7 /* Core.swift in Sources */,
+				AF438A9A1C4E701300BB43E7 /* ViewConfigurator.swift in Sources */,
 				AF01B3AD1B7770BC0021F8A1 /* TFDataSourceCompositeIntention.m in Sources */,
 				AF96EF5D1C43DCA0001608CB /* HeaderViewWithTextAndSelection.swift in Sources */,
 				AF0DCEBE1B7BC0A3002A7D39 /* TFInteractionChain.m in Sources */,
@@ -428,8 +431,9 @@
 				AF01B3941B76B8FB0021F8A1 /* TFSectionViewModel.m in Sources */,
 				AF01B3921B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m in Sources */,
 				AF01B3AE1B7770BC0021F8A1 /* TFIntention.m in Sources */,
+				AF438AA01C4E847700BB43E7 /* ViewModelResultsController.swift in Sources */,
 				AF01B3B11B7770BC0021F8A1 /* TFTargetMultiplexerIntention.m in Sources */,
-				AF2FAB971C3E7EC600425DE8 /* ViewContollerS.swift in Sources */,
+				AF2FAB971C3E7EC600425DE8 /* ViewContoller.swift in Sources */,
 				AF01B3AF1B7770BC0021F8A1 /* TFObserveIntention.m in Sources */,
 				AF01B3931B76B8FB0021F8A1 /* TFBaseViewModel.m in Sources */,
 				AFB3C6391B6D1B44006DB0C7 /* AppDelegate.m in Sources */,

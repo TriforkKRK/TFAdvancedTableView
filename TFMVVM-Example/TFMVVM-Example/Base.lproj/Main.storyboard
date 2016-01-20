@@ -21,10 +21,10 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNm-qL-hUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--View ContollerS-->
+        <!--View Contoller-->
         <scene sceneID="Bcu-Wj-lv9">
             <objects>
-                <viewController id="Zam-lY-iWx" customClass="ViewContollerS" customModule="TFMVVM_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Zam-lY-iWx" customClass="ViewContoller" customModule="TFMVVM_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8S1-q3-Fzs"/>
                         <viewControllerLayoutGuide type="bottom" id="YcN-Iq-RrU"/>

@@ -1,3 +1,24 @@
+// TODO 2. DeductedReuseStratedyWithMappings : CellConfigurationBuilder, TFTableViewReusing
+
+// TODO 4 - selection
+// TODO 5 - KVO
+// TODO 5. Move above to TFAdvancedTableview -> Swift
+
+// MOve todos to github
+// TableviewDelegate/Datasource trampoline
+// TODO Rx
+// TODO nib
+// TODO prototype cells
+
+// renderer
+
+// https://github.com/yukiasai/Shoyu
+// https://github.com/mamaral/Organic/tree/master/Organic/Source
+// https://github.com/fastred/ConfigurableTableViewController/blob/master/Framework/CellConfigurator.swift
+
+
+
+
 1) TABLEVIEW DYNAMIC DATASOURCE / MVVM Provider
 TODO:
 - vm - akcje
@@ -50,3 +71,4 @@ it implements both datasource & delegate to favor modularisation and composition
 
 4) VIEWS
 - basic autolayout cells
+
