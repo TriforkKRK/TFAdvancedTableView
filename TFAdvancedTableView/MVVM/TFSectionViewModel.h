@@ -44,7 +44,12 @@
 @interface TFSectionViewModel : NSObject <TFViewModel, TFSectionInfo>
 @property (nonatomic, strong, nullable) id<TFSectionItemViewModel> header;
 @property (nonatomic, strong, nullable) id<TFSectionItemViewModel> footer;
-@property (nonatomic, strong, nullable) NSArray<TFSectionItemViewModel> * rows;
+@property (nonatomic, strong, nonnull) NSArray<id<TFSectionItemViewModel>> * rows;
+
+- (nonnull instancetype)initWithRows:(nonnull NSArray<id<TFSectionItemViewModel>> *)rows;
+- (nonnull instancetype)initWithRows:(nonnull NSArray<id<TFSectionItemViewModel>> *)rows header:(nullable id<TFSectionItemViewModel>)header;
+- (nonnull instancetype)initWithRows:(nonnull NSArray<id<TFSectionItemViewModel>> *)rows footer:(nullable id<TFSectionItemViewModel>)footer;
+- (nonnull instancetype)initWithRows:(nonnull NSArray<id<TFSectionItemViewModel>> *)rows header:(nullable id<TFSectionItemViewModel>)header footer:(nullable id<TFSectionItemViewModel>)footer;
 
 // folding
 @property (nonatomic, readonly, getter=isFolded) BOOL folded;

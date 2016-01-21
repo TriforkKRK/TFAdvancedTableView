@@ -32,6 +32,33 @@
 @synthesize rows=_rows;
 @synthesize tf_nextResponder=_nextInteractor;
 
+#pragma mark - Interface Methods
+
+- (nonnull instancetype)initWithRows:(nonnull NSArray<id<TFSectionItemViewModel>> *)rows
+{
+    return [self initWithRows:rows header:nil footer:nil];
+}
+
+- (nonnull instancetype)initWithRows:(nonnull NSArray<id<TFSectionItemViewModel>> *)rows header:(nullable id<TFSectionItemViewModel>)header
+{
+    NSParameterAssert(header);
+    return [self initWithRows:rows header:header];
+}
+- (nonnull instancetype)initWithRows:(nonnull NSArray<id<TFSectionItemViewModel>> *)rows footer:(nullable id<TFSectionItemViewModel>)footer
+{
+    NSParameterAssert(footer);
+    return [self initWithRows:rows header:nil footer:footer];
+}
+- (nonnull instancetype)initWithRows:(nonnull NSArray<id<TFSectionItemViewModel>> *)rows header:(nullable id<TFSectionItemViewModel>)header footer:(nullable id<TFSectionItemViewModel>)footer
+{
+    NSParameterAssert(rows);
+    self = [super init];
+    if (self) {
+        _rows = rows;
+    }
+    return self;
+}
+
 #pragma mark - Interface Properties
 
 - (id)model

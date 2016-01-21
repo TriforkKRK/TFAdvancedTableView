@@ -40,26 +40,135 @@
  */
 
 @import UIKit.UITableView;
-#import "TFDynamicDataProviding.h"
 #import "TFSectionInfo.h"
+#import "TFSectionInfo.h"
+#import "TFInteractionChain.h"
+
+#warning TODO nazewnictwo
+
+/**
+*
+* ABSTRACT:
+* Inspired by NSFetchedResultsControllerDelegate and AAPLDataSourceDelegate
+* Protocol for an object that will provide updates about data changing
+* in @see TFDynamicDataProviding
+*/
+@protocol TFDynamicDataProviding;
+@protocol TFDynamicDataProvidingDelegate <NSObject>
+@required
+// reload
+- (void)providerDidReload:(nonnull id<TFDynamicDataProviding>)provider;
+@optional
+// items
+- (void)provider:(nonnull id<TFDynamicDataProviding>)provider didRemoveItemsAtIndexPaths:(nonnull NSArray<NSIndexPath *> *)indexPaths;
+- (void)provider:(nonnull id<TFDynamicDataProviding>)provider didRefreshItemsAtIndexPaths:(nonnull NSArray<NSIndexPath *> *)indexPaths;
+- (void)provider:(nonnull id<TFDynamicDataProviding>)provider didInsertItemsAtIndexPaths:(nonnull NSArray<NSIndexPath *> *)indexPaths;
+- (void)provider:(nonnull id<TFDynamicDataProviding>)provider didMoveItemAtIndexPath:(nonnull NSIndexPath *)fromIndexPath toIndexPath:(nonnull NSIndexPath *)newIndexPath;
+// sections
+- (void)provider:(nonnull id<TFDynamicDataProviding>)provider didRemoveSections:(nonnull NSIndexSet *)sections;
+- (void)provider:(nonnull id<TFDynamicDataProviding>)provider didRefreshSections:(nonnull NSIndexSet *)sections;
+- (void)provider:(nonnull id<TFDynamicDataProviding>)provider didInsertSections:(nonnull NSIndexSet *)sections;
+- (void)provider:(nonnull id<TFDynamicDataProviding>)provider didMoveSection:(NSInteger)section toSection:(NSInteger)newSection;
+// batch
+- (void)provider:(nonnull id<TFDynamicDataProviding>)provider performBatchUpdate:(nonnull dispatch_block_t)update complete:(nullable dispatch_block_t)complete;
+@end
+
+
+
+/**
+ * ABSTRACT:
+ * Inspired by NSFetchedResultsController
+ *
+ * Its a protocol describing objects that are supposed to serve DataSources by
+ * providing them with:
+ * - section data as an array of @protocol SectionInfo objects @see sections
+ * - data updates via @see delegate
+ * - reuse strategy
+ *
+ * @property sections
+ * it returns an array of objects that implement the TFSectionInfo protocol.
+ * It's expected that developers use the returned array when implementing the
+ * following methods of the UITableViewDataSource protocol:
+ * - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
+ * - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section;
+ *
+ * It extends TFInteractionDelegate to support common actions like:
+ * - removal
+ * - folding
+ */
+
+@protocol TFDynamicDataProviding <TFResponding>
+@property (nonatomic, readonly, nonnull) NSArray<NSObject<TFSectionInfo> *> * sections;
+@property (nonatomic, readwrite, nullable) id<TFDynamicDataProvidingDelegate, TFResponding> delegate;  /**< all the delegate methods are supposed to be called on MainThread */
+
+- (nullable id<TFSectionItemInfo>)objectAtIndexPath:(nonnull NSIndexPath *)indexPath;
+- (nullable NSIndexPath *)indexPathForObject:(nonnull id<TFSectionItemInfo>)object;
+
+@optional
+- (IBAction)refresh:(nullable id)sender;
+@end
+
 
 @class TFDynamicTableViewDataSource;
-
 @protocol TFDynamicTableViewDataSourceDelegate <NSObject>
 @optional
 - (void)dynamicDataSource:(nonnull TFDynamicTableViewDataSource *)dataSource didSelectObject:(nonnull id<TFSectionItemInfo>)object;
 // warning more delegation - each interaction
 @end
 
-@protocol TFUITableViewControlling <UITableViewDataSource, UITableViewDelegate>
+
+
+
+@protocol TFTableViewReusing
+- (nonnull NSString *)reuseIdentifierForObject:(nonnull id<NSObject>)obj;
+- (void)registerReusableViewsOnTableView:(nonnull UITableView *)tableView;
 @end
 
 
-@interface TFDynamicTableViewDataSource : NSObject<TFUITableViewControlling, TFDynamicDataProvidingDelegate, TFResponding>
+@protocol TFConfiguring
+/**
+ *  Method required by TFConfiguring protocol, should implement configuring an object
+ *  with @param object.
+ *  Example: TFConfiguring is adopted by some UITableViewCell class, configure:withObject:
+ *  does all the required configurations of the cell based on the values passed in @param object.
+ *  @param view - in case the protocol is implemented straight by the cell this will simply be self
+ *  however it is sometimes usefull to have other objects performing such configuration (eg. ViewController)
+ *  so this param is also provided for higher flexibility.
+ */
+- (void)configure:(nonnull UIView *)view withObject:(nonnull id)object;
+@end
+
+
+
+
+typedef NS_ENUM(NSUInteger, TFTableViewItemPresenterType) {
+    TFTableViewItemPresenterTypeUnknown,
+    TFTableViewItemPresenterTypeCell,
+    TFTableViewItemPresenterTypeHeaderFooter,
+};
+
+@protocol TFTableViewItemPresenting <TFConfiguring>
+// Objc-Generic meaning it is a Presenter<V, O> where V is a view type and O is an object type
+@property (nonatomic, readonly, nonnull) Class objectClass;
+@property (nonatomic, readonly, nonnull) Class viewClass;
+@property (nonatomic, readonly) TFTableViewItemPresenterType type;
+@end
+
+
+
+
+// TableView Presenter (P from VIPER)
+// jest TableViewDataSourcem
+@interface TFDynamicTableViewDataSource : NSObject<UITableViewDataSource, UITableViewDelegate, TFDynamicDataProvidingDelegate, TFResponding>
 @property (nonatomic, weak, nullable) IBOutlet UITableView * tableView;
 @property (nonatomic, weak, nullable) IBOutlet id<TFDynamicTableViewDataSourceDelegate> delegate;
-@property (nonatomic, strong, nonnull) IBOutlet id<TFDynamicDataProviding> provider;
+@property (nonatomic, strong, nullable) IBOutlet id<TFDynamicDataProviding> provider;               // rename FRC
+@property (nonatomic, strong, nonnull) id<TFTableViewReusing> reuseStrategy;
+@property (nonatomic, strong, nullable) NSArray<id<TFTableViewItemPresenting>> * presenters;
 
-- (nonnull instancetype)initWithProvider:(nonnull id<TFDynamicDataProviding>)provider NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithPresenters:(nullable NSArray<id<TFTableViewItemPresenting>> *)presenters NS_DESIGNATED_INITIALIZER;    // object class string to presenter instance
 - (nonnull instancetype)init NS_UNAVAILABLE;
+
 @end
+
+

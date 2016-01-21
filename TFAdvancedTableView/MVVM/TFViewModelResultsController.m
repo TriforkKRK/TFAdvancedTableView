@@ -23,8 +23,8 @@
 
 #import "TFViewModelResultsController.h"
 #import "TFSectionInfo.h"
-#import "TFReuseStrategyObjectClassToViewClass.h"
 #import "TFSectionViewModel.h"
+
 @import ObjectiveC.runtime;
 @import UIKit.UINib;
 @import UIKit.UITableViewHeaderFooterView;
@@ -72,24 +72,6 @@
 - (NSObject<TFResponding> *)tf_nextResponder
 {
     return self.delegate;
-}
-
-- (instancetype)initWithReuseStrategy:(id<TFTableViewReusing, NSObject>)strategy
-{
-    NSParameterAssert([strategy conformsToProtocol:@protocol(TFTableViewReusing)]);
-    self = [super init];
-    if (self) {
-        _reuseStrategy = strategy;
-    }
-    
-    return self;
-}
-
-+ (instancetype)withMapping:(NSDictionary *)mapping
-{
-    id<TFTableViewReusing> reuseStrategy = [[TFReuseStrategyObjectClassToViewClass alloc] initWithObjectToViewsMapping:mapping];
-    TFViewModelResultsController * viewModelController = [[self alloc] initWithReuseStrategy:reuseStrategy];
-    return viewModelController;
 }
 
 - (void)setSections:(NSArray<TFSectionViewModel *> *)sections
@@ -179,11 +161,6 @@
 }
 
 #pragma mark - TFDynamicDataProviding
-
-- (id<TFConfiguring>)viewConfiguratorForObjectType:(Class)type
-{
-    return self.viewConfigurators[NSStringFromClass(type)];
-}
 
 - (id)objectAtIndexPath:(NSIndexPath *)indexPath
 {

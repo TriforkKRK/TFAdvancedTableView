@@ -8,36 +8,63 @@
 
 import UIKit
 
-typealias Section = TFSectionViewModel
-typealias Row = TFSectionItemViewModel
-typealias Header = TFSectionItemViewModel
-typealias Footer = TFSectionItemViewModel
-
 class ViewContoller: UIViewController, TFDynamicTableViewDataSourceDelegate, UIAlertViewDelegate {
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet var dynamicDataSource: TFDynamicTableViewDataSource!
+    @IBOutlet weak var tableView: UITableView!                      // simply a reference
+    @IBOutlet var dynamicDataSource: TFDynamicTableViewDataSource!    // created as an object in Stowyboard with its outlets already connected, you can also create it manually
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // TODO: self.tableView.dynamicDataSource.delegate = self   // lazy loaded TFDynamicTableViewDataSource <MVVM>
-        // self.tableView.makeDynamic(provider: self.viewModelController)
-        self.dynamicDataSource.provider = self.viewModelController
-        self.dynamicDataSource.delegate = self
+        // PRESENTATION
+        // Describe the Cell and Header/Footer presentation by providing a list of configuration lambdas
+        // A construct shown below laverages Swift generics so you can just specify as argument types the cell and object types being configured
+        self.dynamicDataSource.presenters = [
+            RowPresenter{(cell: CellWithText, vm: RowViewModel) in
+                // simple setup or RX bindings
+                cell.primaryLabel?.text = vm.name
+                cell.backgroundColor = vm.bgdColor
+            },
+            HeaderFooterPresenter{ (header: HeaderViewWithTextAndSelection, vm: HeaderViewModel) in
+                header.setupText(vm.title)
+            
+                header.tgr?.addTarget(vm.sectionViewModel!, action: "toggleFolding:")
+                header.removeButton?.addTarget(vm.sectionViewModel, action: "delete:", forControlEvents: .TouchUpInside)
+            }
+        ]
+        
+        // DATA
+        // "Source" is a shorthand for having an in place MVVM based FetchedResults controller, it's usefull for testing and creating simple datasets
+        // Usually one will have it's own instance of TFViewModelResultsController instead
+        self.dynamicDataSource.provider = Source([
+            Section { (section : MyCustomSection) in // if you specify the section argument type it will instantiate your own subclass instead of the default "SectionType"
+                section.rows = [
+                    RowViewModel(color: UIColor.lightGrayColor(), name: "Cell nr 1.1"),
+                    RowViewModel(color: UIColor.lightGrayColor(), name: "Cell nr 1.2 with longer text, longer text, longer text, longer text, longer text, longer text \n\nNotice the height to be automatically calculated based on autolayout constraints...")
+                ]
+                
+                print("\(section.name) added")       // indeed it is an instance of MyCustomSection
+            },
+            Section { section in   // default SectionType
+                section.rows = [
+                    RowViewModel(color: UIColor.darkGrayColor(), name: "Cell 2.1"),
+                    RowViewModel(color: UIColor.darkGrayColor(), name: "Cell nr 2.2 with longer text, longer text, longer text, longer text, longer text, longer text")
+                ]
+                    
+                let h2 = HeaderViewModel(model: nil)
+                h2.title = "Section 2 header, click to fold."
+                section.header = h2
+            }
+        ])
+        
+        // self.dynamicDataSource.delegate = self   // this can also be set from storyboard
     }
-    
-    lazy var viewModelController: TFViewModelResultsController = {
-        let rc = MyResultsController()
-        rc.sections = MyMVVMDao.viewModelSetNr1()
-        return rc
-    }()
     
     @IBAction func editClicked(sender: AnyObject) {
         self.tableView.setEditing(!self.tableView.editing, animated: true)
     }
     
     @IBAction func changeDataButtonClicked(sender: AnyObject) {
-        self.viewModelController.sections = MyMVVMDao.viewModelSetNr2()
+        //self.viewModelController.sections = MyMVVMDao.viewModelSetNr2()
     }
     //MARK: - TFDynamicTableViewDataSourceDelegate
     
@@ -55,54 +82,22 @@ class ViewContoller: UIViewController, TFDynamicTableViewDataSourceDelegate, UIA
     }
 }
 
-private class MyResultsController: ViewModelResultsController {
-    init() {
-        super.init(configurators: CellConfigurator({(cell: CellWithText, vm: RowViewModel) -> () in
-            // simple setup or RX bindings
-            cell.primaryLabel?.text = vm.name
-            cell.backgroundColor = vm.bgdColor
-        }).and({ (header: HeaderViewWithTextAndSelection, vm: HeaderViewModel) -> () in
-            header.setupText(vm.title)
-            
-            header.tgr?.addTarget(vm.sectionViewModel!, action: "toggleFolding:")
-            header.removeButton?.addTarget(vm.sectionViewModel, action: "delete:", forControlEvents: .TouchUpInside)
-        }))
-        
-        // TODO add SelfConfigurableCell, where Cell conforms to TFConfiguring
-        //            .withMapping([
-        ////            NSStringFromClass(RowViewModel.self): SelfConfigurableCellWithText.self,  // uncomment this line (and comment out the next one) to use self configurable Cell instead of viewConfigurators
-        //            NSStringFromClass(RowViewModel.self): CellWithText.self,
-        //            NSStringFromClass(HeaderViewModel.self): HeaderViewWithTextAndSelection.self
-        //            ])
-    }
+class MyCustomSection : ViewModelSection {
+    let name = "Custom section"
 }
 
-private class MyMVVMDao {
-    class func viewModelSetNr1() -> [Section] {
-        let s1 = Section()   // TODO: rows, header
-        s1.rows = [RowViewModel(color: UIColor.lightGrayColor(), name: "Cell nr 1.1"),
-            RowViewModel(color: UIColor.lightGrayColor(), name: "Cell nr 1.2 with longer text, longer text, longer text, longer text, longer text, longer text \n\nNotice the height to be automatically calculated based on autolayout constraints...")]
-        
-        let h2 = HeaderViewModel(model: nil)
-        h2.title = "Section 2 header, click to fold."
-        
-        let s2 = Section()
-        s2.header = h2
-        s2.rows = [RowViewModel(color: UIColor.darkGrayColor(), name: "Cell 2.1"),
-            RowViewModel(color: UIColor.darkGrayColor(), name: "Cell nr 2.2 with longer text, longer text, longer text, longer text, longer text, longer text")]
-        
-        return [s1, s2]
-    }
 
-    class func viewModelSetNr2() -> [Section] {
-        let s1 = Section()   // TODO: rows, header
-        s1.rows = [RowViewModel(color: UIColor.lightGrayColor(), name: "New Cell nr 1.1"),
-            RowViewModel(color: UIColor.lightGrayColor(), name: "New Cell nr 1.2")]
+private class MyMVVMDao {
+
+    class func viewModelSetNr2() -> [ViewModelSection] {
+//        let s1 = Section()   // TODO: rows, header
+//        s1.rows = [RowViewModel(color: UIColor.lightGrayColor(), name: "New Cell nr 1.1"),
+//            RowViewModel(color: UIColor.lightGrayColor(), name: "New Cell nr 1.2")]
+//        
+//        let h1 = HeaderViewModel(model: nil)
+//        h1.title = "Section 1 header"
+//        s1.header = h1
         
-        let h1 = HeaderViewModel(model: nil)
-        h1.title = "Section 1 header"
-        s1.header = h1
-        
-        return [s1]
+        return []
     }
 }

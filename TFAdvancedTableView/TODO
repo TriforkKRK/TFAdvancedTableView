@@ -15,6 +15,11 @@ ViewModelResultsController -> DynamicMVVMResultsController
 
 // renderer
 
+will / Did on actions (fold, remove)
+canRemove, canMove
+move:?
+
+
 // https://github.com/yukiasai/Shoyu
 // https://github.com/mamaral/Organic/tree/master/Organic/Source
 // https://github.com/fastred/ConfigurableTableViewController/blob/master/Framework/CellConfigurator.swift

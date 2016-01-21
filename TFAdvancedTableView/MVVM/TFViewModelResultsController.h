@@ -31,24 +31,12 @@
  */
 
 @import Foundation;
-#import "TFDynamicDataProviding.h"
-#import "TFTableViewReusing.h"
 #import "TFViewModelDeltaProcessing.h"
 #import "TFInteractionChain.h"
 #import "TFSectionViewModel.h"
+#import "TFDynamicTableViewDataSource.h"
 
 @interface TFViewModelResultsController : NSObject<TFDynamicDataProviding, TFSectionViewModelResponding>
 @property (nonatomic, strong, nullable) NSArray<TFSectionViewModel *> * sections;
-@property (nonatomic, strong, nonnull) id<TFTableViewReusing> reuseStrategy;
-@property (nonatomic, strong, nullable) NSDictionary<NSString *, id<TFConfiguring>> * viewConfigurators;
 @property (nonatomic, strong, nullable) id<TFViewModelDeltaProcessing> deltaProcessor;
-
-/** Creates TFViewModelResultsController with TFReuseStrategyObjectClassToViewClass instance
- *  Views are gonna be configured with view model by passing them to those views via TFConfiguring protocol
- *  unless a specific
- */
-+ (nonnull instancetype)withMapping:(nonnull NSDictionary<NSString *, Class> *)mapping;
-
-- (nonnull instancetype)initWithReuseStrategy:(nonnull id<TFTableViewReusing>)strategy NS_DESIGNATED_INITIALIZER;
-- (nullable instancetype)init NS_UNAVAILABLE;
 @end

@@ -10,7 +10,6 @@
 		AF01B36B1B7663F90021F8A1 /* RowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3681B7663F90021F8A1 /* RowViewModel.swift */; };
 		AF01B3751B7668060021F8A1 /* HeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3741B7668060021F8A1 /* HeaderViewModel.swift */; };
 		AF01B3911B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3801B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m */; };
-		AF01B3921B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3831B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m */; };
 		AF01B3931B76B8FB0021F8A1 /* TFBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3881B76B8FB0021F8A1 /* TFBaseViewModel.m */; };
 		AF01B3941B76B8FB0021F8A1 /* TFSectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B38B1B76B8FB0021F8A1 /* TFSectionViewModel.m */; };
 		AF01B3951B76B8FB0021F8A1 /* TFViewModelResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B38F1B76B8FB0021F8A1 /* TFViewModelResultsController.m */; };
@@ -25,8 +24,7 @@
 		AF01B3B31B7770BC0021F8A1 /* UITextFieldObserveIntention.m in Sources */ = {isa = PBXBuildFile; fileRef = AF01B3AB1B7770BC0021F8A1 /* UITextFieldObserveIntention.m */; };
 		AF0DCEBE1B7BC0A3002A7D39 /* TFInteractionChain.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0DCEBD1B7BC0A3002A7D39 /* TFInteractionChain.m */; };
 		AF2FAB971C3E7EC600425DE8 /* ViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2FAB961C3E7EC600425DE8 /* ViewContoller.swift */; };
-		AF438A9A1C4E701300BB43E7 /* ViewConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF438A991C4E701300BB43E7 /* ViewConfigurator.swift */; };
-		AF438AA01C4E847700BB43E7 /* ViewModelResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF438A9F1C4E847700BB43E7 /* ViewModelResultsController.swift */; };
+		AF438A9A1C4E701300BB43E7 /* TableViewItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF438A991C4E701300BB43E7 /* TableViewItemPresenter.swift */; };
 		AF96EF5B1C43B9E0001608CB /* CellWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96EF5A1C43B9E0001608CB /* CellWithText.swift */; };
 		AF96EF5D1C43DCA0001608CB /* HeaderViewWithTextAndSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96EF5C1C43DCA0001608CB /* HeaderViewWithTextAndSelection.swift */; };
 		AF96EF5F1C453E9E001608CB /* SelfConfigurableSimpleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96EF5E1C453E9E001608CB /* SelfConfigurableSimpleCell.swift */; };
@@ -36,6 +34,8 @@
 		AFB3C6411B6D1B44006DB0C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFB3C6401B6D1B44006DB0C7 /* Images.xcassets */; };
 		AFB3C6441B6D1B44006DB0C7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFB3C6421B6D1B44006DB0C7 /* LaunchScreen.xib */; };
 		AFB3C6501B6D1B44006DB0C7 /* TFMVVM_ExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AFB3C64F1B6D1B44006DB0C7 /* TFMVVM_ExampleTests.m */; };
+		AFF4D8561C4FFF3100D13EB7 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = AFF4D8551C4FFF3100D13EB7 /* README.md */; };
+		AFF4D8581C502C7100D13EB7 /* DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF4D8571C502C7100D13EB7 /* DSL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,16 +51,10 @@
 /* Begin PBXFileReference section */
 		AF01B3681B7663F90021F8A1 /* RowViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowViewModel.swift; sourceTree = "<group>"; };
 		AF01B3741B7668060021F8A1 /* HeaderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewModel.swift; sourceTree = "<group>"; };
-		AF01B37C1B76B8FB0021F8A1 /* TFConfiguring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFConfiguring.h; sourceTree = "<group>"; };
-		AF01B37D1B76B8FB0021F8A1 /* TFDynamicDataProviding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDynamicDataProviding.h; sourceTree = "<group>"; };
-		AF01B37E1B76B8FB0021F8A1 /* TFDynamicDataProvidingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDynamicDataProvidingDelegate.h; sourceTree = "<group>"; };
 		AF01B37F1B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDynamicTableViewDataSource.h; sourceTree = "<group>"; };
 		AF01B3801B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFDynamicTableViewDataSource.m; sourceTree = "<group>"; };
 		AF01B3811B76B8FB0021F8A1 /* TFInteractionChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFInteractionChain.h; sourceTree = "<group>"; };
-		AF01B3821B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFReuseStrategyObjectClassToViewClass.h; sourceTree = "<group>"; };
-		AF01B3831B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFReuseStrategyObjectClassToViewClass.m; sourceTree = "<group>"; };
 		AF01B3841B76B8FB0021F8A1 /* TFSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFSectionInfo.h; sourceTree = "<group>"; };
-		AF01B3851B76B8FB0021F8A1 /* TFTableViewReusing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFTableViewReusing.h; sourceTree = "<group>"; };
 		AF01B3871B76B8FB0021F8A1 /* TFBaseViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFBaseViewModel.h; sourceTree = "<group>"; };
 		AF01B3881B76B8FB0021F8A1 /* TFBaseViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFBaseViewModel.m; sourceTree = "<group>"; };
 		AF01B3891B76B8FB0021F8A1 /* TFSectionItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFSectionItemViewModel.h; sourceTree = "<group>"; };
@@ -90,8 +84,7 @@
 		AF0DCEBD1B7BC0A3002A7D39 /* TFInteractionChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFInteractionChain.m; sourceTree = "<group>"; };
 		AF2FAB931C3E7D8B00425DE8 /* TFMVVM-Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TFMVVM-Example-Bridging-Header.h"; path = "Controller/TFMVVM-Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		AF2FAB961C3E7EC600425DE8 /* ViewContoller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewContoller.swift; sourceTree = "<group>"; };
-		AF438A991C4E701300BB43E7 /* ViewConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewConfigurator.swift; sourceTree = "<group>"; };
-		AF438A9F1C4E847700BB43E7 /* ViewModelResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelResultsController.swift; sourceTree = "<group>"; };
+		AF438A991C4E701300BB43E7 /* TableViewItemPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewItemPresenter.swift; sourceTree = "<group>"; };
 		AF96EF5A1C43B9E0001608CB /* CellWithText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellWithText.swift; sourceTree = "<group>"; };
 		AF96EF5C1C43DCA0001608CB /* HeaderViewWithTextAndSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewWithTextAndSelection.swift; sourceTree = "<group>"; };
 		AF96EF5E1C453E9E001608CB /* SelfConfigurableSimpleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfConfigurableSimpleCell.swift; sourceTree = "<group>"; };
@@ -106,6 +99,8 @@
 		AFB3C6491B6D1B44006DB0C7 /* TFMVVM-ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TFMVVM-ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFB3C64E1B6D1B44006DB0C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFB3C64F1B6D1B44006DB0C7 /* TFMVVM_ExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TFMVVM_ExampleTests.m; sourceTree = "<group>"; };
+		AFF4D8551C4FFF3100D13EB7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		AFF4D8571C502C7100D13EB7 /* DSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,17 +170,11 @@
 		AF01B37B1B76B8FB0021F8A1 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				AF01B37C1B76B8FB0021F8A1 /* TFConfiguring.h */,
 				AF01B3841B76B8FB0021F8A1 /* TFSectionInfo.h */,
 				AF01B3811B76B8FB0021F8A1 /* TFInteractionChain.h */,
 				AF0DCEBD1B7BC0A3002A7D39 /* TFInteractionChain.m */,
-				AF01B3851B76B8FB0021F8A1 /* TFTableViewReusing.h */,
-				AF01B37D1B76B8FB0021F8A1 /* TFDynamicDataProviding.h */,
-				AF01B37E1B76B8FB0021F8A1 /* TFDynamicDataProvidingDelegate.h */,
 				AF01B37F1B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.h */,
 				AF01B3801B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m */,
-				AF01B3821B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.h */,
-				AF01B3831B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -249,8 +238,8 @@
 		AF438A981C4E6FFA00BB43E7 /* Swift */ = {
 			isa = PBXGroup;
 			children = (
-				AF438A991C4E701300BB43E7 /* ViewConfigurator.swift */,
-				AF438A9F1C4E847700BB43E7 /* ViewModelResultsController.swift */,
+				AF438A991C4E701300BB43E7 /* TableViewItemPresenter.swift */,
+				AFF4D8571C502C7100D13EB7 /* DSL.swift */,
 			);
 			path = Swift;
 			sourceTree = "<group>";
@@ -258,6 +247,7 @@
 		AFB3C6271B6D1B44006DB0C7 = {
 			isa = PBXGroup;
 			children = (
+				AFF4D8551C4FFF3100D13EB7 /* README.md */,
 				AF01B3991B7770BC0021F8A1 /* External */,
 				AFB3C6321B6D1B44006DB0C7 /* TFMVVM-Example */,
 				AF01B3401B752FE90021F8A1 /* TFAdvancedTableView */,
@@ -421,7 +411,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF438A9A1C4E701300BB43E7 /* ViewConfigurator.swift in Sources */,
+				AF438A9A1C4E701300BB43E7 /* TableViewItemPresenter.swift in Sources */,
 				AF01B3AD1B7770BC0021F8A1 /* TFDataSourceCompositeIntention.m in Sources */,
 				AF96EF5D1C43DCA0001608CB /* HeaderViewWithTextAndSelection.swift in Sources */,
 				AF0DCEBE1B7BC0A3002A7D39 /* TFInteractionChain.m in Sources */,
@@ -429,16 +419,16 @@
 				AF96EF5B1C43B9E0001608CB /* CellWithText.swift in Sources */,
 				AF01B36B1B7663F90021F8A1 /* RowViewModel.swift in Sources */,
 				AF01B3941B76B8FB0021F8A1 /* TFSectionViewModel.m in Sources */,
-				AF01B3921B76B8FB0021F8A1 /* TFReuseStrategyObjectClassToViewClass.m in Sources */,
 				AF01B3AE1B7770BC0021F8A1 /* TFIntention.m in Sources */,
-				AF438AA01C4E847700BB43E7 /* ViewModelResultsController.swift in Sources */,
 				AF01B3B11B7770BC0021F8A1 /* TFTargetMultiplexerIntention.m in Sources */,
+				AFF4D8561C4FFF3100D13EB7 /* README.md in Sources */,
 				AF2FAB971C3E7EC600425DE8 /* ViewContoller.swift in Sources */,
 				AF01B3AF1B7770BC0021F8A1 /* TFObserveIntention.m in Sources */,
 				AF01B3931B76B8FB0021F8A1 /* TFBaseViewModel.m in Sources */,
 				AFB3C6391B6D1B44006DB0C7 /* AppDelegate.m in Sources */,
 				AF01B3B01B7770BC0021F8A1 /* TFOwnerableObject.m in Sources */,
 				AF01B3751B7668060021F8A1 /* HeaderViewModel.swift in Sources */,
+				AFF4D8581C502C7100D13EB7 /* DSL.swift in Sources */,
 				AFB3C6361B6D1B44006DB0C7 /* main.m in Sources */,
 				AF01B3911B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m in Sources */,
 				AF96EF5F1C453E9E001608CB /* SelfConfigurableSimpleCell.swift in Sources */,

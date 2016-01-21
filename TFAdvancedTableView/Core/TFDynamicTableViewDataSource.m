@@ -22,11 +22,57 @@
  */
 
 #import "TFDynamicTableViewDataSource.h"
-#import "TFConfiguring.h"
 #import "TFSectionInfo.h"
 #import "TFInteractionChain.h"
 #import "TFUITableViewDelegateSizingIntention.h"
 @import UIKit.UITableViewHeaderFooterView;
+
+
+@interface ConfiguratorsDerivedReuseStrategy: NSObject <TFTableViewReusing>
+@property (nonatomic, strong, nonnull) NSArray<id<TFTableViewItemPresenting>> * presenters;
+@end
+
+@implementation ConfiguratorsDerivedReuseStrategy
+
+- (instancetype)initWithPresenters:(nonnull NSArray<id<TFTableViewItemPresenting>> *)presenters
+{
+    self = [super init];
+    if (self) {
+        _presenters = presenters;
+    }
+    return self;
+}
+
+- (NSString *)reuseIdentifierForClass:(Class)class
+{
+    return NSStringFromClass(class);
+}
+
+#pragma mark - TFTableViewReusing
+
+- (NSString *)reuseIdentifierForObject:(id<NSObject>)obj
+{
+    return [self reuseIdentifierForClass:[obj class]];
+}
+
+- (void)registerReusableViewsOnTableView:(UITableView *)tableView
+{
+    [self.presenters enumerateObjectsUsingBlock:^(id<TFTableViewItemPresenting>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        switch ([obj type]) {
+            case TFTableViewItemPresenterTypeCell:
+                [tableView registerClass:[obj viewClass] forCellReuseIdentifier:[self reuseIdentifierForClass:[obj objectClass]]];
+                break;
+
+            case TFTableViewItemPresenterTypeHeaderFooter:
+                [tableView registerClass:[obj viewClass] forHeaderFooterViewReuseIdentifier:[self reuseIdentifierForClass:[obj objectClass]]];
+                break;
+            default:
+                break;
+        }
+    }];
+}
+
+@end
 
 
 #define TF_ASSERT_MAIN_THREAD NSAssert([NSThread isMainThread], @"This method must be called on the main thread")
@@ -42,14 +88,20 @@
 
 #pragma mark - Interface Methods
 
-- (instancetype)initWithProvider:(id<TFDynamicDataProviding>)provider
+- (nonnull instancetype)initWithPresenters:(nullable NSArray<id<TFTableViewItemPresenting>> *)presenters
 {
     self = [super init];
     if (self) {
-        [self setProvider:provider];
+        [self setPresenters:presenters];
     }
     
     return self;
+}
+
+- (void)setPresenters:(NSArray<id<TFTableViewItemPresenting>> *)presenters
+{
+    _presenters = presenters;
+    _reuseStrategy = [[ConfiguratorsDerivedReuseStrategy alloc] initWithPresenters:presenters];
 }
 
 - (void)setProvider:(id<TFDynamicDataProviding>)provider
@@ -58,13 +110,24 @@
     _provider.delegate = self;
 }
 
+- (nullable id<TFTableViewItemPresenting>)presenterForObjectType:(nonnull Class)type
+{
+    for (id<TFTableViewItemPresenting> presenter in self.presenters) {
+        if (presenter.objectClass == type) {
+            return presenter;
+        }
+    }
+    
+    return nil;
+}
+
 - (void)registerReusableViewsIfNeeded:(UITableView *)tableView
 {
-    NSParameterAssert(self.provider.reuseStrategy);
+    NSParameterAssert(self.reuseStrategy);
     if (self.reusableViewsRegistered) return;
     
     self.reusableViewsRegistered = YES;
-    [self.provider.reuseStrategy registerReusableViewsOnTableView:tableView];
+    [self.reuseStrategy registerReusableViewsOnTableView:tableView];
 }
 
 #pragma mark - TFUITableViewDelegateCellSizingIntentionDelegate
@@ -77,22 +140,22 @@
         return;
     }
     
-    id<TFConfiguring> cellConfigurator = [self.provider viewConfiguratorForObjectType:[obj class]];
+    id<TFConfiguring> cellConfigurator = [self presenterForObjectType:[obj class]];
     [cellConfigurator configure:cell withObject:obj];
 }
 
 - (NSString *)cellSizingIntention:(TFUITableViewDelegateSizingIntention *)intention reuseIdentifierAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.provider.reuseStrategy reuseIdentifierForObject:[self.provider objectAtIndexPath:indexPath]];
+    return [self.reuseStrategy reuseIdentifierForObject:[self.provider objectAtIndexPath:indexPath]];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSParameterAssert(self.provider);
-    [self registerReusableViewsIfNeeded:tableView];
+    if (self.provider == nil) return 0;
     
+    [self registerReusableViewsIfNeeded:tableView];
     return self.provider.sections.count;
 }
 
@@ -105,13 +168,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id obj = [self.provider objectAtIndexPath:indexPath];
-    UITableViewCell<TFConfiguring> * cell = [tableView dequeueReusableCellWithIdentifier:[self.provider.reuseStrategy reuseIdentifierForObject:obj]];
+    UITableViewCell<TFConfiguring> * cell = [tableView dequeueReusableCellWithIdentifier:[self.reuseStrategy reuseIdentifierForObject:obj]];
     if ([cell conformsToProtocol:@protocol(TFConfiguring)]) {
         [cell configure:cell withObject:obj];
         return cell;
     }
     
-    id<TFConfiguring> cellConfigurator = [self.provider viewConfiguratorForObjectType:[obj class]];
+    id<TFConfiguring> cellConfigurator = [self presenterForObjectType:[obj class]];
     [cellConfigurator configure:cell withObject:obj];
     
     return cell;
@@ -174,13 +237,13 @@
     id<TFSectionInfo> sectionInfo = self.provider.sections[section];
     if (sectionInfo.header == nil) return nil;
     
-    UITableViewHeaderFooterView<TFConfiguring> * headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[self.provider.reuseStrategy reuseIdentifierForObject:sectionInfo.header]];
+    UITableViewHeaderFooterView<TFConfiguring> * headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[self.reuseStrategy reuseIdentifierForObject:sectionInfo.header]];
     if ([headerView conformsToProtocol:@protocol(TFConfiguring)]) {
         [headerView configure:headerView withObject:sectionInfo.header];
         return headerView;
     }
     
-    id<TFConfiguring> headerConfigurator = [self.provider viewConfiguratorForObjectType:[sectionInfo.header class]];
+    id<TFConfiguring> headerConfigurator = [self presenterForObjectType:[sectionInfo.header class]];
     [headerConfigurator configure:headerView withObject:sectionInfo.header];
     return headerView;
 }
@@ -190,14 +253,14 @@
     id<TFSectionInfo> sectionInfo = self.provider.sections[section];
     if (sectionInfo.footer == nil) return nil;
     
-    UITableViewHeaderFooterView<TFConfiguring> * footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[self.provider.reuseStrategy reuseIdentifierForObject:sectionInfo.footer]];
+    UITableViewHeaderFooterView<TFConfiguring> * footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[self.reuseStrategy reuseIdentifierForObject:sectionInfo.footer]];
     
     if ([footerView conformsToProtocol:@protocol(TFConfiguring)]) {
         [footerView configure:footerView withObject:sectionInfo.footer];
         return footerView;
     }
     
-    id<TFConfiguring> cellConfigurator = [self.provider viewConfiguratorForObjectType:[sectionInfo.footer class]];
+    id<TFConfiguring> cellConfigurator = [self presenterForObjectType:[sectionInfo.footer class]];
     [cellConfigurator configure:footerView withObject:sectionInfo.footer];
     return footerView;
 }
