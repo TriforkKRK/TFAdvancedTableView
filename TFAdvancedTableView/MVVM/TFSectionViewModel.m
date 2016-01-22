@@ -121,7 +121,7 @@
     [self tf_sendAction:@selector(foldingDidChangeOnSectionViewModel:)];
 }
 
-- (IBAction)delete:(id)sender
+- (IBAction)remove:(id)sender
 {
     [self tf_sendAction:@selector(removeViewModel:)];
 }

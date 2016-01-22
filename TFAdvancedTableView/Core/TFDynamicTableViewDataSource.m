@@ -223,15 +223,15 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSObject<TFSectionItemInfo> * object = (NSObject<TFSectionItemInfo> *)[self.provider objectAtIndexPath:indexPath];
-    return ([object respondsToSelector:@selector(delete:)]);
+    return ([object respondsToSelector:@selector(remove:)]);
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSObject<TFSectionItemInfo> * object = (NSObject<TFSectionItemInfo> *)[self.provider objectAtIndexPath:indexPath];
-        if ([object respondsToSelector:@selector(delete:)]) {
-            [object delete:self];   // a common action from UIResponderStandardEditActions
+        if ([object respondsToSelector:@selector(remove:)]) {
+            [object remove:self];   // a common action from UIResponderStandardEditActions
         }
     }
 }

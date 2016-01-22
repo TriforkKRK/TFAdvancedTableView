@@ -28,7 +28,7 @@ class ViewContoller: UIViewController, TFDynamicTableViewDataSourceDelegate, UIA
                 header.setupText(vm.title)
             
                 header.tgr?.addTarget(vm.sectionViewModel!, action: "toggleFolding:")
-                header.removeButton?.addTarget(vm.sectionViewModel, action: "delete:", forControlEvents: .TouchUpInside)
+                header.removeButton?.addTarget(vm.sectionViewModel, action: "remove:", forControlEvents: .TouchUpInside)
             }
         ]
         

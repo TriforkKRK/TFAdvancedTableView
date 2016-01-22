@@ -34,6 +34,7 @@
 @protocol TFSectionItemInfo <NSObject>
 @optional
 @property (nonatomic, readonly) CGFloat height;
+- (IBAction)remove:(nullable id)sender;
 @end
 
 @protocol TFSectionInfo <NSObject>

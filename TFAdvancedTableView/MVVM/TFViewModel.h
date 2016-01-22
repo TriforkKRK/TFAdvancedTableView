@@ -28,7 +28,7 @@
 - (nullable id)model;
 
 @optional
-- (void)delete:(nullable id)sender;        // UIResponderStandardEditActions
+- (void)remove:(nullable id)sender;        // UIResponderStandardEditActions
 // if implemented it should call the 
 @end
 

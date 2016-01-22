@@ -29,6 +29,6 @@
 
 - (nonnull instancetype)initWithModel:(nullable id)model NS_DESIGNATED_INITIALIZER;
 
-- (IBAction)delete:(nullable id)sender;
+- (IBAction)remove:(nullable id)sender;
 
 @end

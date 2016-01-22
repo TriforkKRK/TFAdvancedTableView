@@ -59,7 +59,7 @@
 - (IBAction)toggleFolding:(nullable id)sender;
 
 // deletion
-- (IBAction)delete:(nullable id)sender NS_REQUIRES_SUPER;    // you have to call super at the end of your implementation
+- (IBAction)remove:(nullable id)sender NS_REQUIRES_SUPER;    // you have to call super at the end of your implementation
 @end
 
 
