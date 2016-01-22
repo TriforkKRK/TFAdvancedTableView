@@ -23,7 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TFViewModel.h"
-#import "TFSectionInfo.h"
+#import "TFDynamicTableViewDataSource+Protocols.h"
 @class TFSectionViewModel;
 
 @protocol TFSectionItemViewModel <TFViewModel, TFSectionItemInfo>

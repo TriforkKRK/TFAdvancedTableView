@@ -10,7 +10,7 @@ class SelfConfigurableCellWithText: CellWithText {
     
 }
 
-extension SelfConfigurableCellWithText: TFTableViewItemPresenting {
+extension SelfConfigurableCellWithText: TFDynamicTableViewItemPresenting {
     
     func prepare(view: UIView, forPresentationWithObject object: AnyObject) {
         guard let vm = object as? RowViewModel else { return }

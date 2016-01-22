@@ -22,13 +22,12 @@
  */
 
 #import "TFDynamicTableViewDataSource.h"
-#import "TFSectionInfo.h"
 #import "TFInteractionChain.h"
 #import "TFUITableViewDelegateSizingIntention.h"
 @import UIKit.UITableViewHeaderFooterView;
 
 
-@implementation TFTableViewItemBlockPresenter
+@implementation TFDynamicTableViewItemBlockPresenter
 
 - (nonnull instancetype)initWithObjectClass:(nonnull Class)objectClass viewClass:(nonnull Class)viewClass type:(TFTableViewItemPresenterType)type block:( void (^ _Nonnull )(UIView * _Nonnull, id _Nonnull))configurationBlock
 {
@@ -58,13 +57,13 @@
 @end
 
 
-@interface TFPresentersDerivedReuseStrategy: NSObject <TFTableViewReusing>
-@property (nonatomic, strong, nonnull) NSArray<id<TFTableViewItemPresenting>> * presenters;
+@interface TFPresentersDerivedReuseStrategy: NSObject <TFDynamicTableViewReusing>
+@property (nonatomic, strong, nonnull) NSArray<id<TFDynamicTableViewItemPresenting>> * presenters;
 @end
 
 @implementation TFPresentersDerivedReuseStrategy
 
-- (instancetype)initWithPresenters:(nonnull NSArray<id<TFTableViewItemPresenting>> *)presenters
+- (instancetype)initWithPresenters:(nonnull NSArray<id<TFDynamicTableViewItemPresenting>> *)presenters
 {
     self = [super init];
     if (self) {
@@ -87,7 +86,7 @@
 
 - (void)registerReusableViewsOnTableView:(UITableView *)tableView
 {
-    [self.presenters enumerateObjectsUsingBlock:^(id<TFTableViewItemGenericPresenting>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.presenters enumerateObjectsUsingBlock:^(id<TFDynamicTableViewItemGenericPresenting>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         switch ([obj type]) {
             case TFTableViewItemPresenterTypeCell:
                 [tableView registerClass:[obj viewClass] forCellReuseIdentifier:[self reuseIdentifierForClass:[obj objectClass]]];
@@ -107,7 +106,7 @@
 
 #define TF_ASSERT_MAIN_THREAD NSAssert([NSThread isMainThread], @"This method must be called on the main thread")
 
-@interface TFDynamicTableViewDataSource()<TFUITableViewDelegateCellSizingIntentionDelegate, TFDynamicDataProvidingDelegate>
+@interface TFDynamicTableViewDataSource()<TFUITableViewDelegateCellSizingIntentionDelegate, TFDynamicTableViewResultsProvidingDelegate>
 @property (nonatomic, strong) TFUITableViewDelegateSizingIntention * sizingIntention;
 @property (nonatomic, assign) BOOL reusableViewsRegistered;
 @end
@@ -118,7 +117,7 @@
 
 #pragma mark - Interface Methods
 
-- (nonnull instancetype)initWithPresenters:(nullable NSArray<id<TFTableViewItemGenericPresenting>> *)presenters
+- (nonnull instancetype)initWithPresenters:(nullable NSArray<id<TFDynamicTableViewItemGenericPresenting>> *)presenters
 {
     self = [super init];
     if (self) {
@@ -128,12 +127,12 @@
     return self;
 }
 
-- (void)setPresenters:(NSArray<id<TFTableViewItemGenericPresenting>> *)presenters
+- (void)setPresenters:(NSArray<id<TFDynamicTableViewItemGenericPresenting>> *)presenters
 {
     _presenters = presenters;
 }
 
-- (id<TFTableViewReusing>)reuseStrategy
+- (id<TFDynamicTableViewReusing>)reuseStrategy
 {
     if (_reuseStrategy == nil) {
         NSAssert(self.presenters, nil);
@@ -144,24 +143,24 @@
     return _reuseStrategy;
 }
 
-- (void)setProvider:(id<TFDynamicDataProviding>)provider
+- (void)setProvider:(id<TFDynamicTableViewResultsProviding>)provider
 {
     _provider = provider;
     _provider.delegate = self;
 }
 
-- (nullable id<TFTableViewItemPresenting>)presenterForObject:(NSObject *)object
+- (nullable id<TFDynamicTableViewItemPresenting>)presenterForObject:(NSObject *)object
 {
-    if ([object conformsToProtocol:@protocol(TFTableViewItemPresenting)]) {
-        return (id<TFTableViewItemPresenting>)object;   // self presenting
+    if ([object conformsToProtocol:@protocol(TFDynamicTableViewItemPresenting)]) {
+        return (id<TFDynamicTableViewItemPresenting>)object;   // self presenting
     }
     
     return [self presenterForObjectType:[object class]];
 }
 
-- (nullable id<TFTableViewItemPresenting>)presenterForObjectType:(nonnull Class)type
+- (nullable id<TFDynamicTableViewItemPresenting>)presenterForObjectType:(nonnull Class)type
 {
-    for (id<TFTableViewItemGenericPresenting> presenter in self.presenters) {
+    for (id<TFDynamicTableViewItemGenericPresenting> presenter in self.presenters) {
         if (presenter.objectClass == type) {
             return presenter;
         }
@@ -185,7 +184,7 @@
 {
     id obj = [self.provider objectAtIndexPath:indexPath];
     
-    id<TFTableViewItemPresenting> presenter = [self presenterForObject:obj];
+    id<TFDynamicTableViewItemPresenting> presenter = [self presenterForObject:obj];
     [presenter prepare:cell forPresentationWithObject:obj];
 }
 
@@ -215,7 +214,7 @@
     id obj = [self.provider objectAtIndexPath:indexPath];
     id cell = [tableView dequeueReusableCellWithIdentifier:[self.reuseStrategy reuseIdentifierForObject:obj]];
     
-    id<TFTableViewItemPresenting> presenter = [self presenterForObject:obj];
+    id<TFDynamicTableViewItemPresenting> presenter = [self presenterForObject:obj];
     [presenter prepare:cell forPresentationWithObject:obj];
     return cell;
 }
@@ -279,7 +278,7 @@
     
     id headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[self.reuseStrategy reuseIdentifierForObject:sectionInfo.header]];
     
-    id<TFTableViewItemPresenting> presenter = [self presenterForObject:sectionInfo.header];
+    id<TFDynamicTableViewItemPresenting> presenter = [self presenterForObject:sectionInfo.header];
     [presenter prepare:headerView forPresentationWithObject:sectionInfo.header];
     return headerView;
 }
@@ -291,7 +290,7 @@
     
     id footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[self.reuseStrategy reuseIdentifierForObject:sectionInfo.footer]];
     
-    id<TFTableViewItemPresenting> presenter = [self presenterForObject:sectionInfo.footer];
+    id<TFDynamicTableViewItemPresenting> presenter = [self presenterForObject:sectionInfo.footer];
     [presenter prepare:footerView forPresentationWithObject:sectionInfo.footer];
     return footerView;
 }
@@ -308,52 +307,52 @@
 
 #pragma mark - TFDynamicDataProvidingDelegate
 
-- (void)provider:(id<TFDynamicDataProviding>)provider didInsertItemsAtIndexPaths:(NSArray *)indexPaths
+- (void)provider:(id<TFDynamicTableViewResultsProviding>)provider didInsertItemsAtIndexPaths:(NSArray *)indexPaths
 {   TF_ASSERT_MAIN_THREAD;
     [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-- (void)provider:(id<TFDynamicDataProviding>)provider didRemoveItemsAtIndexPaths:(NSArray *)indexPaths
+- (void)provider:(id<TFDynamicTableViewResultsProviding>)provider didRemoveItemsAtIndexPaths:(NSArray *)indexPaths
 {   TF_ASSERT_MAIN_THREAD;
     [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-- (void)provider:(id<TFDynamicDataProviding>)provider didRefreshItemsAtIndexPaths:(NSArray *)indexPaths
+- (void)provider:(id<TFDynamicTableViewResultsProviding>)provider didRefreshItemsAtIndexPaths:(NSArray *)indexPaths
 {   TF_ASSERT_MAIN_THREAD;
     [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-- (void)provider:(id<TFDynamicDataProviding>)provider didMoveItemAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)newIndexPath
+- (void)provider:(id<TFDynamicTableViewResultsProviding>)provider didMoveItemAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)newIndexPath
 {   TF_ASSERT_MAIN_THREAD;
     [self.tableView moveRowAtIndexPath:fromIndexPath toIndexPath:newIndexPath];
 }
 
-- (void)provider:(id<TFDynamicDataProviding>)provider didInsertSections:(NSIndexSet *)sections
+- (void)provider:(id<TFDynamicTableViewResultsProviding>)provider didInsertSections:(NSIndexSet *)sections
 {   TF_ASSERT_MAIN_THREAD;
     [self.tableView insertSections:sections withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-- (void)provider:(id<TFDynamicDataProviding>)provider didRemoveSections:(NSIndexSet *)sections
+- (void)provider:(id<TFDynamicTableViewResultsProviding>)provider didRemoveSections:(NSIndexSet *)sections
 {   TF_ASSERT_MAIN_THREAD;
     [self.tableView deleteSections:sections withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-- (void)provider:(id<TFDynamicDataProviding>)provider didMoveSection:(NSInteger)section toSection:(NSInteger)newSection
+- (void)provider:(id<TFDynamicTableViewResultsProviding>)provider didMoveSection:(NSInteger)section toSection:(NSInteger)newSection
 {   TF_ASSERT_MAIN_THREAD;
     [self.tableView moveSection:section toSection:newSection];
 }
 
-- (void)provider:(id<TFDynamicDataProviding>)provider didRefreshSections:(NSIndexSet *)sections
+- (void)provider:(id<TFDynamicTableViewResultsProviding>)provider didRefreshSections:(NSIndexSet *)sections
 {   TF_ASSERT_MAIN_THREAD;
     [self.tableView reloadSections:sections withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-- (void)providerDidReload:(id<TFDynamicDataProviding>)provider
+- (void)providerDidReload:(id<TFDynamicTableViewResultsProviding>)provider
 {   TF_ASSERT_MAIN_THREAD;
     [self.tableView reloadData];
 }
 
-- (void)provider:(id<TFDynamicDataProviding>)provider performBatchUpdate:(dispatch_block_t)update complete:(dispatch_block_t)complete
+- (void)provider:(id<TFDynamicTableViewResultsProviding>)provider performBatchUpdate:(dispatch_block_t)update complete:(dispatch_block_t)complete
 {   TF_ASSERT_MAIN_THREAD;
     if (!update) return;
     
@@ -363,22 +362,6 @@
 
     if (complete) complete();
 }
-
-//// name
-#pragma mark - TFInteractionDelegate
-
-//- (void)interactable:(id<TFFoldable>)interactable requestsSelectionWithSender:(id)sender
-//{
-//    NSIndexPath * indexPath = [self.provider indexPathForObject:];
-//    if ([ isSelected]) {
-//        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-//
-//        [self.delegate dynamicDataSource:self didSelectObject:(id)];
-//    }
-//    else {
-//        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    }
-//}
 
 #pragma mark - Private
 

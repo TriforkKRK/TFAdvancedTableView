@@ -52,7 +52,7 @@
 		AF01B37F1B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFDynamicTableViewDataSource.h; sourceTree = "<group>"; };
 		AF01B3801B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFDynamicTableViewDataSource.m; sourceTree = "<group>"; };
 		AF01B3811B76B8FB0021F8A1 /* TFInteractionChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFInteractionChain.h; sourceTree = "<group>"; };
-		AF01B3841B76B8FB0021F8A1 /* TFSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFSectionInfo.h; sourceTree = "<group>"; };
+		AF01B3841B76B8FB0021F8A1 /* TFDynamicTableViewDataSource+Protocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TFDynamicTableViewDataSource+Protocols.h"; sourceTree = "<group>"; };
 		AF01B3871B76B8FB0021F8A1 /* TFBaseViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFBaseViewModel.h; sourceTree = "<group>"; };
 		AF01B3881B76B8FB0021F8A1 /* TFBaseViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFBaseViewModel.m; sourceTree = "<group>"; };
 		AF01B3891B76B8FB0021F8A1 /* TFSectionItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFSectionItemViewModel.h; sourceTree = "<group>"; };
@@ -167,11 +167,11 @@
 		AF01B37B1B76B8FB0021F8A1 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				AF01B3841B76B8FB0021F8A1 /* TFSectionInfo.h */,
 				AF01B3811B76B8FB0021F8A1 /* TFInteractionChain.h */,
 				AF0DCEBD1B7BC0A3002A7D39 /* TFInteractionChain.m */,
 				AF01B37F1B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.h */,
 				AF01B3801B76B8FB0021F8A1 /* TFDynamicTableViewDataSource.m */,
+				AF01B3841B76B8FB0021F8A1 /* TFDynamicTableViewDataSource+Protocols.h */,
 			);
 			path = Core;
 			sourceTree = "<group>";

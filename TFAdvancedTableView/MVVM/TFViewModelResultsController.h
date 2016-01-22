@@ -30,13 +30,36 @@
  * section with rows temporarly removed when section gets folded)
  */
 
+
+/**
+ * ABSTRACT:
+ * Inspired by NSFetchedResultsController
+ *
+ * Its a protocol describing objects that are supposed to serve DataSources by
+ * providing them with:
+ * - section data as an array of @protocol SectionInfo objects @see sections
+ * - data updates via @see delegate
+ * - reuse strategy
+ *
+ * @property sections
+ * it returns an array of objects that implement the TFSectionInfo protocol.
+ * It's expected that developers use the returned array when implementing the
+ * following methods of the UITableViewDataSource protocol:
+ * - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
+ * - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section;
+ *
+ * It extends TFInteractionDelegate to support common actions like:
+ * - removal
+ * - folding
+ */
+
 @import Foundation;
 #import "TFViewModelDeltaProcessing.h"
 #import "TFInteractionChain.h"
 #import "TFSectionViewModel.h"
 #import "TFDynamicTableViewDataSource.h"
 
-@interface TFViewModelResultsController : NSObject<TFDynamicDataProviding, TFSectionViewModelResponding>
+@interface TFViewModelResultsController : NSObject<TFDynamicTableViewResultsProviding, TFSectionViewModelResponding>
 @property (nonatomic, strong, nullable) NSArray<TFSectionViewModel *> * sections;
 @property (nonatomic, strong, nullable) id<TFViewModelDeltaProcessing> deltaProcessor;
 @end

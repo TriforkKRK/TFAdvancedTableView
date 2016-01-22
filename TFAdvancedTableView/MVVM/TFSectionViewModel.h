@@ -37,7 +37,7 @@
 
 @import Foundation;
 #import "TFViewModel.h"
-#import "TFSectionInfo.h"
+#import "TFDynamicTableViewDataSource+Protocols.h"
 #import "TFInteractionChain.h"
 #import "TFSectionItemViewModel.h"
 

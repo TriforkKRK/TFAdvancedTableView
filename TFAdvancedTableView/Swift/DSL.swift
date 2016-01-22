@@ -9,12 +9,12 @@
 // MARK: DSL - Domain Specific Language for Swift
 // MARK: - Presentation
 
-func RowPresenter<View, VM where View: UITableViewCell, VM: NSObjectProtocol>(lambda: (view: View, vm: VM) -> Void) -> TFTableViewItemBlockPresenter {  // https://forums.developer.apple.com/thread/7394
-    return TFTableViewItemBlockPresenter(objectClass: VM.self, viewClass: View.self, type: TFTableViewItemPresenterType.Cell, block:{v,m in lambda(view: v as! View, vm: m as! VM) })
+func RowPresenter<View, VM where View: UITableViewCell, VM: NSObjectProtocol>(lambda: (view: View, vm: VM) -> Void) -> TFDynamicTableViewItemBlockPresenter {  // https://forums.developer.apple.com/thread/7394
+    return TFDynamicTableViewItemBlockPresenter(objectClass: VM.self, viewClass: View.self, type: TFTableViewItemPresenterType.Cell, block:{v,m in lambda(view: v as! View, vm: m as! VM) })
 }
 
-func HeaderFooterPresenter<View, VM where View: UITableViewHeaderFooterView, VM: NSObjectProtocol>(lambda: (header: View, vm: VM) -> Void) -> TFTableViewItemBlockPresenter {
-    return TFTableViewItemBlockPresenter(objectClass: VM.self, viewClass: View.self, type: TFTableViewItemPresenterType.HeaderFooter, block:{v,m in lambda(header: v as! View, vm: m as! VM) })
+func HeaderFooterPresenter<View, VM where View: UITableViewHeaderFooterView, VM: NSObjectProtocol>(lambda: (header: View, vm: VM) -> Void) -> TFDynamicTableViewItemBlockPresenter {
+    return TFDynamicTableViewItemBlockPresenter(objectClass: VM.self, viewClass: View.self, type: TFTableViewItemPresenterType.HeaderFooter, block:{v,m in lambda(header: v as! View, vm: m as! VM) })
 }
 
 

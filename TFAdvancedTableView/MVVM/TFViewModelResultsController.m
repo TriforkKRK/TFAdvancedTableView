@@ -22,7 +22,6 @@
  */
 
 #import "TFViewModelResultsController.h"
-#import "TFSectionInfo.h"
 #import "TFSectionViewModel.h"
 
 @import ObjectiveC.runtime;
