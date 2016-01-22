@@ -9,20 +9,12 @@
 // MARK: DSL - Domain Specific Language for Swift
 // MARK: - Presentation
 
-class RowPresenter<View, VM where View: UITableViewCell, VM: NSObjectProtocol>: TFTableViewItemBlockPresenter {  // https://forums.developer.apple.com/thread/7394
-    init(_ lambda: (view: View, vm: VM) -> Void) {
-        super.init(objectClass: VM.self, viewClass: View.self, type: TFTableViewItemPresenterType.Cell, block:{v,m in
-            lambda(view: v as! View, vm: m as! VM)
-        })
-    }
+func RowPresenter<View, VM where View: UITableViewCell, VM: NSObjectProtocol>(lambda: (view: View, vm: VM) -> Void) -> TFTableViewItemBlockPresenter {  // https://forums.developer.apple.com/thread/7394
+    return TFTableViewItemBlockPresenter(objectClass: VM.self, viewClass: View.self, type: TFTableViewItemPresenterType.Cell, block:{v,m in lambda(view: v as! View, vm: m as! VM) })
 }
 
-class HeaderFooterPresenter<View, VM where View: UITableViewHeaderFooterView, VM: NSObjectProtocol>: TFTableViewItemBlockPresenter {
-    init(_ lambda: (header: View, vm: VM) -> Void) {
-        super.init(objectClass: VM.self, viewClass: View.self, type: TFTableViewItemPresenterType.HeaderFooter, block:{v,m in
-            lambda(header: v as! View, vm: m as! VM)
-        })
-    }
+func HeaderFooterPresenter<View, VM where View: UITableViewHeaderFooterView, VM: NSObjectProtocol>(lambda: (header: View, vm: VM) -> Void) -> TFTableViewItemBlockPresenter {
+    return TFTableViewItemBlockPresenter(objectClass: VM.self, viewClass: View.self, type: TFTableViewItemPresenterType.HeaderFooter, block:{v,m in lambda(header: v as! View, vm: m as! VM) })
 }
 
 
