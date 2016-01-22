@@ -30,7 +30,7 @@
 
 @implementation TFTableViewItemBlockPresenter
 
-- (nonnull instancetype)initWithObjectClass:(nonnull Class)objectClass viewClass:(nonnull Class)viewClass type:(TFTableViewItemPresenterType)type lambda:( void (^ _Nonnull )(UIView * _Nonnull, id _Nonnull))configurationBlock
+- (nonnull instancetype)initWithObjectClass:(nonnull Class)objectClass viewClass:(nonnull Class)viewClass type:(TFTableViewItemPresenterType)type block:( void (^ _Nonnull )(UIView * _Nonnull, id _Nonnull))configurationBlock
 {
     self = [super init];
     if (self) {

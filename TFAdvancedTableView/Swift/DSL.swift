@@ -11,7 +11,7 @@
 
 class RowPresenter<View, VM where View: UITableViewCell, VM: NSObjectProtocol>: TFTableViewItemBlockPresenter {  // https://forums.developer.apple.com/thread/7394
     init(_ lambda: (view: View, vm: VM) -> Void) {
-        super.init(objectClass: VM.self, viewClass: View.self, type: TFTableViewItemPresenterType.Cell, lambda:{v,m in
+        super.init(objectClass: VM.self, viewClass: View.self, type: TFTableViewItemPresenterType.Cell, block:{v,m in
             lambda(view: v as! View, vm: m as! VM)
         })
     }
@@ -19,7 +19,7 @@ class RowPresenter<View, VM where View: UITableViewCell, VM: NSObjectProtocol>: 
 
 class HeaderFooterPresenter<View, VM where View: UITableViewHeaderFooterView, VM: NSObjectProtocol>: TFTableViewItemBlockPresenter {
     init(_ lambda: (header: View, vm: VM) -> Void) {
-        super.init(objectClass: VM.self, viewClass: View.self, type: TFTableViewItemPresenterType.HeaderFooter, lambda:{v,m in
+        super.init(objectClass: VM.self, viewClass: View.self, type: TFTableViewItemPresenterType.HeaderFooter, block:{v,m in
             lambda(header: v as! View, vm: m as! VM)
         })
     }

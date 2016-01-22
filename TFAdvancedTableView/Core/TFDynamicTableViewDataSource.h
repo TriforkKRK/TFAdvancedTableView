@@ -161,7 +161,7 @@ typedef NS_ENUM(NSUInteger, TFTableViewItemPresenterType) {
 
 // objectClass has to be equal to VM
 // viewClass has to be equal to View
-- (nonnull instancetype)initWithObjectClass:(nonnull Class)objectClass viewClass:(nonnull Class)viewClass type:(TFTableViewItemPresenterType)type lambda:( void (^ _Nonnull )(View _Nonnull, VM _Nonnull))configurationBlock;
+- (nonnull instancetype)initWithObjectClass:(nonnull Class)objectClass viewClass:(nonnull Class)viewClass type:(TFTableViewItemPresenterType)type block:( void (^ _Nonnull )(View _Nonnull, VM _Nonnull))configurationBlock;
 @end
 
 
