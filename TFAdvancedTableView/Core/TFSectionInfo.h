@@ -44,4 +44,6 @@
 @optional
 @property (nonatomic, readonly, nullable) id<TFSectionItemInfo> header;
 @property (nonatomic, readonly, nullable) id<TFSectionItemInfo> footer;
+
+- (IBAction)remove:(nullable id)sender;
 @end
