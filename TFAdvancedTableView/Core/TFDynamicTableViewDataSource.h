@@ -41,10 +41,7 @@
 
 @import UIKit.UITableView;
 #import "TFSectionInfo.h"
-#import "TFSectionInfo.h"
 #import "TFInteractionChain.h"
-
-#warning TODO nazewnictwo
 
 /**
 *
@@ -125,7 +122,19 @@
 @end
 
 
-@protocol TFConfiguring
+
+typedef NS_ENUM(NSUInteger, TFTableViewItemPresenterType) {
+    TFTableViewItemPresenterTypeUnknown,
+    TFTableViewItemPresenterTypeCell,
+    TFTableViewItemPresenterTypeHeaderFooter,
+};
+
+@protocol TFTableViewItemPresenting <NSObject>
+// A generic Presenter<O, V> means presentation of O as V
+@property (nonatomic, readonly, nonnull) Class objectClass;
+@property (nonatomic, readonly, nonnull) Class viewClass;
+@property (nonatomic, readonly) TFTableViewItemPresenterType type;
+
 /**
  *  Method required by TFConfiguring protocol, should implement configuring an object
  *  with @param object.
@@ -135,25 +144,25 @@
  *  however it is sometimes usefull to have other objects performing such configuration (eg. ViewController)
  *  so this param is also provided for higher flexibility.
  */
-- (void)configure:(nonnull UIView *)view withObject:(nonnull id)object;
+- (void)prepare:(nonnull UIView *)view forPresentationWithObject:(nonnull id)object;
+@end
+
+// TODO
+@protocol TFTableViewItemSelfPresenting <NSObject>
+- (void)prepareForPresentationWithObject:(nonnull id)object;
 @end
 
 
-
-
-typedef NS_ENUM(NSUInteger, TFTableViewItemPresenterType) {
-    TFTableViewItemPresenterTypeUnknown,
-    TFTableViewItemPresenterTypeCell,
-    TFTableViewItemPresenterTypeHeaderFooter,
-};
-
-@protocol TFTableViewItemPresenting <TFConfiguring>
-// Objc-Generic meaning it is a Presenter<V, O> where V is a view type and O is an object type
+@interface TFTableViewItemBlockPresenter<__covariant View:UIView *, VM> : NSObject<TFTableViewItemPresenting>
 @property (nonatomic, readonly, nonnull) Class objectClass;
 @property (nonatomic, readonly, nonnull) Class viewClass;
 @property (nonatomic, readonly) TFTableViewItemPresenterType type;
-@end
+@property (nonatomic, copy, nullable) void (^configurationBlock)( View _Nonnull  , VM _Nonnull);
 
+// objectClass has to be equal to VM
+// viewClass has to be equal to View
+- (nonnull instancetype)initWithObjectClass:(nonnull Class)objectClass viewClass:(nonnull Class)viewClass type:(TFTableViewItemPresenterType)type lambda:( void (^ _Nonnull )(View _Nonnull, VM _Nonnull))configurationBlock;
+@end
 
 
 

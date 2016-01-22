@@ -1,68 +1,48 @@
-NAMING:
-ViewModelResultsController -> DynamicMVVMResultsController
+Wyczyszczenie TFDynamicTableViewDataSource
+selfconfigurable cells
+Rx
 
-// TODO 2. DeductedReuseStratedyWithMappings : CellConfigurationBuilder, TFTableViewReusing
-
-// TODO 4 - selection
-// TODO 5 - KVO
-// TODO 5. Move above to TFAdvancedTableview -> Swift
-
-// MOve todos to github
-// TableviewDelegate/Datasource trampoline
-// TODO Rx
-// TODO nib
-// TODO prototype cells
-
-// renderer
-
+Implement missing actions
+selection
 will / Did on actions (fold, remove)
 canRemove, canMove
 move:?
 
+COMPOSITE DATASOURCE / DELEGATE (MODULE) ?
+- make it possible to compose dynamicDataSources
+- merge with the other library
 
+Revise Responder Chain
+- Wojciechs Swift solution
+- https://medium.com/ios-os-x-development/understanding-cocoa-and-cocoa-touch-responder-chain-12fe558ebe97
+
+
+Objective-C sample app
+- make it as a separate project
+
+Oncapsulate as framework
+
+Nice to have
+- delta processor
+- loading views from nib (register nib instead of a class)
+- support for storyboard prototype cells
+- header footer height calculation
+
+
+Links:
 // https://github.com/yukiasai/Shoyu
 // https://github.com/mamaral/Organic/tree/master/Organic/Source
 // https://github.com/fastred/ConfigurableTableViewController/blob/master/Framework/CellConfigurator.swift
 
-Delta processor
 
 
-1) TABLEVIEW DYNAMIC DATASOURCE / MVVM Provider
-TODO:
-- vm - akcje
-    - selection call forwarding - push vc, selected vm
-    - highlight
-    - disable
-    - custom - do VC
-
-RESPONDER CHAIN -
-nie trzeba by setować interactionDelegate ?
-Interactable - UIResponderStandardEditActions ?
-
-1) opcja z wysyłaniem eventu z VM
-
-2) opcja z wysylaniem eventu z widoku
-a) - leci tylko po widokach / vc
-- widok ma property viewModel i ono mozna odebrac w firstresponderze i na jego podstawie impelementowac akcje
-b) widok podpięty przez  IBAction do VM,
-VM odbija akcje wysyłając event do buttona podając siebie jako sender
-
-
-https://medium.com/ios-os-x-development/understanding-cocoa-and-cocoa-touch-responder-chain-12fe558ebe97
-
-
-w celce mozna skonfigurować gdzie akcje to operacje w viewModelu
-cell.editActions = @[[AAPLAction destructiveActionWithTitle:NSLocalizedString(@"Delete", @"Delete") selector:@selector(swipeToDeleteCell:)]];
-
-
-- integracja z realną aplikacją, sportsbook WH
-- delta calculation - simple sections
 - Subclass of TFIntention / TFModule
     - rename DynamicTableViewController ?
     - TFUITableViewControlling ?
 - unit tests
-- rename reuseStrategy - to cellFactory?
-- fast enumeration na section
+
+
+
 
 2) TABLEVIEW AUTOMATIC CELLSIZING DELGATE
 - header / footer
@@ -72,11 +52,4 @@ cell.editActions = @[[AAPLAction destructiveActionWithTitle:NSLocalizedString(@"
 - check if this approach is better than phantom cell per reuse id
 - on screen rotation, cell height seem to be changed properly but content is cut.
 - fix Grześka z estimated heights
-
-3) COMPOSITE DATASOURCE / DELEGATE (MODULE) ?
-it implements both datasource & delegate to favor modularisation and composition
-
-
-4) VIEWS
-- basic autolayout cells
 

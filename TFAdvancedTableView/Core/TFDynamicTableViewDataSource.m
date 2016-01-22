@@ -28,6 +28,36 @@
 @import UIKit.UITableViewHeaderFooterView;
 
 
+@implementation TFTableViewItemBlockPresenter
+
+- (nonnull instancetype)initWithObjectClass:(nonnull Class)objectClass viewClass:(nonnull Class)viewClass type:(TFTableViewItemPresenterType)type lambda:( void (^ _Nonnull )(UIView * _Nonnull, id _Nonnull))configurationBlock
+{
+    self = [super init];
+    if (self) {
+        _objectClass = objectClass;
+        _viewClass = viewClass;
+        _type = type;
+        _configurationBlock = configurationBlock;
+    }
+    return self;
+}
+
+- (void)prepare:(nonnull UIView *)view forPresentationWithObject:(nonnull id)object
+{
+    // Lightweight Objective-C generics only sypport covariance defined on interfaces, below we verify this is true at runtime
+    if (![view isKindOfClass:self.viewClass]) {
+        [NSException raise:NSInternalInconsistencyException format:@"Wrong type of the first parameter, expected %@ got: %@", NSStringFromClass(self.viewClass), NSStringFromClass([view class])];
+    }
+    if (![object isKindOfClass:self.objectClass]) {
+        [NSException raise:NSInternalInconsistencyException format:@"Wrong type of the second parameter, expected %@ got: %@", NSStringFromClass(self.objectClass), NSStringFromClass([object class])];
+    }
+    
+    self.configurationBlock(view, object);
+}
+
+@end
+
+
 @interface ConfiguratorsDerivedReuseStrategy: NSObject <TFTableViewReusing>
 @property (nonatomic, strong, nonnull) NSArray<id<TFTableViewItemPresenting>> * presenters;
 @end
@@ -135,13 +165,13 @@
 - (void)cellSizingIntetion:(TFUITableViewDelegateSizingIntention *)intention configureCell:(id)cell atIndexPath:(NSIndexPath *)indexPath
 {
     id obj = [self.provider objectAtIndexPath:indexPath];
-    if ([cell conformsToProtocol:@protocol(TFConfiguring)]) {
-        [cell configure:cell withObject:obj];
+    if ([cell conformsToProtocol:@protocol(TFTableViewItemSelfPresenting)]) {
+        [cell prepareForPresentationWithObject:obj];
         return;
     }
     
-    id<TFConfiguring> cellConfigurator = [self presenterForObjectType:[obj class]];
-    [cellConfigurator configure:cell withObject:obj];
+    id<TFTableViewItemPresenting> presenter = [self presenterForObjectType:[obj class]];
+    [presenter prepare:cell forPresentationWithObject:obj];
 }
 
 - (NSString *)cellSizingIntention:(TFUITableViewDelegateSizingIntention *)intention reuseIdentifierAtIndexPath:(NSIndexPath *)indexPath
@@ -168,15 +198,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id obj = [self.provider objectAtIndexPath:indexPath];
-    UITableViewCell<TFConfiguring> * cell = [tableView dequeueReusableCellWithIdentifier:[self.reuseStrategy reuseIdentifierForObject:obj]];
-    if ([cell conformsToProtocol:@protocol(TFConfiguring)]) {
-        [cell configure:cell withObject:obj];
+    id cell = [tableView dequeueReusableCellWithIdentifier:[self.reuseStrategy reuseIdentifierForObject:obj]];
+    if ([cell conformsToProtocol:@protocol(TFTableViewItemSelfPresenting)]) {
+        [cell prepareForPresentationWithObject:obj];
         return cell;
     }
     
-    id<TFConfiguring> cellConfigurator = [self presenterForObjectType:[obj class]];
-    [cellConfigurator configure:cell withObject:obj];
-    
+    id<TFTableViewItemPresenting> presenter = [self presenterForObjectType:[obj class]];
+    [presenter prepare:cell forPresentationWithObject:obj];
     return cell;
 }
 
@@ -237,14 +266,14 @@
     id<TFSectionInfo> sectionInfo = self.provider.sections[section];
     if (sectionInfo.header == nil) return nil;
     
-    UITableViewHeaderFooterView<TFConfiguring> * headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[self.reuseStrategy reuseIdentifierForObject:sectionInfo.header]];
-    if ([headerView conformsToProtocol:@protocol(TFConfiguring)]) {
-        [headerView configure:headerView withObject:sectionInfo.header];
+    id headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[self.reuseStrategy reuseIdentifierForObject:sectionInfo.header]];
+    if ([headerView conformsToProtocol:@protocol(TFTableViewItemSelfPresenting)]) {
+        [headerView prepareForPresentationWithObject:sectionInfo.header];
         return headerView;
     }
     
-    id<TFConfiguring> headerConfigurator = [self presenterForObjectType:[sectionInfo.header class]];
-    [headerConfigurator configure:headerView withObject:sectionInfo.header];
+    id<TFTableViewItemPresenting> presenter = [self presenterForObjectType:[sectionInfo.header class]];
+    [presenter prepare:headerView forPresentationWithObject:sectionInfo.header];
     return headerView;
 }
 
@@ -253,15 +282,14 @@
     id<TFSectionInfo> sectionInfo = self.provider.sections[section];
     if (sectionInfo.footer == nil) return nil;
     
-    UITableViewHeaderFooterView<TFConfiguring> * footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[self.reuseStrategy reuseIdentifierForObject:sectionInfo.footer]];
-    
-    if ([footerView conformsToProtocol:@protocol(TFConfiguring)]) {
-        [footerView configure:footerView withObject:sectionInfo.footer];
+    id footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[self.reuseStrategy reuseIdentifierForObject:sectionInfo.footer]];
+    if ([footerView conformsToProtocol:@protocol(TFTableViewItemSelfPresenting)]) {
+        [footerView prepareForPresentationWithObject:sectionInfo.footer];
         return footerView;
     }
     
-    id<TFConfiguring> cellConfigurator = [self presenterForObjectType:[sectionInfo.footer class]];
-    [cellConfigurator configure:footerView withObject:sectionInfo.footer];
+    id<TFTableViewItemPresenting> presenter = [self presenterForObjectType:[sectionInfo.footer class]];
+    [presenter prepare:footerView forPresentationWithObject:sectionInfo.footer];
     return footerView;
 }
 
