@@ -1,5 +1,6 @@
 Wyczyszczenie TFDynamicTableViewDataSource
-selfconfigurable cells
+workin selfconfigurable cells
+typealias Row = TFSectionItemViewModel, Header = TFSectionItemViewModel, Footer = TFSectionItemViewModel
 Rx
 
 Implement missing actions

@@ -29,11 +29,6 @@ func Source<T: ViewModelSource>(sections: [TFSectionViewModel]) -> T { return So
 typealias ViewModelSection = TFSectionViewModel
 func Section<T: ViewModelSection>(@noescape closure: (T) -> Void) -> T { return DefaultInitializableBuilder(closure) }
 
-typealias Row = TFSectionItemViewModel
-typealias Header = TFSectionItemViewModel
-typealias Footer = TFSectionItemViewModel
-
-
 
 // MARK: - Private
 
