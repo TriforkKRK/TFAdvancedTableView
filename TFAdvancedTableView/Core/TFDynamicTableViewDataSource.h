@@ -130,11 +130,6 @@ typedef NS_ENUM(NSUInteger, TFTableViewItemPresenterType) {
 };
 
 @protocol TFTableViewItemPresenting <NSObject>
-// A generic Presenter<O, V> means presentation of O as V
-@property (nonatomic, readonly, nonnull) Class objectClass;
-@property (nonatomic, readonly, nonnull) Class viewClass;
-@property (nonatomic, readonly) TFTableViewItemPresenterType type;
-
 /**
  *  Method required by TFConfiguring protocol, should implement configuring an object
  *  with @param object.
@@ -147,13 +142,15 @@ typedef NS_ENUM(NSUInteger, TFTableViewItemPresenterType) {
 - (void)prepare:(nonnull UIView *)view forPresentationWithObject:(nonnull id)object;
 @end
 
-// TODO
-@protocol TFTableViewItemSelfPresenting <NSObject>
-- (void)prepareForPresentationWithObject:(nonnull id)object;
+@protocol TFTableViewItemGenericPresenting <TFTableViewItemPresenting>
+// A generic Presenter<O, V> means presentation of O as V
+@property (nonatomic, readonly, nonnull) Class objectClass;
+@property (nonatomic, readonly, nonnull) Class viewClass;
+@property (nonatomic, readonly) TFTableViewItemPresenterType type;
 @end
 
 
-@interface TFTableViewItemBlockPresenter<__covariant View:UIView *, VM> : NSObject<TFTableViewItemPresenting>
+@interface TFTableViewItemBlockPresenter<__covariant View:UIView *, VM> : NSObject<TFTableViewItemGenericPresenting>
 @property (nonatomic, readonly, nonnull) Class objectClass;
 @property (nonatomic, readonly, nonnull) Class viewClass;
 @property (nonatomic, readonly) TFTableViewItemPresenterType type;
@@ -168,14 +165,14 @@ typedef NS_ENUM(NSUInteger, TFTableViewItemPresenterType) {
 
 // TableView Presenter (P from VIPER)
 // jest TableViewDataSourcem
-@interface TFDynamicTableViewDataSource : NSObject<UITableViewDataSource, UITableViewDelegate, TFDynamicDataProvidingDelegate, TFResponding>
+@interface TFDynamicTableViewDataSource : NSObject<UITableViewDataSource, UITableViewDelegate, TFResponding>
 @property (nonatomic, weak, nullable) IBOutlet UITableView * tableView;
 @property (nonatomic, weak, nullable) IBOutlet id<TFDynamicTableViewDataSourceDelegate> delegate;
 @property (nonatomic, strong, nullable) IBOutlet id<TFDynamicDataProviding> provider;               // rename FRC
 @property (nonatomic, strong, nonnull) id<TFTableViewReusing> reuseStrategy;
-@property (nonatomic, strong, nullable) NSArray<id<TFTableViewItemPresenting>> * presenters;
+@property (nonatomic, strong, nullable) NSArray<id<TFTableViewItemGenericPresenting>> * presenters;
 
-- (nonnull instancetype)initWithPresenters:(nullable NSArray<id<TFTableViewItemPresenting>> *)presenters NS_DESIGNATED_INITIALIZER;    // object class string to presenter instance
+- (nonnull instancetype)initWithPresenters:(nullable NSArray<id<TFTableViewItemGenericPresenting>> *)presenters NS_DESIGNATED_INITIALIZER;    // object class string to presenter instance
 - (nonnull instancetype)init NS_UNAVAILABLE;
 
 @end

@@ -10,8 +10,9 @@ class SelfConfigurableCellWithText: CellWithText {
     
 }
 
-extension SelfConfigurableCellWithText: TFTableViewItemSelfPresenting {
-    func prepareForPresentationWithObject(object: AnyObject) {
+extension SelfConfigurableCellWithText: TFTableViewItemPresenting {
+    
+    func prepare(view: UIView, forPresentationWithObject object: AnyObject) {
         guard let vm = object as? RowViewModel else { return }
         
         self.primaryLabel?.text = vm.name

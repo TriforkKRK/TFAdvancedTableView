@@ -58,11 +58,11 @@
 @end
 
 
-@interface ConfiguratorsDerivedReuseStrategy: NSObject <TFTableViewReusing>
+@interface TFPresentersDerivedReuseStrategy: NSObject <TFTableViewReusing>
 @property (nonatomic, strong, nonnull) NSArray<id<TFTableViewItemPresenting>> * presenters;
 @end
 
-@implementation ConfiguratorsDerivedReuseStrategy
+@implementation TFPresentersDerivedReuseStrategy
 
 - (instancetype)initWithPresenters:(nonnull NSArray<id<TFTableViewItemPresenting>> *)presenters
 {
@@ -87,7 +87,7 @@
 
 - (void)registerReusableViewsOnTableView:(UITableView *)tableView
 {
-    [self.presenters enumerateObjectsUsingBlock:^(id<TFTableViewItemPresenting>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.presenters enumerateObjectsUsingBlock:^(id<TFTableViewItemGenericPresenting>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         switch ([obj type]) {
             case TFTableViewItemPresenterTypeCell:
                 [tableView registerClass:[obj viewClass] forCellReuseIdentifier:[self reuseIdentifierForClass:[obj objectClass]]];
@@ -107,7 +107,7 @@
 
 #define TF_ASSERT_MAIN_THREAD NSAssert([NSThread isMainThread], @"This method must be called on the main thread")
 
-@interface TFDynamicTableViewDataSource()<TFUITableViewDelegateCellSizingIntentionDelegate>
+@interface TFDynamicTableViewDataSource()<TFUITableViewDelegateCellSizingIntentionDelegate, TFDynamicDataProvidingDelegate>
 @property (nonatomic, strong) TFUITableViewDelegateSizingIntention * sizingIntention;
 @property (nonatomic, assign) BOOL reusableViewsRegistered;
 @end
@@ -118,7 +118,7 @@
 
 #pragma mark - Interface Methods
 
-- (nonnull instancetype)initWithPresenters:(nullable NSArray<id<TFTableViewItemPresenting>> *)presenters
+- (nonnull instancetype)initWithPresenters:(nullable NSArray<id<TFTableViewItemGenericPresenting>> *)presenters
 {
     self = [super init];
     if (self) {
@@ -128,10 +128,20 @@
     return self;
 }
 
-- (void)setPresenters:(NSArray<id<TFTableViewItemPresenting>> *)presenters
+- (void)setPresenters:(NSArray<id<TFTableViewItemGenericPresenting>> *)presenters
 {
     _presenters = presenters;
-    _reuseStrategy = [[ConfiguratorsDerivedReuseStrategy alloc] initWithPresenters:presenters];
+}
+
+- (id<TFTableViewReusing>)reuseStrategy
+{
+    if (_reuseStrategy == nil) {
+        NSAssert(self.presenters, nil);
+        // TODO one instance
+        return [[TFPresentersDerivedReuseStrategy alloc] initWithPresenters:self.presenters];
+    }
+    
+    return _reuseStrategy;
 }
 
 - (void)setProvider:(id<TFDynamicDataProviding>)provider
@@ -140,9 +150,18 @@
     _provider.delegate = self;
 }
 
+- (nullable id<TFTableViewItemPresenting>)presenterForObject:(NSObject *)object
+{
+    if ([object conformsToProtocol:@protocol(TFTableViewItemPresenting)]) {
+        return (id<TFTableViewItemPresenting>)object;   // self presenting
+    }
+    
+    return [self presenterForObjectType:[object class]];
+}
+
 - (nullable id<TFTableViewItemPresenting>)presenterForObjectType:(nonnull Class)type
 {
-    for (id<TFTableViewItemPresenting> presenter in self.presenters) {
+    for (id<TFTableViewItemGenericPresenting> presenter in self.presenters) {
         if (presenter.objectClass == type) {
             return presenter;
         }
@@ -165,12 +184,8 @@
 - (void)cellSizingIntetion:(TFUITableViewDelegateSizingIntention *)intention configureCell:(id)cell atIndexPath:(NSIndexPath *)indexPath
 {
     id obj = [self.provider objectAtIndexPath:indexPath];
-    if ([cell conformsToProtocol:@protocol(TFTableViewItemSelfPresenting)]) {
-        [cell prepareForPresentationWithObject:obj];
-        return;
-    }
     
-    id<TFTableViewItemPresenting> presenter = [self presenterForObjectType:[obj class]];
+    id<TFTableViewItemPresenting> presenter = [self presenterForObject:obj];
     [presenter prepare:cell forPresentationWithObject:obj];
 }
 
@@ -199,12 +214,8 @@
 {
     id obj = [self.provider objectAtIndexPath:indexPath];
     id cell = [tableView dequeueReusableCellWithIdentifier:[self.reuseStrategy reuseIdentifierForObject:obj]];
-    if ([cell conformsToProtocol:@protocol(TFTableViewItemSelfPresenting)]) {
-        [cell prepareForPresentationWithObject:obj];
-        return cell;
-    }
     
-    id<TFTableViewItemPresenting> presenter = [self presenterForObjectType:[obj class]];
+    id<TFTableViewItemPresenting> presenter = [self presenterForObject:obj];
     [presenter prepare:cell forPresentationWithObject:obj];
     return cell;
 }
@@ -267,12 +278,8 @@
     if (sectionInfo.header == nil) return nil;
     
     id headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[self.reuseStrategy reuseIdentifierForObject:sectionInfo.header]];
-    if ([headerView conformsToProtocol:@protocol(TFTableViewItemSelfPresenting)]) {
-        [headerView prepareForPresentationWithObject:sectionInfo.header];
-        return headerView;
-    }
     
-    id<TFTableViewItemPresenting> presenter = [self presenterForObjectType:[sectionInfo.header class]];
+    id<TFTableViewItemPresenting> presenter = [self presenterForObject:sectionInfo.header];
     [presenter prepare:headerView forPresentationWithObject:sectionInfo.header];
     return headerView;
 }
@@ -283,12 +290,8 @@
     if (sectionInfo.footer == nil) return nil;
     
     id footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[self.reuseStrategy reuseIdentifierForObject:sectionInfo.footer]];
-    if ([footerView conformsToProtocol:@protocol(TFTableViewItemSelfPresenting)]) {
-        [footerView prepareForPresentationWithObject:sectionInfo.footer];
-        return footerView;
-    }
     
-    id<TFTableViewItemPresenting> presenter = [self presenterForObjectType:[sectionInfo.footer class]];
+    id<TFTableViewItemPresenting> presenter = [self presenterForObject:sectionInfo.footer];
     [presenter prepare:footerView forPresentationWithObject:sectionInfo.footer];
     return footerView;
 }
