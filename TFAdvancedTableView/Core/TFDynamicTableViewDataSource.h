@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TFDynamicTableViewDataSource : NSObject<UITableViewDataSource, UITableViewDelegate, TFResponding>
 @property (nonatomic, weak, nullable) IBOutlet UITableView * tableView;
 @property (nonatomic, weak, nullable) IBOutlet id<TFDynamicTableViewDataSourceDelegate> delegate;
-@property (nonatomic, strong, nullable) IBOutlet id<TFDynamicTableViewResultsProviding> provider;               // rename FRC
+@property (nonatomic, strong, nullable) IBOutlet id<TFDynamicTableViewResultsProviding> provider;
 @property (nonatomic, strong) id<TFDynamicTableViewReusing> reuseStrategy;
 @property (nonatomic, strong, nullable) NSArray<id<TFDynamicTableViewItemGenericPresenting>> * presenters;
 

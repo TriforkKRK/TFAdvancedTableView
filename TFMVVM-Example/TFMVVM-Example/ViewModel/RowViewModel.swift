@@ -18,3 +18,7 @@ class RowViewModel: TFBaseViewModel {
         super.init(model:nil)
     }
 }
+
+class RowViewModel2: RowViewModel {
+    
+}

@@ -24,6 +24,7 @@ class ViewContoller: UIViewController, TFDynamicTableViewDataSourceDelegate, UIA
                 cell.primaryLabel?.text = vm.name
                 cell.backgroundColor = vm.bgdColor
             },
+            RowPresenter{(_: SelfConfigurableCellWithText, _: RowViewModel2) in },   // presenter implementation is empty because SelfConfigurableCellWithText itself implements a Presenter protocol and can configure himself 
             HeaderFooterPresenter{ (header: HeaderViewWithTextAndSelection, vm: HeaderViewModel) in
                 header.setupText(vm.title)
             
@@ -64,7 +65,7 @@ class ViewContoller: UIViewController, TFDynamicTableViewDataSourceDelegate, UIA
     }
     
     @IBAction func changeDataButtonClicked(sender: AnyObject) {
-        //self.viewModelController.sections = MyMVVMDao.viewModelSetNr2()
+        self.dynamicDataSource.provider = Source(MyMVVMDao.selfConfigurableCellsSections())
     }
     //MARK: - TFDynamicTableViewDataSourceDelegate
     
@@ -89,15 +90,16 @@ class MyCustomSection : ViewModelSection {
 
 private class MyMVVMDao {
 
-    class func viewModelSetNr2() -> [ViewModelSection] {
-//        let s1 = Section()   // TODO: rows, header
-//        s1.rows = [RowViewModel(color: UIColor.lightGrayColor(), name: "New Cell nr 1.1"),
-//            RowViewModel(color: UIColor.lightGrayColor(), name: "New Cell nr 1.2")]
-//        
-//        let h1 = HeaderViewModel(model: nil)
-//        h1.title = "Section 1 header"
-//        s1.header = h1
-        
-        return []
+    class func selfConfigurableCellsSections() -> [ViewModelSection] {
+        return [
+            Section { (section : MyCustomSection) in // if you specify the section argument type it will instantiate your own subclass instead of the default "SectionType"
+                section.rows = [
+                    RowViewModel2(color: UIColor.lightGrayColor(), name: "Cell nr 1.1"),
+                    RowViewModel2(color: UIColor.lightGrayColor(), name: "Cell nr 1.2 with longer text, longer text, longer text, longer text, longer text, longer text \n\nNotice the height to be automatically calculated based on autolayout constraints...")
+                ]
+                
+                print("\(section.name) added")       // indeed it is an instance of MyCustomSection
+            }
+        ]
     }
 }

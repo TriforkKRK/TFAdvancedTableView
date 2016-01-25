@@ -41,8 +41,8 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2B-aC-BDB">
-                                            <rect key="frame" x="277" y="7" width="46" height="30"/>
-                                            <state key="normal" title="Button"/>
+                                            <rect key="frame" x="246" y="7" width="108" height="30"/>
+                                            <state key="normal" title="Switch Provider"/>
                                             <connections>
                                                 <action selector="changeDataButtonClicked:" destination="Zam-lY-iWx" eventType="touchUpInside" id="8ph-Tv-yvV"/>
                                             </connections>

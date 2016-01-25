@@ -15,6 +15,8 @@ extension SelfConfigurableCellWithText: TFDynamicTableViewItemPresenting {
     func prepare(view: UIView, forPresentationWithObject object: AnyObject) {
         guard let vm = object as? RowViewModel else { return }
         
-        self.primaryLabel?.text = vm.name
+        if let name = vm.name {
+            self.primaryLabel?.text = "Self configurable cell with name: \(name)"
+        }
     }
 }

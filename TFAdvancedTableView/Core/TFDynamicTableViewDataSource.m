@@ -147,12 +147,13 @@
 {
     _provider = provider;
     _provider.delegate = self;
+    [self.tableView reloadData];
 }
 
-- (nullable id<TFDynamicTableViewItemPresenting>)presenterForObject:(NSObject *)object
+- (nullable id<TFDynamicTableViewItemPresenting>)presenterForView:(UIView *)view object:(NSObject *)object
 {
-    if ([object conformsToProtocol:@protocol(TFDynamicTableViewItemPresenting)]) {
-        return (id<TFDynamicTableViewItemPresenting>)object;   // self presenting
+    if ([view conformsToProtocol:@protocol(TFDynamicTableViewItemPresenting)]) {
+        return (id<TFDynamicTableViewItemPresenting>)view;   // self presenting
     }
     
     return [self presenterForObjectType:[object class]];
@@ -184,7 +185,7 @@
 {
     id obj = [self.provider objectAtIndexPath:indexPath];
     
-    id<TFDynamicTableViewItemPresenting> presenter = [self presenterForObject:obj];
+    id<TFDynamicTableViewItemPresenting> presenter = [self presenterForView:cell object:obj];
     [presenter prepare:cell forPresentationWithObject:obj];
 }
 
@@ -214,7 +215,7 @@
     id obj = [self.provider objectAtIndexPath:indexPath];
     id cell = [tableView dequeueReusableCellWithIdentifier:[self.reuseStrategy reuseIdentifierForObject:obj]];
     
-    id<TFDynamicTableViewItemPresenting> presenter = [self presenterForObject:obj];
+    id<TFDynamicTableViewItemPresenting> presenter = [self presenterForView:cell object:obj];
     [presenter prepare:cell forPresentationWithObject:obj];
     return cell;
 }
@@ -278,7 +279,7 @@
     
     id headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[self.reuseStrategy reuseIdentifierForObject:sectionInfo.header]];
     
-    id<TFDynamicTableViewItemPresenting> presenter = [self presenterForObject:sectionInfo.header];
+    id<TFDynamicTableViewItemPresenting> presenter = [self presenterForView:headerView object:sectionInfo.header];
     [presenter prepare:headerView forPresentationWithObject:sectionInfo.header];
     return headerView;
 }
@@ -290,7 +291,7 @@
     
     id footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[self.reuseStrategy reuseIdentifierForObject:sectionInfo.footer]];
     
-    id<TFDynamicTableViewItemPresenting> presenter = [self presenterForObject:sectionInfo.footer];
+    id<TFDynamicTableViewItemPresenting> presenter = [self presenterForView:footerView object:sectionInfo.footer];
     [presenter prepare:footerView forPresentationWithObject:sectionInfo.footer];
     return footerView;
 }
